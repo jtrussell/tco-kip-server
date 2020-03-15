@@ -1,0 +1,8 @@
+create table player_decks (
+  id SERIAL PRIMARY KEY,
+  uuid TEXT,
+  owner TEXT,
+  chains SMALLINT DEFAULT 0,
+  constraint chains_nonnegative check (chains >= 0),
+  name TEXT
+);

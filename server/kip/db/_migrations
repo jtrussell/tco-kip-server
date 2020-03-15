@@ -1,0 +1,6 @@
+create unique index idx_player_decks_uuid on player_decks (uuid);
+
+ALTER TABLE player_decks ADD CONSTRAINT "player_decks_uuid_owner_constraint" UNIQUE ("uuid", "owner");
+
+// 2020-03-24
+ALTER TABLE players ADD COLUMN crucile_tracker_enabled BOOLEAN DEFAULT TRUE

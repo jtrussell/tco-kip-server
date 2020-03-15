@@ -1,0 +1,11 @@
+create table players (
+  id SERIAL PRIMARY KEY,
+  adaptive_wins SMALLINT DEFAULT 0,
+  adaptive_losses SMALLINT DEFAULT 0,
+  chainbound_wins SMALLINT DEFAULT 0,
+  chainbound_losses SMALLINT DEFAULT 0,
+  freeplay_wins SMALLINT DEFAULT 0,
+  freeplay_losses SMALLINT DEFAULT 0,
+  name TEXT UNIQUE,
+  crucile_tracker_enabled BOOLEAN DEFAULT TRUE
+);
