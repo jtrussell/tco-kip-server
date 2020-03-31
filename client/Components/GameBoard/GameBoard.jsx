@@ -113,13 +113,30 @@ export class GameBoard extends React.Component {
             this.setState({ spectating: true });
         }
 
-        let menuOptions = [
-            { text: 'Leave Game', onClick: this.onLeaveClick }
-        ];
+        let menuOptions = [];
 
         if(props.currentGame && props.currentGame.started) {
-            if(props.currentGame.players[props.user.username]) {
+            const playerNames = Object.keys(props.currentGame.players);
+            const isPlayer = props.currentGame.players[props.user.username];
+
+            if(isPlayer) {
+                const opponentName = playerNames.filter(p => p !== props.user.username)[0];
+                if (opponentName) {
+                    const opponent = props.currentGame.players[opponentName];
+                    if (opponent && (opponent.left || opponent.disconnected)) {
+                        menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                    }
+                } else {
+                    menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                }
+
+                if ((props.currentGame.winner || props.currentGame.manualMode) && !menuOptions.find(i => i.text === 'Leave Game')) {
+                    menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                }
+
                 menuOptions.unshift({ text: 'Concede', onClick: this.onConcedeClick });
+            } else {
+                menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
             }
 
             let spectators = props.currentGame.spectators.map(spectator => {
@@ -147,6 +164,10 @@ export class GameBoard extends React.Component {
     }
 
     onConcedeClick() {
+        if (!window.confirm('Are you sure you want to concede?')) {
+            return;
+        }
+
         this.props.sendGameMessage('concede');
     }
 

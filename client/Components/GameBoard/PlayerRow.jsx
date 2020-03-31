@@ -35,7 +35,9 @@ class PlayerRow extends React.Component {
 
     getButton(stat, name, statToSet = stat) {
         return (
-            <div className='state chains' style={{ marginTop: this.props.player === 1 ? 0 : '35px' }}>
+            <div className='state chains' style={{
+                marginTop: this.props.player === 1 ? 0 : '35px'
+            }}>
                 { (this.props.player === 1 && this.props.manualMode) ? <button className='btn btn-stat' onClick={ this.sendUpdate.bind(this, statToSet, 'down') }>
                     <img src='/img/Minus.png' title='-' alt='-' />
                 </button> : null }
@@ -192,7 +194,12 @@ class PlayerRow extends React.Component {
                         { this.renderDroppablePile('deck', drawDeck) }
                     </div>
                     { (this.props.manualMode || this.getStatValueOrDefault('chains') > 0) && (
-                        <div style={{ zIndex: 1, position: 'absolute', top: '30%' }}>
+                        <div style={{
+                            zIndex: 1,
+                            position: 'absolute',
+                            top: '30%',
+                            pointerEvents: this.props.manualMode ? '' : 'none',
+                        }}>
                             { this.getButton('chains', 'Chains') }
                         </div>
                     )}
