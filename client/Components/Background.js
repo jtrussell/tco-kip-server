@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => (
+export default ({ color }) => (
     <div style={ {
         zIndex: -1,
         position: 'fixed',
@@ -8,6 +8,6 @@ export default () => (
         left: '0px',
         bottom: '0px',
         right: '0px',
-        backgroundColor: 'rgb(246, 249, 253)'
+        backgroundColor: color || 'rgb(246, 249, 253)'
     } }/>
 );

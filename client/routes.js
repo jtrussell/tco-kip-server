@@ -26,9 +26,11 @@ import Privacy from './pages/Privacy';
 import Community from './pages/Community';
 import BanlistAdmin from './pages/BanlistAdmin';
 import Leaderboard from './pages/Leaderboard';
+import TCOArticle from './pages/TCOArticle';
 
 const routes = [
     { path: '/', action: () => <Lobby key='lobby' /> },
+    { path: '/tco', action: () => <TCOArticle/> },
     { path: '/leaderboard', action: () => <Leaderboard/> },
     { path: '/about', action: () => <About key='about' /> },
     { path: '/activation', action: context => <Activation key='activation' id={ context.params.id } token={ context.params.token } /> },
