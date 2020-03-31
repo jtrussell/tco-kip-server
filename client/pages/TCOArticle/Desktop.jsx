@@ -45,16 +45,21 @@ class Article extends React.Component {
                     <Paragraph>
                         You can find the code that powers KiP Tournaments here:
                         <BulletPoints>
-                            <BP>• <Link newtab text='KiP Server' url='https://github.com/granttitus/tco-kip-server'/></BP>
-                            <BP>• <Link newtab text='KiP Game Node' url='https://github.com/granttitus/tco-kip-gamenode'/></BP>
+                            <BP>• <Link newTab text='KiP Server' url='https://github.com/granttitus/tco-kip-server'/></BP>
+                            <BP>• <Link newTab text='KiP Game Node' url='https://github.com/granttitus/tco-kip-gamenode'/></BP>
                         </BulletPoints>
                     </Paragraph>
                     <Paragraph>
-                            We wanted to issue this statement so that people knew where we were coming from. Our intention is to grow, not fragment, the player base for KeyForge online play. Some people will like the direction we are going with our site, and some people won’t - and that’s completely OK! That’s how a community should work: people trying different things and seeing what works. We’re committed to innovation and we hope that people who haven’t been interested or had a desire to play online KeyForge will check out our site and give online KeyForge another chance. If you’re interested in finding out more, come check out the <Link text='KiP Discord' url='https://discord.gg/J7aqmGU' inline newtab/>
+                            We wanted to issue this statement so that people knew where we were coming from. Our intention is to grow, not fragment, the player base for KeyForge online play. Some people will like the direction we are going with our site, and some people won’t - and that’s completely OK! That’s how a community should work: people trying different things and seeing what works. We’re committed to innovation and we hope that people who haven’t been interested or had a desire to play online KeyForge will check out our site and give online KeyForge another chance. If you’re interested in finding out more, come check out the <Link text='KiP Discord' url='https://discord.gg/J7aqmGU' inline newTab/>
 
                     </Paragraph>
                     <Paragraph>
                         Until next time, happy forging, and see you around!
+                    </Paragraph>
+                    <Paragraph>
+                        Best,
+                        <br/>
+                        Grant Titus
                     </Paragraph>
                 </Content>
             </div>

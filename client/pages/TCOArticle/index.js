@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Mobile from './Mobile';
+import Mobile from './Desktop';
 import Desktop from './Desktop';
 
 const Component = (context) => (
