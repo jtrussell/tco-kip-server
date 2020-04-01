@@ -2,6 +2,8 @@ import React from 'react';
 
 let lastCards;
 
+const getHouse = (card) => card.printedHouse || card.house;
+
 class Cards extends React.Component {
     render() {
         const {
@@ -13,53 +15,57 @@ class Cards extends React.Component {
             return null;
         }
 
-        const { cardPiles } = game.players[user];
+        const { deckCards, cardPiles } = game.players[user];
+        let cards = deckCards;
+        let cardInDeckIndexMap = {};
 
-        let cards = []
-            .concat(cardPiles.archives)
-            .concat(cardPiles.cardsInPlay)
-            .concat(cardPiles.deck)
-            .concat(cardPiles.discard)
-            .concat(cardPiles.hand)
-            .concat(cardPiles.purged);
+        try {
+            cards = cards
+                .sort((a, b) => {
+                    if(getHouse(a) === getHouse(b)) {
+                        return a.name.localeCompare(b.name);
+                    }
 
-        cards = cards
-            .sort((a, b) => {
-                if(a.printedHouse === b.printedHouse) {
-                    return a.name.localeCompare(b.name);
+                    return getHouse(a).localeCompare(getHouse(b));
+                })
+                .map((c) => {
+                    const cardInDeck = cardPiles.deck.find((deckCard, i) => {
+                        const out = deckCard.id === c.id && !cardInDeckIndexMap[i];
+                        if(out) {
+                            cardInDeckIndexMap[i] = true;
+                        }
+
+                        return out;
+                    });
+
+                    c.dim = !cardInDeck;
+                    return c;
+                })
+                .filter((c) => !!c);
+
+            cards = cards.sort((a, b) => {
+                if(getHouse(a) === getHouse(b)) {
+                    if(a.dim && !b.dim) {
+                        return 1;
+                    }
+
+                    if(!a.dim && b.dim) {
+                        return -1;
+                    }
                 }
 
-                return a.printedHouse.localeCompare(b.printedHouse);
-            })
-            .map((c) => {
-                if(c.controlled) {
-                    return;
-                }
+                return getHouse(a).localeCompare(getHouse(b));
+            });
 
-                c.dim = !cardPiles.deck.includes(c);
-                return c;
-            })
-            .filter((c) => !!c);
-
-        cards = cards.sort((a, b) => {
-            if(a.printedHouse === b.printedHouse) {
-                if(a.dim && !b.dim) {
-                    return 1;
-                }
-
-                if(!a.dim && b.dim) {
-                    return -1;
-                }
+            if(cards.length < 36 && lastCards) {
+                cards = lastCards;
             }
 
-            return a.printedHouse.localeCompare(b.printedHouse);
-        });
-
-        if(cards.length < 36 && lastCards) {
-            cards = lastCards;
+            lastCards = cards;
+        } catch(e) {
+            console.error(e);
+            return null;
         }
-
-        lastCards = cards;
 
         return (
             <div style={ { userSelect: 'none' } }>
@@ -89,7 +95,7 @@ class Cards extends React.Component {
                     const houseStyle = {
                         width: '22px',
                         height: '22px',
-                        backgroundColor: houseColorMap[card.printedHouse],
+                        backgroundColor: houseColorMap[getHouse(card)],
                         position: 'absolute',
                         zIndex: 100
                     };
@@ -111,7 +117,7 @@ class Cards extends React.Component {
                                             style={
                                                 Object.assign(houseStyle, { filter: 'brightness(0.2)' })
                                             }
-                                            src={ `img/house/${card.printedHouse}.png` }
+                                            src={ `img/house/${getHouse(card)}.png` }
                                         />
                                         <div style={ {
                                             position: 'absolute',
@@ -134,7 +140,7 @@ class Cards extends React.Component {
                                 )
                                 : (
                                     <div>
-                                        <img style={ houseStyle } src={ `img/house/${card.printedHouse}.png` } />
+                                        <img style={ houseStyle } src={ `img/house/${getHouse(card)}.png` } />
                                         <div style={ {
                                             position: 'absolute',
                                             height: '100%',
