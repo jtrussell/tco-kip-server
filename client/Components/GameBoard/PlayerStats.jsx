@@ -92,6 +92,8 @@ export class PlayerStats extends React.Component {
                 { playerAvatar }
                 { playerDeck }
 
+                { (this.props.side === 'top' && this.props.houses) ? this.getHouses() : null }
+
                 { this.getButton('amber', 'Amber') }
                 { this.props.showMessages &&
                     <div className='state chat-status'>
