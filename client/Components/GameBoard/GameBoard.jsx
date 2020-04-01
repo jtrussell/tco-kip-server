@@ -16,7 +16,8 @@ import GameConfigurationModal from './GameConfigurationModal';
 import Droppable from './Droppable';
 import TimeLimitClock from './TimeLimitClock';
 import * as actions from '../../actions';
-import getCardImageURL from '../../getCardImageURL';
+import getCardImageURL from '../../getCardImageURL'; 
+import DeckTracker from '../../kip/Components/DeckTracker';
 
 import { withTranslation, Trans } from 'react-i18next';
 
@@ -410,6 +411,8 @@ export class GameBoard extends React.Component {
             return <div><Trans>Waiting for server...</Trans></div>;
         }
 
+        window.game = this.props.currentGame;
+
         if(!this.props.user) {
             this.props.navigate('/');
             return <div><Trans>You are not logged in, redirecting...</Trans></div>;
@@ -517,6 +520,10 @@ export class GameBoard extends React.Component {
                         activeHouse={ thisPlayer.activeHouse } manualModeEnabled={ manualMode } showManualMode={ !this.state.spectating }
                         muteSpectators={ this.props.currentGame.muteSpectators } onMuteClick={ this.onMuteClick } deckUuid={ thisPlayer.deckUuid }/>
                 </div>
+                <DeckTracker
+                    user={this.props.user.username}
+                    game={this.props.currentGame}
+                />
                 {adaptivePrompt}
             </div >);
     }
