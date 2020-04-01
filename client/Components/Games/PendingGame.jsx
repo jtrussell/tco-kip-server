@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
-import DeckChains from '../../kip/Components/DeckChains';
 import Panel from '../Site/Panel';
 import Messages from '../GameBoard/Messages';
 import Avatar from '../Site/Avatar';
@@ -111,7 +110,6 @@ class PendingGame extends React.Component {
         let deck = null;
         let selectLink = null;
         let status = null;
-        let chains = null;
         let isSealed = this.props.currentGame.gameFormat === 'sealed';
 
         if(player && player.deck && player.deck.selected && isSealed) {
@@ -122,10 +120,6 @@ class PendingGame extends React.Component {
             } else {
                 deck = <span className='deck-selection'><Trans>Deck Selected</Trans></span>;
             }
-
-            if (this.props.currentGame.gameType === 'chainbound') {
-                chains = <DeckChains chains={ player.chains } />;
-            }
             status = <DeckStatus status={ player.deck.status } />;
         } else if(player && playerIsMe && !isSealed) {
             selectLink = <span className='card-link' onClick={ this.onSelectDeckClick } style={{ marginLeft: '10px' }}><Trans>Select deck...</Trans></span>;
@@ -135,7 +129,7 @@ class PendingGame extends React.Component {
 
         return (
             <div className='player-row' key={ player.name } style={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar username={ player.name } /><span>{ player.name }</span>{ deck } { chains } { status } { selectLink }
+                <Avatar username={ player.name } /><span>{ player.name }</span>{ deck } { status } { selectLink }
             </div>);
     }
 
