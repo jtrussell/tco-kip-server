@@ -520,10 +520,10 @@ export class GameBoard extends React.Component {
                         activeHouse={ thisPlayer.activeHouse } manualModeEnabled={ manualMode } showManualMode={ !this.state.spectating }
                         muteSpectators={ this.props.currentGame.muteSpectators } onMuteClick={ this.onMuteClick } deckUuid={ thisPlayer.deckUuid }/>
                 </div>
-                <DeckTracker
+                {!this.state.spectating && <DeckTracker
                     user={this.props.user.username}
                     game={this.props.currentGame}
-                />
+                />}
                 {adaptivePrompt}
             </div >);
     }
