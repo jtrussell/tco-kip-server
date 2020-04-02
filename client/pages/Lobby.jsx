@@ -104,6 +104,11 @@ class Lobby extends React.Component {
         return (
             <ContainerColumn>
                 <Background />
+            </ContainerColumn>
+        );
+        return (
+            <ContainerColumn>
+                <Background />
                 <MainContainer>
                     <News>
                         <div>

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Constants } from './constants';
 import ErrorBoundary from './Components/Site/ErrorBoundary';
 import NavBar from './Components/Site/NavBar';
+import FloatingNavBar from './Components/FloatingNavBar';
 import Router from './Router';
 import { tryParseJSON } from './util';
 import AlertPanel from './Components/Site/AlertPanel';
@@ -84,10 +85,14 @@ class Application extends React.Component {
             }
         }
 
-                //<div className='container content'>
-        return (<div style={{ height: '100%' }}>
+        const showFloatingNavBar = [
+            '/'
+        ].includes(this.props.path);
+
+        return (<div style={ { height: '100%' } }>
             <div className={ backgroundClass } />
-            <NavBar title='KiP Tournaments' />
+            { !showFloatingNavBar && <NavBar title='KiP Tournaments' /> }
+            { showFloatingNavBar && <FloatingNavBar/> }
             <div className='wrapper'>
                 <div className='content'>
                     <ErrorBoundary navigate={ this.props.navigate } errorPath={ this.props.path } message={ 'We\'re sorry - something\'s gone wrong.' }>

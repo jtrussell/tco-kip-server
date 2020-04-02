@@ -44,7 +44,7 @@ class Component extends React.Component {
 
         if(type === 'secondary') {
             return (
-                <SecondaryAnchor href={ url } fontSize={ fontSize } fontWeight={ fontWeight }>
+                <SecondaryAnchor href={ url } fontSize={ fontSize } fontWeight={ fontWeight } target={ newTab ? '_blank' : undefined }>
                     { text }
                 </SecondaryAnchor>
             );

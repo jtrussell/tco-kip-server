@@ -31,7 +31,7 @@ class Avatar extends React.Component {
             icon = '/img/armor.png';
         }
 
-        return (<img className={ className } src={ icon } style={{ width: '24px' }} />);
+        return (<img className={ className } src={ icon } style={{ width: '24px', height: '24px' }} />);
     }
 }
 
