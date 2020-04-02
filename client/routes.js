@@ -6,10 +6,7 @@ import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Lobby from './pages/Lobby';
 import Decks from './pages/Decks';
-import Matches from './pages/Matches';
 import ImportDeck from './Components/Decks/ImportDeck';
-import HowToPlay from './pages/HowToPlay';
-import About from './pages/About';
 import Security from './pages/Security.jsx';
 import Activation from './pages/Activation';
 import ForgotPassword from './pages/ForgotPassword';
@@ -32,16 +29,14 @@ const routes = [
     { path: '/', action: () => <Lobby key='lobby' /> },
     { path: '/tco', action: () => <TCOArticle/> },
     { path: '/leaderboard', action: () => <Leaderboard/> },
-    { path: '/about', action: () => <About key='about' /> },
+    { path: '/leaderboards', action: () => <Leaderboard/> },
     { path: '/activation', action: context => <Activation key='activation' id={ context.params.id } token={ context.params.token } /> },
     { path: '/blocklist', action: () => <BlockList key='blocklist' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
-    { path: '/how-to-play', action: () => <HowToPlay key='howtoplay' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
-    { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/news', action: () => <NewsAdmin key='newsadmin' />, permission: 'canEditNews' },
     { path: '/play', action: context => (context.currentGame && context.currentGame.started) ? <GameBoard key='gameboard' /> : <GameLobby key='gamelobby' /> },
     { path: '/profile', action: () => <Profile key='profile' /> },

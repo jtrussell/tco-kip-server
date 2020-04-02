@@ -46,7 +46,7 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
                         <img style={ { width: '25px' } } src='/img/chains.png'/>
                     </div>
                 </div>
-                {` for `} 
+                {` `} 
                 <Link inline newTab text={player} url={`https://www.thecrucibletracker.com/users/${player}`}/>
                 {` with `} 
                 <div style={{ marginLeft: '48px' }}>
@@ -59,8 +59,8 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
 
 const Header = styled.div`
     font-size: 30px; 
+    font-weight: 300;
     color: #000;
-    margin: 10px 0 10px 10px;
 `;
 
 class Leaderboard extends React.Component {
@@ -90,15 +90,15 @@ class Leaderboard extends React.Component {
             <div>
                 <Background/>
                 <div className='full-height' style={{
-                    maxWidth: '1170px',
                     display: 'flex',
-                    margin: '0px auto',
+                    margin: '30px auto',
                     flexDirection: 'column',
                 }}>
                     <div>
                         <Header>Chain Leaderboard</Header>
                         { this.state.chains.filter(d => d.chains > 0).map((deck, i) => <ChainedDeck rank={i + 1} name={ deck.name } uuid={deck.uuid} chains={ deck.chains } player={ deck.owner }/>) }
                     </div>
+                    <br/>
                     <div>
                         <Header>Adaptive Leaderboard</Header>
                         { this.state.adaptive.filter(r => r.adaptive_wins > 0).map((result, i) => (
