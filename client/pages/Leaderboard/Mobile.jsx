@@ -47,10 +47,10 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
                     </div>
                 </div>
                 {` for `} 
-                <Link inline newtab text={player} url={`https://www.thecrucibletracker.com/users/${player}`}/>
+                <Link inline newTab text={player} url={`https://www.thecrucibletracker.com/users/${player}`}/>
                 {` with `} 
                 <div style={{ marginLeft: '48px' }}>
-                    <Link inline newtab type='secondary' fontSize='20px' text={name} url={`https://www.decksofkeyforge.com/decks/${uuid}`} />
+                    <Link inline newTab type='secondary' fontSize='20px' text={name} url={`https://www.decksofkeyforge.com/decks/${uuid}`} />
                 </div>
             </Text>
         </Container>
@@ -105,7 +105,7 @@ class Leaderboard extends React.Component {
                             <Container>
                                 <Text>
                                     {`${i + 1}. `}
-                                    <Link inline newtab text={result.name} url={`https://www.thecrucibletracker.com/users/${result.name}`}/>
+                                    <Link inline newTab text={result.name} url={`https://www.thecrucibletracker.com/users/${result.name}`}/>
                                     {` has ${result.adaptive_wins} win${result.adaptive_wins === 1 ? '' : 's'}`}
                                 </Text>
                             </Container>

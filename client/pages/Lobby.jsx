@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useMediaQuery, } from 'react-responsive';
 import styled from 'styled-components';
 import Background from '../Components/Background';
+import Link from '../Components/Link';
 
 const ContainerRow = styled.div`
     display: flex;
@@ -56,7 +57,7 @@ const Text = styled.div`
     font-family: 'Open Sans';
 `;
 
-const SecondaryNews = styled.div`
+const News = styled.div`
     position: relative;
     flex-grow: 1;
     padding: 5px;
@@ -86,6 +87,11 @@ const ChallongeHeader = styled.div`
     color: #FFF;
 `;
 
+const EventTime = styled.span`
+    font-size: 14px;
+    margin-left: 15px;
+`
+
 class Lobby extends React.Component {
 
     render() {
@@ -99,7 +105,7 @@ class Lobby extends React.Component {
             <ContainerColumn>
                 <Background />
                 <MainContainer>
-                    <SecondaryNews>
+                    <News>
                         <div>
                             <Title>
                                 Online Tournaments
@@ -113,69 +119,75 @@ class Lobby extends React.Component {
                         </div>
                         <Blurb>
                             <Title>
-                                Global Chainbound
+                                Friday, April 3rd
                             </Title>
                             <Text>
-                                {` Wins on this server award your deck chains. See how high you can climb on the chain leaderboard!`}
+                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/8fs4vmt9"/>
+                                <EventTime>12pm EST, 6pm CEST</EventTime>
+                            </Text>
+                            <Text>
+                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/3rv1y1s0"/>
+                                <EventTime>8PM EST, 2AM CEST</EventTime>
                             </Text>
                         </Blurb>
                         <Blurb>
                             <Title>
-                                Our Discord
+                                Saturday, April 4th
                             </Title>
                             <Text>
-                                {`Join the `}
-                                <a href="https://discord.gg/fauXD9q" style={{ display: 'inline-block', color: 'rgb(0, 0, 238)' }}>
-                                    KiP Discord
-                                </a>
-                                {` to stay up to date with our latest news.`}
+                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/ig2xxxr5"/>
+                                <EventTime>12pm EST, 6pm CEST</EventTime>
+                            </Text>
+                            <Text>
+                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/odbjswmw"/>
+                                <EventTime>8PM EST, 2AM CEST</EventTime>
                             </Text>
                         </Blurb>
                         <Blurb>
                             <Title>
-                                <div style={{ display: 'flex' }}>
-                                    <TrackerLogo>
-                                        <img src='/img/tracker-icon128.png' style={{ transformOrigin: 'top left', transform: 'scale(0.3)' }}/>
-                                    </TrackerLogo>
-                                    The Crucible Tracker
-                                </div>
+                                Sunday, April 5th
                             </Title>
                             <Text>
-                                {` Our platform has a native integration with `}
-                                <a href="https://www.thecrucibletracker.com" style={{ display: 'inline-block', color: 'rgb(0, 0, 238)' }}>
-                                    {isMobile ? 'The' : 'The'} Crucible Tracker
-                                </a>
-                                {`. You can opt-out of tracking at any time by visiting your profile page on this site.`}
+                                <Link text="Free Win-A-Box Chainbound (128 players)" url="https://challonge.com/l2ujd82z"/>
+                                <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
-                    </SecondaryNews>
-                    <Image>
-                        <LargeImage src="/img/sanctum_bw_wallpaper.jpg"/>
-                        <Overlay>
-                            Shadow Worlds — May 2nd 
-                        </Overlay>
-                    </Image>
+                    </News>
                 </MainContainer>
-                {!isMobile && <Challonge>
-                        <ChallongeHeader>
-                            Adapticon Win-A-Box 2 won by jfilipeg
-                        </ChallongeHeader>
-                        <ChallongeBracket>
-                            <iframe
-                                src="https://challonge.com/KiPAdaptive2/module"
-                                width="100%"
-                                height="100%"
-                                frameBorder="0"
-                                scrolling="auto"
-                                allowTransparency="true"
-                            />
-                        </ChallongeBracket>
-                    </Challonge>
-                }
             </ContainerColumn>
         );
     }
 }
+
+                        //<Blurb>
+                            //<Title>
+                                //Our Discord
+                            //</Title>
+                            //<Text>
+                                //{`Join the `}
+                                //<a href="https://discord.gg/fauXD9q" style={{ display: 'inline-block', color: 'rgb(0, 0, 238)' }}>
+                                    //KiP Discord
+                                //</a>
+                                //{` to stay up to date with our latest news.`}
+                            //</Text>
+                        //</Blurb>
+                        //<Blurb>
+                            //<Title>
+                                //<div style={{ display: 'flex' }}>
+                                    //<TrackerLogo>
+                                        //<img src='/img/tracker-icon128.png' style={{ transformOrigin: 'top left', transform: 'scale(0.3)' }}/>
+                                    //</TrackerLogo>
+                                    //The Crucible Tracker
+                                //</div>
+                            //</Title>
+                            //<Text>
+                                //{` Our platform has a native integration with `}
+                                //<a href="https://www.thecrucibletracker.com" style={{ display: 'inline-block', color: 'rgb(0, 0, 238)' }}>
+                                    //{isMobile ? 'The' : 'The'} Crucible Tracker
+                                //</a>
+                                //{`. You can opt-out of tracking at any time by visiting your profile page on this site.`}
+                            //</Text>
+                        //</Blurb>
 
 const Wrapper = () => (
   <Lobby isMobile={useMediaQuery({ maxWidth: 767, })}/>
