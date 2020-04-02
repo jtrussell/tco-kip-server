@@ -261,7 +261,7 @@ class Profile extends React.Component {
                         </Panel>
                         <div>
                             <Panel title={ t('Game Board Background') }>
-                                <div className='row'>
+                                <div style={{ display: 'flex', 'overflow-x': 'scroll', padding: '10px 0' }}>
                                     {
                                         backgrounds.map(background => (
                                             <GameBackgroundOption

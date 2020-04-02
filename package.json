@@ -12,7 +12,7 @@
     "test": "cross-env JASMINE_CONFIG_PATH=./jasmine.json jasmine",
     "lint": "eslint --ext=js --ext=jsx client/ server/ test/",
     "b": "rm -fr dist/ && webpack --config webpack.production.js",
-    "bb": "rm -fr dist/ && webpack --config webpack.dev.js",
+    "bb": "rm -fr dist/ && NODE_ENV=development webpack --config webpack.dev.js",
     "test-client": "jest --colors client"
   },
   "jest": {

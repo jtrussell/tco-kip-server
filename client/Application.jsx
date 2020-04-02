@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 import { Constants } from './constants';
 import ErrorBoundary from './Components/Site/ErrorBoundary';
 import NavBar from './Components/Site/NavBar';
+import FloatingNavBar from './Components/FloatingNavBar';
 import Router from './Router';
 import { tryParseJSON } from './util';
 import AlertPanel from './Components/Site/AlertPanel';
 import * as actions from './actions';
+import { useMediaQuery } from 'react-responsive';
 
 class Application extends React.Component {
     constructor(props) {
@@ -88,10 +90,16 @@ class Application extends React.Component {
             }
         }
 
-                //<div className='container content'>
-        return (<div style={{ height: '100%' }}>
+        const showFloatingNavBar = [
+            '/',
+            '/leaderboard',
+            '/leaderboards',
+        ].includes(this.props.path);
+
+        return (<div style={ { height: '100%' } }>
             <div className={ backgroundClass } />
-            <NavBar title='KiP Tournaments' />
+            { !showFloatingNavBar && <NavBar title='KiP Tournaments' /> }
+            { showFloatingNavBar && <FloatingNavBar isMobile={this.props.isMobile}/> }
             <div className='wrapper'>
                 <div className='content'>
                     <ErrorBoundary navigate={ this.props.navigate } errorPath={ this.props.path } message={ 'We\'re sorry - something\'s gone wrong.' }>
@@ -129,4 +137,11 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, actions)(Application);
+
+const Component = connect(mapStateToProps, actions)(Application);
+
+export default (context) => (
+    <Component isMobile={useMediaQuery({ maxWidth: 767 })}/>
+);
+
+//export default connect(mapStateToProps, actions)(Application);

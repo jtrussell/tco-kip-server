@@ -58,6 +58,7 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
 
 const Header = styled.div`
     font-size: 30px; 
+    font-weight: 300;
     color: #000;
     margin: 10px 0 20px 10px;
 `;
@@ -87,9 +88,9 @@ class Leaderboard extends React.Component {
     render() {
         return (
             <div className='full-height' style={{
-                maxWidth: '1170px',
+                maxWidth: '1000px',
                 display: 'flex',
-                margin: '20px auto',
+                margin: '70px auto',
             }}>
                 <Background/>
                 <div className='col-md-8 full-height'>

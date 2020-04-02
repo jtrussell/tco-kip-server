@@ -7,9 +7,9 @@ const start = () => {
 
     let cssOverrides = '';
 
-    const navElements = Array.from(document.querySelectorAll('.navbar-right li'));
-    let concedeIndex = -1;
-    let leaveIndex = -1;
+    //const navElements = Array.from(document.querySelectorAll('.navbar-right li'));
+    //let concedeIndex = -1;
+    //let leaveIndex = -1;
     //navElements.forEach((el, i) => {
     //const matchLeaveGame = i18n['Leave Game'].find(t => el.innerText === t);
     //if(matchLeaveGame) {

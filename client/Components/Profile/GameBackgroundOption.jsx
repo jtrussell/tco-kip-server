@@ -12,8 +12,8 @@ function GameBackgroundOption(props) {
     };
 
     return (
-        <div className='col-sm-3' onClick={ handleClick }>
-            <img className={ classNames('img-responsive', { 'selected': selected }) } src={ imageUrl } />
+        <div style={{ width: '300px', margin: '0 10px', display: 'inline-block' }} onClick={ handleClick }>
+            <img style={{ width: '300px', filter: 'brightness(3)' }} className={ classNames({ 'selected': selected }) } src={ imageUrl } />
             <span className='bg-label'>{ label }</span>
         </div>);
 }

@@ -8,6 +8,6 @@ export default ({ color }) => (
         left: '0px',
         bottom: '0px',
         right: '0px',
-        backgroundColor: color || 'rgb(246, 249, 253)'
+        backgroundColor: color || '#FFF'
     } }/>
 );
