@@ -122,11 +122,11 @@ class Lobby extends React.Component {
                                 Friday, April 3rd
                             </Title>
                             <Text>
-                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/8fs4vmt9"/>
+                                <Link text="$5 Archon KiP Chainbound Bo1 Swiss (16 players)" url="https://challonge.com/8fs4vmt9"/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                             <Text>
-                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/3rv1y1s0"/>
+                                <Link text="$5 Archon KiP Chainbound Bo1 Swiss (16 players)" url="https://challonge.com/3rv1y1s0"/>
                                 <EventTime>8PM EST, 2AM CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -135,11 +135,11 @@ class Lobby extends React.Component {
                                 Saturday, April 4th
                             </Title>
                             <Text>
-                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/ig2xxxr5"/>
+                                <Link text="$5 Archon KiP Chainbound Bo1 Swiss (16 players)" url="https://challonge.com/ig2xxxr5"/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                             <Text>
-                                <Link text="Win-6-Decks Chainbound (16 players)" url="https://challonge.com/odbjswmw"/>
+                                <Link text="$5 Archon KiP Chainbound Bo1 Swiss (16 players)" url="https://challonge.com/odbjswmw"/>
                                 <EventTime>8PM EST, 2AM CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -148,7 +148,7 @@ class Lobby extends React.Component {
                                 Sunday, April 5th
                             </Title>
                             <Text>
-                                <Link text="Free Win-A-Box Chainbound (128 players)" url="https://challonge.com/l2ujd82z"/>
+                                <Link text="Free Archon KiP Chainbound Bo1 Swiss (128 players)" url="https://challonge.com/l2ujd82z"/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
