@@ -53,6 +53,9 @@ class GameLobby extends React.Component {
     }
 
     componentDidMount() {
+        const favicon = document.querySelector('#favicon');
+        favicon.href = '/favicon-32x32.png';
+
         $('#pendingGameModal').on('hide.bs.modal', this.onModalHidden);
 
         if(window.Notification && Notification.permission !== 'granted') {

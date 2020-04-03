@@ -172,10 +172,12 @@ class ActivePlayerPrompt extends React.Component {
         let promptTitle;
         const favicon = document.querySelector('#favicon');
 
+        console.log(this.props);
+
         if(this.props.promptTitle) {
             let promptTitleText = this.safePromptText(this.props.promptTitle);
 
-            if (promptTitleText === 'House Choice') {
+            if (this.props.phase === 'house' || this.props.phase === 'key') {
                 favicon.href = '/favicon-green-32x32.png';
             }
 
