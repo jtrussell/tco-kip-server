@@ -8187,10 +8187,13 @@ ul.htp-sub-list {
   position: fixed;
   left: 5px;
   z-index: 9999;
-  bottom: 45px;
+  bottom: 50px;
 }
 .prompt-area .panel {
   background: black;
+}
+.player-prompt-body {
+  padding-bottom: 10px;
 }
 .player-info {
   display: flex;
@@ -8520,7 +8523,7 @@ ul.htp-sub-list {
   text-align: center;
   text-transform: uppercase;
   font-size: 10px;
-  padding: 1px;
+  padding: 2px;
 }
 span.up-arrow {
   content: '';
