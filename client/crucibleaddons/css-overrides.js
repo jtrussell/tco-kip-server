@@ -108,7 +108,7 @@ const start = () => {
     }
 
     .stat-image.amber {
-      transform: scale(1.8);
+      transform: scale(1.3);
       margin: 10px;
     }
 
@@ -122,9 +122,6 @@ const start = () => {
       border: none !important;
     }
 
-    .play-area::-webkit-scrollbar {
-      display: none;
-    }
     .player-home-row {
       overflow: unset;
     }
