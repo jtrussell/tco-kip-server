@@ -170,9 +170,14 @@ class ActivePlayerPrompt extends React.Component {
         }
 
         let promptTitle;
+        const favicon = document.querySelector('#favicon');
 
         if(this.props.promptTitle) {
             let promptTitleText = this.safePromptText(this.props.promptTitle);
+
+            if (promptTitleText === 'House Choice') {
+                favicon.href = '/favicon-green-32x32.png';
+            }
 
             promptTitle = (<div className='menu-pane-source'>
                 { this.localizedText(controlSource, promptTitleText, this.props.promptTitle.values) }
@@ -182,6 +187,10 @@ class ActivePlayerPrompt extends React.Component {
         let timer = null;
         let promptText = this.safePromptText(this.props.promptText);
         let promptTexts = [];
+
+        if (promptText === 'Waiting for opponent') {
+            favicon.href = '/favicon-gray-32x32.png';
+        }
 
         if(promptText) {
             if(promptText.includes('\n')) {
