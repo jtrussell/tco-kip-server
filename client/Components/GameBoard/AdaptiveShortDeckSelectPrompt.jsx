@@ -43,7 +43,10 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
         };
 
         buildDeckList(deckA, 'en', (t) => t, props.cards)
-            .then(img => this.setState({ deckImageA: img }));
+            .then(img => this.setState({
+                deckImageA: img,
+                deckAUUID: deckA.uuid,
+            }));
 
         const deckB = {
             name: playerB.deckName,
@@ -54,7 +57,10 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
         };
 
         buildDeckList(deckB, 'en', (t) => t, props.cards)
-            .then(img => this.setState({ deckImageB: img }));
+            .then(img => this.setState({
+                deckImageB: img,
+                deckBUUID: deckB.uuid,
+            }));
     }
 
     onButtonClick(event, command, arg, uuid, method) {
@@ -140,6 +146,7 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
                 } }>
                     <div >
                         <h4>{ promptTexts }</h4>
+                        <a href='https://www.reddit.com/r/KeyforgeGame/comments/cfpk2m/adaptive_short_a_format_concept_that_takes_the/' target='_blank'>Variant Rules</a>
                     </div>
                     <div style={ {
                         display: 'flex',
@@ -152,8 +159,12 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
                         justifyContent: 'space-around',
                         marginTop: '10px',
                     } }>
-                        <DeckList src={ this.state.deckImageA }/>
-                        <DeckList src={ this.state.deckImageB }/>
+                        <a href={this.state.deckAUUID ? `https://www.decksofkeyforge.com/decks/${this.state.deckAUUID}` : ''} target='_blank'>
+                            <DeckList src={ this.state.deckImageA }/>
+                        </a>
+                        <a href={this.state.deckBUUID ? `https://www.decksofkeyforge.com/decks/${this.state.deckBUUID}` : ''} target='_blank'>
+                            <DeckList src={ this.state.deckImageB }/>
+                        </a>
                     </div>
                 </div>
             </Panel>
