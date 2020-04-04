@@ -210,8 +210,8 @@ class GameList extends React.Component {
             chainbound: t(gameType),
             freeplay: t(gameType),
             adaptive: t(gameType),
+            adaptiveShort: 'Adaptive Short',
         }
-            //adaptiveShort: 'Adaptive Short',
 
         return (
             <div>
@@ -235,7 +235,7 @@ class GameList extends React.Component {
 
         let gameList = [];
 
-        for(const gameType of ['chainbound', 'freeplay', 'adaptive']) {//, 'adaptiveShort']) {
+        for(const gameType of ['chainbound', 'freeplay', 'adaptive', 'adaptiveShort']) {
             if(this.props.gameFilter[gameType] && groupedGames[gameType]) {
                 gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));
             }

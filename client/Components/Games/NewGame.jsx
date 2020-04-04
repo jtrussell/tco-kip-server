@@ -140,8 +140,8 @@ class NewGame extends React.Component {
             { name: 'chainbound', label: 'Chainbound' },
             { name: 'freeplay', label: 'Free Play' },
             { name: 'adaptive', label: 'Adaptive' },
+            { name: 'adaptiveShort', label: 'Adaptive Short', beta: true }
         ];
-            //{ name: 'adaptiveShort', label: 'Adaptive Short', beta: true }
             //{ name: 'beginner', label: t('Beginner') },
 
         return (
