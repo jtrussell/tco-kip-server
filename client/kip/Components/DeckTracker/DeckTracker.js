@@ -29,7 +29,7 @@ class DeckTracker extends React.Component {
                     height: 'fit-content',
                     position: 'fixed',
                     top: '10px',
-                    right: '590px',
+                    right: '650px',
                     zIndex: 999,
                     backgroundColor: '#000'
                 } }
@@ -37,7 +37,7 @@ class DeckTracker extends React.Component {
             >
                 <div
                     style={ {
-                        background: 'rgb(192, 192, 192)',
+                        background: '#999',
                         display: 'flex',
                         flexDirection: 'row'
                     } }

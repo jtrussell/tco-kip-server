@@ -19,29 +19,38 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
             deckImageA: Images.cardback,
             deckImageB: Images.cardback
         };
+    }
+
+    componentWillReceiveProps(props) {
+        if (!props.buttons.length) {
+            return;
+        }
 
         const {
             thisPlayer,
             otherPlayer
         } = props;
 
+        const playerA = props.buttons[0].arg === thisPlayer.deckUuid ? thisPlayer : otherPlayer;
+        const playerB = props.buttons[0].arg === thisPlayer.deckUuid ? otherPlayer : thisPlayer;
+
         const deckA = {
-            name: thisPlayer.deckName,
-            cards: thisPlayer.deckCards,
-            houses: thisPlayer.houses,
-            uuid: thisPlayer.deckUuid,
-            expansion: thisPlayer.deckSet
+            name: playerA.deckName,
+            cards: playerA.deckCards,
+            houses: playerA.houses,
+            uuid: playerA.deckUuid,
+            expansion: playerA.deckSet
         };
 
         buildDeckList(deckA, 'en', (t) => t, props.cards)
             .then(img => this.setState({ deckImageA: img }));
 
         const deckB = {
-            name: otherPlayer.deckName,
-            cards: otherPlayer.deckCards,
-            houses: otherPlayer.houses,
-            uuid: otherPlayer.deckUuid,
-            expansion: otherPlayer.deckSet
+            name: playerB.deckName,
+            cards: playerB.deckCards,
+            houses: playerB.houses,
+            uuid: playerB.deckUuid,
+            expansion: playerB.deckSet
         };
 
         buildDeckList(deckB, 'en', (t) => t, props.cards)
@@ -65,6 +74,7 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
                 <button key={ button.command + buttonIndex.toString() }
                     className='btn btn-default prompt-button'
                     onClick={ event => this.onButtonClick(event, button.command, button.arg, button.uuid, button.method) }
+                    style={{ width: '130px' }}
                 >{ button.text }</button>);
             buttonIndex++;
             buttons.push(option);
@@ -112,15 +122,14 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
             bottom: 0,
             left: 0,
             right: 0,
-            paddingTop: '20px',
+            paddingTop: '10px',
             zIndex: 99,
             margin: 0,
         };
 
         const DeckList = styled.img`
             height: 500px;
-            width: calc(500px * 0.714285714);
-            margin: 20px;
+            margin: 0 20px 20px 20px;
         `;
 
         return (
@@ -135,16 +144,16 @@ class AdaptiveShortDeckSelectPrompt extends React.Component {
                     <div style={ {
                         display: 'flex',
                         justifyContent: 'space-around',
+                    } }>
+                        { this.getButtons() }
+                    </div>
+                    <div style={ {
+                        display: 'flex',
+                        justifyContent: 'space-around',
                         marginTop: '10px',
                     } }>
                         <DeckList src={ this.state.deckImageA }/>
                         <DeckList src={ this.state.deckImageB }/>
-                    </div>
-                    <div style={ {
-                        display: 'flex',
-
-                    } }>
-                        { this.getButtons() }
                     </div>
                 </div>
             </Panel>

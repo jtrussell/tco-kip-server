@@ -114,25 +114,21 @@ class Messages extends React.Component {
                         break;
                     case 'success':
                         messages.push(<div className='alert alert-success' key={ index++ }>
-                            <span className='glyphicon glyphicon-ok-sign'/>&nbsp;
                             { message }
                         </div>);
                         break;
                     case 'info':
                         messages.push(<div className='alert alert-info' key={ index++ }>
-                            <span className='glyphicon glyphicon-info-sign'/>&nbsp;
                             { message }
                         </div>);
                         break;
                     case 'danger':
                         messages.push(<div className='alert alert-danger' key={ index++ }>
-                            <span className='glyphicon glyphicon-exclamation-sign'/>&nbsp;
                             { message }
                         </div>);
                         break;
                     case 'warning':
                         messages.push(<div className='alert alert-warning' key={ index++ }>
-                            <span className='glyphicon glyphicon-warning-sign'/>&nbsp;
                             { message }
                         </div>);
                         break;

@@ -140,7 +140,7 @@ class NewGame extends React.Component {
             { name: 'chainbound', label: 'Chainbound' },
             { name: 'freeplay', label: 'Free Play' },
             { name: 'adaptive', label: 'Adaptive' },
-            { name: 'adaptiveShort', label: 'Adaptive Short' }
+            { name: 'adaptiveShort', label: 'Adaptive Short', beta: true }
         ];
             //{ name: 'beginner', label: t('Beginner') },
 
@@ -153,7 +153,8 @@ class NewGame extends React.Component {
                     { gameTypes.map(gameType => {
                         return (<label key={ gameType.name } className='radio-inline'>
                             <input type='radio' onChange={ this.onGameTypeChange.bind(this, gameType.name) } checked={ this.isGameTypeSelected(gameType.name) } />
-                            { gameType.label }
+                                { gameType.label }
+                                { gameType.beta && <span style={{ color: '#000', backgroundColor: '#DEC052', padding: '3px 5px', fontSize: '12px', marginLeft: '5px'}}>beta</span>}
                         </label>);
                     }) }
                 </div>

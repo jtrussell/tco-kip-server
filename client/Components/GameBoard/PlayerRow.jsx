@@ -83,15 +83,7 @@ class PlayerRow extends React.Component {
         };
 
         if(this.props.language) {
-            if(this.props.language !== prevProps.language) {
-                buildArchon(deck, this.props.language)
-                    .then(cardBackUrl => {
-                        if(this.props.player === 1) {
-                            this.props.setPlayer1CardBack(cardBackUrl);
-                        } else {
-                            this.props.setPlayer2CardBack(cardBackUrl);
-                        }
-                    });
+            if(this.props.language !== prevProps.language || this.props.deckName !== prevProps.deckName) {
                 buildDeckList(deck, this.props.language, this.props.t, this.props.cards).then(deckListUrl => this.setState({ deckListUrl }));
             }
         }

@@ -12,7 +12,6 @@ function start() {
     }
 
     started = true;
-    console.log('Enabling Crucible Addons');
 
     //setTimeout(() => {
     setupCSS();
@@ -37,7 +36,6 @@ function start() {
                     if(state.games && state.games.socket) {
                         resolve(state.games.socket);
                         clearInterval(interval);
-                        console.log('Connected to socket');
                     }
                 }, 100);
             });
@@ -64,7 +62,6 @@ function start() {
             }
 
             socketRef.off('gamestate', handleSocketEvent);
-            console.log('Inject script is shutting down');
         };
 
         const userHand = document.querySelectorAll('.player-home-row-container')[1];
