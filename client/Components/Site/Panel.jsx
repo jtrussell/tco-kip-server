@@ -5,7 +5,7 @@ import classNames from 'classnames';
 class Panel extends React.Component {
     render() {
         return (
-            <div className={ classNames('panel', `panel-${this.props.type}`, this.props.className) }>
+            <div className={ classNames('panel', `panel-${this.props.type}`, this.props.className) } style={this.props.styles || {}}>
                 { this.props.title &&
                     <div className={ classNames('panel-heading', this.props.titleClass) }>
                         { this.props.title }

@@ -75,7 +75,6 @@ const start = () => {
       position: fixed;
       top: 6px;
       right: 430px;
-      z-index: 9999;
     }
     .chat-status .state {
       border: none;

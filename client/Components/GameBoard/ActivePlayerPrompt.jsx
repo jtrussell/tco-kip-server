@@ -151,6 +151,7 @@ class ActivePlayerPrompt extends React.Component {
                     return <HouseSelect buttons={ this.props.buttons } onHouseSelected={ this.onHouseSelected } />;
                 case 'options-select':
                     return <OptionsSelect options={ this.props.buttons } onOptionSelected={ this.onOptionSelected } />;
+
             }
         });
     }
@@ -171,8 +172,6 @@ class ActivePlayerPrompt extends React.Component {
 
         let promptTitle;
         const favicon = document.querySelector('#favicon');
-
-        console.log(this.props);
 
         if(this.props.promptTitle) {
             let promptTitleText = this.safePromptText(this.props.promptTitle);
@@ -206,15 +205,17 @@ class ActivePlayerPrompt extends React.Component {
             }
         }
 
-        return (<Panel title={ this.props.t(this.props.phase + ' phase') } titleClass='phase-indicator' panelBodyClass='player-prompt-body'>
-            { timer }
-            { promptTitle }
-            <div className='menu-pane'>
-                <h4>{ promptTexts }</h4>
-                { this.getControls() }
-                { this.getButtons() }
-            </div>
-        </Panel>);
+        return (
+            <Panel title={ this.props.t(this.props.phase + ' phase') } titleClass='phase-indicator' panelBodyClass='player-prompt-body'>
+                { timer }
+                { promptTitle }
+                <div className='menu-pane'>
+                    <h4>{ promptTexts }</h4>
+                    { this.getControls() }
+                    { this.getButtons() }
+                </div>
+            </Panel>
+        );
     }
 }
 

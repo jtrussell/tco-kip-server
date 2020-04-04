@@ -13,6 +13,7 @@ const NavBar = styled.div`
     padding: 5px 10px;
     margin-bottom: 10px;
     color: #000;
+    backgroundColor: #FFF;
 `;
 
 const Container = styled.div`

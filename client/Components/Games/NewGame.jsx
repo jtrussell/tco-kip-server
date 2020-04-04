@@ -139,7 +139,8 @@ class NewGame extends React.Component {
         let gameTypes = [
             { name: 'chainbound', label: 'Chainbound' },
             { name: 'freeplay', label: 'Free Play' },
-            { name: 'adaptive', label: 'Adaptive' }
+            { name: 'adaptive', label: 'Adaptive' },
+            { name: 'adaptiveShort', label: 'Adaptive Short' }
         ];
             //{ name: 'beginner', label: t('Beginner') },
 

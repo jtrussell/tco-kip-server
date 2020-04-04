@@ -11,11 +11,13 @@ import styled from 'styled-components';
 const NavBar = styled.div`
     z-index: 1;
     position: fixed;
-    top: 20px;
+    top: 0;
     right: 0;
     left: 0;
+    padding-top: 20px;
     margin-bottom: 20px;
     color: #000;
+    backgroundColor: #FFF;
 `;
 
 const Container = styled.div`

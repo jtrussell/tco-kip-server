@@ -87,6 +87,10 @@ class PendingGame extends React.Component {
             return false;
         }
 
+        if(this.getNumberOfPlayers(this.props) < 2) {
+            return false;
+        }
+
         return this.props.currentGame.owner === this.props.user.username;
     }
 

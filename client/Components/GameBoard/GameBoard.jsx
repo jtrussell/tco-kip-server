@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
+import AdaptiveShortDeckSelectPrompt from './AdaptiveShortDeckSelectPrompt';
 import CardZoom from './CardZoom';
 import PlayerBoard from './PlayerBoard';
 import GameChat from './GameChat';
@@ -489,17 +490,34 @@ export class GameBoard extends React.Component {
                     <div className='right-side'>
                         <div className='prompt-area'>
                             <div className='inset-pane'>
-                                <ActivePlayerPrompt
-                                    cards={ this.props.cards }
-                                    buttons={ thisPlayer.buttons }
-                                    controls={ thisPlayer.controls }
-                                    promptText={ thisPlayer.menuTitle }
-                                    promptTitle={ thisPlayer.promptTitle }
-                                    onButtonClick={ this.onCommand }
-                                    onMouseOver={ this.onMouseOver }
-                                    onMouseOut={ this.onMouseOut }
-                                    user={ this.props.user }
-                                    phase={ thisPlayer.phase } />
+                                {thisPlayer.promptType !== 'adaptive-short-deck-select' && (
+                                    <ActivePlayerPrompt
+                                        cards={ this.props.cards }
+                                        buttons={ thisPlayer.buttons }
+                                        controls={ thisPlayer.controls }
+                                        promptText={ thisPlayer.menuTitle }
+                                        promptType={ thisPlayer.promptType }
+                                        promptTitle={ thisPlayer.promptTitle }
+                                        onButtonClick={ this.onCommand }
+                                        onMouseOver={ this.onMouseOver }
+                                        onMouseOut={ this.onMouseOut }
+                                        user={ this.props.user }
+                                        phase={ thisPlayer.phase }
+                                    />
+                                )}
+                                {thisPlayer.promptType === 'adaptive-short-deck-select' && (
+                                    <AdaptiveShortDeckSelectPrompt
+                                        cards={ this.props.cards }
+                                        thisPlayer={ thisPlayer }
+                                        otherPlayer={ otherPlayer }
+                                        onButtonClick={ this.onCommand }
+                                        buttons={ thisPlayer.buttons }
+                                        promptText={ thisPlayer.menuTitle }
+                                        promptType={ thisPlayer.promptType }
+                                        promptTitle={ thisPlayer.promptTitle }
+                                        phase={ thisPlayer.phase }
+                                    />
+                                )}
                             </div>
                         </div>
                         { this.state.showMessages && <div className='gamechat'>
