@@ -350,7 +350,7 @@ class Profile extends React.Component {
                                 <Input name='localBackgroundUrl' label='Background Image' labelClass='col-sm-4' fieldClass='col-sm-8' placeholder='URL to background image'
                                     type='text' onChange={ this.onChange.bind(this, 'localBackgroundUrl') } value={ this.state.localBackgroundUrl }
                                     onBlur={ () => {} } />
-                                    {this.state.localBackgroundUrl.length && <div style={{ float: 'right'}}>Clear the text box to remove your custom background</div>}
+                                    {(this.state && this.state.localBackgroundUrl && this.state.localBackgroundUrl.length) && <div style={{ float: 'right'}}>Clear the text box to remove your custom background</div>}
                             </Panel>
                         </div>
                         <div>
