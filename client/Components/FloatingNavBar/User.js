@@ -44,14 +44,14 @@ const DropdownItem = styled.div`
     }
 `;
 
-const User = ({ navigate, username }) => {
+const User = ({ navigate, user }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
     return (
         <Container onClick={ () => setDropdownVisible(!dropdownVisible) } onMouseLeave={ () => setDropdownVisible(false) }>
             <UserContainer>
-                <Avatar username={ username } />
-                <UserName>{ username }</UserName>
+                <Avatar user={ user } />
+                <UserName>{ user.username }</UserName>
                 <span className='caret'/>
             </UserContainer>
             { dropdownVisible &&

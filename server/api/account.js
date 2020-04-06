@@ -196,7 +196,7 @@ module.exports.init = function(server, options) {
             registered: new Date(),
             username: req.body.username,
             email: req.body.email,
-            enableGravatar: req.body.enableGravatar,
+            avatar: '/img/amber.png',
             registerIp: ip
         };
 
@@ -230,7 +230,7 @@ module.exports.init = function(server, options) {
         res.send({ success: true });
 
         try {
-            await downloadAvatar(user);
+            //await downloadAvatar(user);
         } catch(error) {
             logger.error('Error downloading avatar for', user.username, error);
         }
@@ -538,9 +538,9 @@ module.exports.init = function(server, options) {
             user.password = await bcrypt.hash(userToSet.password, 10);
         }
 
-        user.enableGravatar = userToSet.enableGravatar;
+        user.avatar = userToSet.avatar;
 
-        await downloadAvatar(user);
+        //await downloadAvatar(user);
 
         await userService.update(user);
 
@@ -685,7 +685,7 @@ module.exports.init = function(server, options) {
 
         user = user.getDetails();
 
-        await downloadAvatar(user);
+        //await downloadAvatar(user);
 
         res.send({ success: true });
     }));

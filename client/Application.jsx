@@ -92,6 +92,7 @@ class Application extends React.Component {
 
         const showFloatingNavBar = [
             '/',
+            '/profile',
             '/leaderboard',
             '/leaderboards',
         ].includes(this.props.path);

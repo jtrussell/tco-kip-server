@@ -1,20 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { Constants } from '../constants';
 import AlertPanel from '../Components/Site/AlertPanel';
-import Panel from '../Components/Site/Panel';
 import Input from '../Components/Form/Input';
 import Checkbox from '../Components/Form/Checkbox';
 import CardSizeOption from '../Components/Profile/CardSizeOption';
 import GameBackgroundOption from '../Components/Profile/GameBackgroundOption';
-import Avatar from '../Components/Site/Avatar';
-
+import { avatars } from '../Components/Site/AvatarImages';
 import * as actions from '../actions';
-
 import { withTranslation, Trans } from 'react-i18next';
 import kip from '../kip';
+import Background from '../Components/Background';
+
+const Avatar = styled.div`
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+`;
+
+const AvatarImg = styled.img`
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin: -5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 5px 0
+`;
+
+const Panel = ({ title, children }) => (
+    <div style={{
+        padding: '30px',
+        margin: '20px',
+        color: '#000',
+        fontWeight: 'normal',
+    }}>
+    <div style={{
+        fontSize: '26px',
+        fontWeight: '300',
+    }}>{title}</div>
+        {children}
+    </div>
+);
 
 class Profile extends React.Component {
     constructor(props) {
@@ -95,10 +125,10 @@ class Profile extends React.Component {
 
         this.setState({
             email: props.user.email,
-            enableGravatar: props.user.enableGravatar,
             selectedBackground: props.user.settings.background,
             selectedCardSize: props.user.settings.cardSize,
-            optionSettings: props.user.settings.optionSettings
+            optionSettings: props.user.settings.optionSettings,
+            avatar: props.user.avatar,
         });
     }
 
@@ -147,7 +177,7 @@ class Profile extends React.Component {
         this.props.saveProfile(this.props.user.username, {
             email: this.state.email,
             password: this.state.newPassword,
-            enableGravatar: this.state.enableGravatar,
+            avatar: this.state.avatar,
             settings: {
                 background: this.state.selectedBackground,
                 cardSize: this.state.selectedCardSize,
@@ -239,10 +269,16 @@ class Profile extends React.Component {
         ];
 
         return (
-            <div className='col-sm-8 col-sm-offset-2 profile full-height' style={{ marginBottom: '20px' }}>
+            <div className='col-sm-8 col-sm-offset-2 profile full-height' style={{ marginTop: '40px', marginBottom: '30px' }}>
+                <Background/>
                 <div className='about-container'>
                     { errorBar }
                     { successBar }
+                    <div className='col-sm-offset-10 col-sm-2'>
+                        <button className='btn btn-primary' type='button' disabled={ this.props.apiLoading } onClick={ this.onSaveClick.bind(this) }>
+                            <Trans>Save Changes</Trans>{ this.props.apiLoading ? <span className='spinner button-spinner' /> : null }
+                        </button>
+                    </div>
                     <form className='form form-horizontal'>
                         <Panel title={ t('Profile') }>
                             <Input name='email' label={ t('Email Address') } labelClass='col-sm-4' fieldClass='col-sm-8' placeholder={ t('Enter email address') }
@@ -260,8 +296,24 @@ class Profile extends React.Component {
                             </div>
                         </Panel>
                         <div>
+                            <Panel title='Avatar'>
+                                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    {
+                                        avatars.map(avatarUrl => (
+                                            <Avatar
+                                                onClick={() => this.setState({ avatar: avatarUrl })}
+                                                style={avatarUrl == this.state.avatar ? { background: '#CCC' } : {}}
+                                            >
+                                                <AvatarImg style={avatarUrl.includes('house') ? { boxShadow: 'none' } : {}} src={avatarUrl} />
+                                            </Avatar>
+                                        ))
+                                    }
+                                </div>
+                            </Panel>
+                        </div>
+                        <div>
                             <Panel title={ t('Game Board Background') }>
-                                <div style={{ display: 'flex', 'overflow-x': 'scroll', padding: '10px 0' }}>
+                                <div style={{ display: 'flex', overflowX: 'scroll', padding: '10px 0' }}>
                                     {
                                         backgrounds.map(background => (
                                             <GameBackgroundOption
@@ -311,11 +363,6 @@ class Profile extends React.Component {
                                     onChange={ this.onOptionSettingToggle.bind(this, 'confirmOneClick') }
                                     checked={ this.state.optionSettings.confirmOneClick } />
                             </Panel>
-                        </div>
-                        <div className='col-sm-offset-10 col-sm-2'>
-                            <button className='btn btn-primary' type='button' disabled={ this.props.apiLoading } onClick={ this.onSaveClick.bind(this) }>
-                                <Trans>Save</Trans>{ this.props.apiLoading ? <span className='spinner button-spinner' /> : null }
-                            </button>
                         </div>
                     </form>
                 </div>

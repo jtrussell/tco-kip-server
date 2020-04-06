@@ -17,7 +17,7 @@ const NavBar = styled.div`
     padding-top: 20px;
     margin-bottom: 20px;
     color: #000;
-    backgroundColor: #FFF;
+    background-color: #FFF;
 `;
 
 const Container = styled.div`
@@ -126,7 +126,7 @@ class Component extends React.Component {
                         { !this.props.user && <Button navigate={ this.props.navigate } path='/login'>Login</Button> }
                         { !this.props.user && <RegisterButton navigate={ this.props.navigate } path='/register'>Register</RegisterButton> }
                         { this.props.user && (
-                            <User navigate={ this.props.navigate } username={this.props.user.username}/>
+                            <User navigate={ this.props.navigate } user={this.props.user}/>
                         ) }
                     </RightItems>
                 </Container>

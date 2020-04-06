@@ -156,7 +156,7 @@ class Messages extends React.Component {
 
                 messages.push(
                     <div key={ index++ } className='message-chat'>
-                        <Avatar username={ fragment.name } float/>
+                        <Avatar user={ fragment } float/>
                         <span key={ index++ } className={ userClass }>
                             { fragment.name }
                         </span>

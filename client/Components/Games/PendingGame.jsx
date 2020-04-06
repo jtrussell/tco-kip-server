@@ -133,7 +133,7 @@ class PendingGame extends React.Component {
 
         return (
             <div className='player-row' key={ player.name } style={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar username={ player.name } /><span>{ player.name }</span>{ deck } { status } { selectLink }
+                <Avatar user={ player } /><span>{ player.name }</span>{ deck } { status } { selectLink }
             </div>);
     }
 

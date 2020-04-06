@@ -79,7 +79,7 @@ class UserService extends EventEmitter {
     update(user) {
         var toSet = {
             email: user.email,
-            enableGravatar: user.enableGravatar,
+            avatar: user.avatar,
             settings: user.settings,
             promptedActionWindows: user.promptedActionWindows,
             permissions: user.permissions,

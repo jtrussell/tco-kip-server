@@ -91,14 +91,14 @@ class GameList extends React.Component {
     getPlayerNameAndAvatar(player, firstPlayer) {
         if(firstPlayer) {
             return (<div className='game-player-name'>
-                <span className='gamelist-avatar'><Avatar username={ player.name } /></span>
+                <span className='gamelist-avatar'><Avatar user={ player } /></span>
                 <span className='bold'>{ player.name }</span>
             </div>);
         }
 
         return (<div className='game-player-name'>
             <span className='bold'>{ player.name }</span>
-            <span className='gamelist-avatar'><Avatar username={ player.name } /></span>
+            <span className='gamelist-avatar'><Avatar user={ player } /></span>
         </div>);
     }
 

@@ -1,44 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { defaultAvatar } from './AvatarImages';
 
 class Avatar extends React.Component {
+
     render() {
         let className = classNames('gravatar', {
             'pull-left': this.props.float
         });
 
-        if(!this.props.username) {
+        if(!this.props.user) {
             return null;
         }
 
-        const icons = [
-          `/img/house/brobnar.png`,
-          `/img/house/dis.png`,
-          `/img/house/logos.png`,
-          `/img/house/mars.png`,
-          `/img/house/saurian.png`,
-          `/img/house/sanctum.png`,
-          `/img/house/shadows.png`,
-          `/img/house/staralliance.png`,
-          `/img/house/untamed.png`,
-        ];
+        let icon = this.props.user.avatar || defaultAvatar;
 
-        const index = this.props.username[0].toLowerCase().charCodeAt() % icons.length | 0;
-        let icon = icons[index];
-
-        if (this.props.username === 'KiP') {
+        if (this.props.user.username === 'KiP') {
             icon = '/img/armor.png';
         }
 
-        return (<img className={ className } src={ icon } style={{ width: '24px', height: '24px' }} />);
+        return (
+            <img className={ className } src={ icon } style={{ width: '30px', height: '30px', borderRadius: '15px', boxShadow: 'rgba(0,0,0,0.2) 2px 2px 5px 0px' }} />
+        );
     }
 }
 
 Avatar.displayName = 'Avatar';
-Avatar.propTypes = {
-    float: PropTypes.bool,
-    username: PropTypes.string
-};
 
 export default Avatar;

@@ -2,7 +2,8 @@ const Settings = require('../settings');
 
 const champions = {
     Rodion: true,
-    jfilipeg: true
+    jfilipeg: true,
+    Dorian11: true
 };
 
 class User {
@@ -63,8 +64,8 @@ class User {
         return this.userData.email;
     }
 
-    get enableGravatar() {
-        return this.userData.enableGravatar;
+    get avatar() {
+        return this.userData.avatar;
     }
 
     get verified() {
@@ -134,7 +135,7 @@ class User {
             promptedActionWindows: this.userData.promptedActionWindows,
             permissions: this.userData.permissions,
             verified: this.userData.verified,
-            enableGravatar: this.userData.enableGravatar
+            avatar: this.userData.avatar
         };
 
         user = Settings.getUserWithDefaultsSet(user);
@@ -146,7 +147,8 @@ class User {
         return {
             username: this.username,
             name: this.username,
-            role: this.role
+            role: this.role,
+            avatar: this.userData.avatar
         };
     }
 

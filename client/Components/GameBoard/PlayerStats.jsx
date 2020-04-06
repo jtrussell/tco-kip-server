@@ -71,7 +71,7 @@ export class PlayerStats extends React.Component {
         let t = this.props.t;
         let playerAvatar = (
             <div className='player-avatar'>
-                <Avatar username={ this.props.user ? this.props.user.username : undefined } />
+                <Avatar user={ this.props.user } />
                 <b>{ this.props.user ? this.props.user.username : t('Noone') }</b>
             </div>);
         let playerDeck = (

@@ -304,6 +304,7 @@ class PendingGame {
                 name: player.name,
                 owner: player.owner,
                 role: player.user.role,
+                avatar: player.user.avatar,
                 chains: player.chains
             };
         });
