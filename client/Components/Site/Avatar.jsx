@@ -13,10 +13,6 @@ class Avatar extends React.Component {
             return null;
         }
 
-        if(!this.props.user.avatar && this.props.hideOnMissingAvatar) {
-            return null;
-        }
-
         let icon = this.props.user.avatar || defaultAvatar;
 
         if (this.props.user.username === 'KiP') {
