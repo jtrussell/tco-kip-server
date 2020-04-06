@@ -108,7 +108,7 @@ class Lobby extends React.Component {
                     </Blurb>
                     <div>
                         <Title>
-                            Sunday, April 10th
+                            Friday, April 10th
                         </Title>
                         <Text>
                             <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
@@ -117,7 +117,7 @@ class Lobby extends React.Component {
                     </div>
                     <Blurb>
                         <Title>
-                            Sunday, April 11th
+                            Saturday, April 11th
                         </Title>
                         <Text>
                             <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
