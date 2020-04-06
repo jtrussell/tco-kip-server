@@ -1,5 +1,5 @@
 export default {
-    background: '#0e1e26',
+    background: '#1b2326',
     background2: '#495A63',
     background3: '#445057',
     url: '#44d0fc',
