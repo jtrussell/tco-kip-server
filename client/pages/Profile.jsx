@@ -55,10 +55,18 @@ class Profile extends React.Component {
         this.handleSelectCardSize = this.handleSelectCardSize.bind(this);
         this.onUpdateAvatarClick = this.onUpdateAvatarClick.bind(this);
 
+        let localBackgroundUrl = '';
+        try {
+            localBackgroundUrl = localStorage.getItem('localBackgroundUrl');
+        } catch (e) {
+            console.log(e);
+        }
+
         this.state = {
             email: '',
             newPassword: '',
             newPasswordAgain: '',
+            localBackgroundUrl,
             validation: {},
             optionSettings: {},
             crucibleTrackerEnabled: false,
@@ -138,6 +146,14 @@ class Profile extends React.Component {
 
         newState[field] = event.target.value;
         this.setState(newState);
+
+        if (field === 'localBackgroundUrl' ) {
+            try {
+                localStorage.setItem('localBackgroundUrl', event.target.value);
+            } catch (e) {
+                console.log(e);
+            }
+        }
     }
 
     onToggle(field, event) {
@@ -241,7 +257,9 @@ class Profile extends React.Component {
         let t = this.props.t;
 
         if(!this.props.user) {
-            return <AlertPanel type='error' message={ t('You must be logged in to update your profile') } />;
+            return <div style={{ margin: '40px auto', maxWidth: '800px' }}>
+                <AlertPanel type='error' message={ t('You must be logged in to update your profile') } />
+            </div>;
         }
 
         let successBar;
@@ -327,6 +345,12 @@ class Profile extends React.Component {
                                         ))
                                     }
                                 </div>
+                                <br/>
+                                <br/>
+                                <Input name='localBackgroundUrl' label='Background Image' labelClass='col-sm-4' fieldClass='col-sm-8' placeholder='URL to background image'
+                                    type='text' onChange={ this.onChange.bind(this, 'localBackgroundUrl') } value={ this.state.localBackgroundUrl }
+                                    onBlur={ () => {} } />
+                                    {this.state.localBackgroundUrl.length && <div style={{ float: 'right'}}>Clear the text box to remove your custom background</div>}
                             </Panel>
                         </div>
                         <div>

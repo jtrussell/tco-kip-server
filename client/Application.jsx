@@ -80,13 +80,25 @@ class Application extends React.Component {
         }
 
         let backgroundClass = 'bg';
+        let bgStyles = {};
 
         if(gameBoardVisible && this.props.user) {
-            let houseIndex = Constants.HousesNames.indexOf(this.props.user.settings.background);
-            if(houseIndex === -1) {
-                backgroundClass = '';
+            let localBackgroundUrl;
+            try {
+                localBackgroundUrl = localStorage.getItem('localBackgroundUrl');
+            } catch (e) {
+                console.log(e);
+            }
+
+            if (localBackgroundUrl) {
+                bgStyles.backgroundImage = `url(${localBackgroundUrl})`;
             } else {
-                backgroundClass += ` bg-board-${Constants.Houses[houseIndex]}`;
+                let houseIndex = Constants.HousesNames.indexOf(this.props.user.settings.background);
+                if(houseIndex === -1) {
+                    backgroundClass = '';
+                } else {
+                    backgroundClass += ` bg-board-${Constants.Houses[houseIndex]}`;
+                }
             }
         }
 
@@ -98,7 +110,7 @@ class Application extends React.Component {
         ].includes(this.props.path);
 
         return (<div style={ { height: '100%' } }>
-            <div className={ backgroundClass } />
+            <div className={ backgroundClass } style={bgStyles} />
             { !showFloatingNavBar && <NavBar title='KiP Tournaments' /> }
             { showFloatingNavBar && <FloatingNavBar isMobile={this.props.isMobile}/> }
             <div className='wrapper'>
