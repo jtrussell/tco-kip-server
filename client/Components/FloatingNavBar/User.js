@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Avatar from '../Site/Avatar';
 import styled from 'styled-components';
+import colors from '../../colors';
 
 const Text = styled.div`
     letter-spacing: 1.1px;
@@ -37,10 +38,10 @@ const Dropdown = styled.div`
 const DropdownItem = styled.div`
     padding: 8px;
     text-align: center;
-    background-color: #EEE;
+    background-color: ${colors.background3};
 
     &:hover {
-        background-color: #DDD;
+        background-color: ${colors.background2};
     }
 `;
 

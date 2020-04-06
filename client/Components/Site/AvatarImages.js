@@ -17,7 +17,6 @@ const avatars = [
     '/img/avatars/Harbinger_of_Doom.png',
     '/img/avatars/Philophosaurus.png',
     '/img/avatars/Sic_Semper_Tyrannosaurus.png',
-    '/img/avatars/Symon.png',
     '/img/avatars/Timetraveller.png',
     '/img/avatars/Ulyq_Megamouth.png',
     '/img/avatars/Urchin.png',

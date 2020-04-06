@@ -14,6 +14,7 @@ import * as actions from '../actions';
 import { withTranslation, Trans } from 'react-i18next';
 import kip from '../kip';
 import Background from '../Components/Background';
+import colors from '../colors';
 
 const Avatar = styled.div`
     width: 40px;
@@ -35,13 +36,13 @@ const Panel = ({ title, children }) => (
     <div style={{
         padding: '30px',
         margin: '20px',
-        color: '#000',
+        color: colors.text,
         fontWeight: 'normal',
     }}>
-    <div style={{
-        fontSize: '26px',
-        fontWeight: '300',
-    }}>{title}</div>
+        <div style={{
+            fontSize: '26px',
+            fontWeight: '300',
+        }}>{title}</div>
         {children}
     </div>
 );
@@ -269,7 +270,7 @@ class Profile extends React.Component {
         ];
 
         return (
-            <div className='col-sm-8 col-sm-offset-2 profile full-height' style={{ marginTop: '40px', marginBottom: '30px' }}>
+            <div style={{ maxWidth: '1000px', margin: '60px auto 30px' }}>
                 <Background/>
                 <div className='about-container'>
                     { errorBar }

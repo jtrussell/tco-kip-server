@@ -4,6 +4,7 @@ import Panel from '../../Components/Site/Panel';
 import DeckChains from '../../kip/Components/DeckChains';
 import Background from '../../Components/Background';
 import Link from '../../Components/Link';
+import colors from '../../colors';
 
 const Container = styled.div`
     width: 100%;
@@ -16,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.div`
-    color: #000;
+    color: ${colors.text};
     font-size: 20px;
 `;
 
@@ -34,7 +35,7 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
                 } }>
                     <div style={ {
                         fontSize: '25px',
-                        color: '#000',
+                        color: colors.text,
                         display: 'flex',
                         paddingBottom: '2px'
                     } }>
@@ -59,7 +60,7 @@ const ChainedDeck = ({ rank, name, uuid, chains, player }) => {
 const Header = styled.div`
     font-size: 30px; 
     font-weight: 300;
-    color: #000;
+    color: ${colors.text};
     margin: 10px 0 20px 10px;
 `;
 

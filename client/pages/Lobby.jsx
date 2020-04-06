@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import Background from '../Components/Background';
 import Link from '../Components/Link';
+import colors from '../colors';
 
 const Container = styled.div`
     max-width: 1000px;
@@ -18,14 +19,14 @@ const Blurb = styled.div`
 `;
 
 const Title = styled.div`
-    color: #000 !important;
+    color: ${(props) => props.color || colors.text} !important;
     font-size: 25px;
-    font-weight: 400;
+    font-weight: 300;
     font-family: 'Open Sans';
 `;
 
 const Text = styled.div`
-    color: #222 !important;
+    color: ${colors.text} !important;
     font-size: 20px;
     font-weight: 200;
     font-family: 'Open Sans';
@@ -52,15 +53,13 @@ const Image = styled.div`
 
 const Overlay = styled.div`
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 0;
     right: 0;
     width: 100%;
     text-align: center;
     color: #FFF;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.9);
-    font-weight: 600;
+    padding: 5px;
     font-size: 20px;
 `;
 
@@ -80,35 +79,65 @@ class Lobby extends React.Component {
                 <Image>
                     <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
                     <Overlay>
-                        Shadow Worlds — Early May
+                        <span style={{
+                            backgroundColor: 'rgba(0,0,0)',
+                            padding: '12px 14px',
+                        }}>
+                            Shadow Worlds — Early May
+                        </span>
                     </Overlay>
                 </Image>
                 <div>
-                    <Blurb>
+                    <div style={{
+                        marginTop: '40px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'baseline',
+                    }}>
                         <Title>
                             Online KeyForge Tournaments
                         </Title>
                         <Text>
-                            { 'Join the ' }
-                            <a href='https://discord.gg/fauXD9q' style={ { display: 'inline-block', color: 'rgb(0, 0, 238)' } }>
-                                KiP Discord
-                            </a>
-                            { ' to stay up to date with our latest news.' }
+                            <Link newTab url='https://discord.gg/fauXD9q' text='KiP Discord'/>
+                        </Text>
+                    </div>
+                    <Blurb>
+                        <Title color='#6f7d85'>
+                            Upcoming
+                        </Title>
+                    </Blurb>
+                    <div>
+                        <Title>
+                            Sunday, April 10th
+                        </Title>
+                        <Text>
+                            <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
+                            <EventTime>12pm EST, 6pm CEST</EventTime>
+                        </Text>
+                    </div>
+                    <Blurb>
+                        <Title>
+                            Sunday, April 11th
+                        </Title>
+                        <Text>
+                            <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
+                            <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
                     </Blurb>
                     <Blurb>
+                        <Title color='#6f7d85'>
+                            Past Events
+                        </Title>
+                    </Blurb>
+                    <div>
                         <Title>
-                            Friday, April 3rd
+                            Sunday, April 5th
                         </Title>
                         <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/8fs4vmt9'/>
+                            <Link text='Free Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
                             <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
-                        <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/3rv1y1s0'/>
-                            <EventTime>8PM EST, 2AM CEST</EventTime>
-                        </Text>
-                    </Blurb>
+                    </div>
                     <Blurb>
                         <Title>
                             Saturday, April 4th
@@ -124,11 +153,15 @@ class Lobby extends React.Component {
                     </Blurb>
                     <Blurb>
                         <Title>
-                            Sunday, April 5th
+                            Friday, April 3rd
                         </Title>
                         <Text>
-                            <Link text='Free Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
+                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/8fs4vmt9'/>
                             <EventTime>12pm EST, 6pm CEST</EventTime>
+                        </Text>
+                        <Text>
+                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/3rv1y1s0'/>
+                            <EventTime>8PM EST, 2AM CEST</EventTime>
                         </Text>
                     </Blurb>
                 </div>

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
-import Link from '../Site/Link';
 import * as actions from '../../actions';
-import menus from '../../menus';
-
 import User from './User';
 import styled from 'styled-components';
+import colors from '../../colors';
 
 const NavBar = styled.div`
     z-index: 1;
@@ -16,8 +13,8 @@ const NavBar = styled.div`
     left: 0;
     padding-top: 20px;
     margin-bottom: 20px;
-    color: #000;
-    background-color: #FFF;
+    color: ${colors.text};
+    background-color: ${colors.background};
 `;
 
 const Container = styled.div`
@@ -46,10 +43,10 @@ const LogoContainer = styled.a`
     margin-right: 20px;
     font-family: "Open Sans", "Arial", sans-serif;
     text-decoration: none;
-    color: #000;
+    color: ${colors.text};
 
     &:hover {
-        color: #000;
+        color: ${colors.text};
     }
 `;
 
@@ -72,7 +69,7 @@ const ButtonContainer = styled(Text)`
     font-size: 17px;
 
     &:hover {
-        color: rgb(0, 0, 238);
+        color: ${colors.url};
         text-decoration: underline;
     }
 `;
@@ -90,8 +87,8 @@ const RegisterButtonContainer = styled.div`
     margin: 0 10px;
     letter-spacing: 1.1px;
     cursor: pointer;
-    color: #FFF;
-    background-color: #6464fa;
+    color: ${colors.background};
+    background-color: ${colors.url};
     border-radius: 3px;
 `;
 

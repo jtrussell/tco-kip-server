@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../colors';
 
 export default ({ color }) => (
     <div style={ {
@@ -8,6 +9,6 @@ export default ({ color }) => (
         left: '0px',
         bottom: '0px',
         right: '0px',
-        backgroundColor: color || '#FFF'
+        backgroundColor: color || colors.background
     } }/>
 );

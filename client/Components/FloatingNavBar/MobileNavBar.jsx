@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-
 import styled from 'styled-components';
+import colors from '../../colors';
 
 const NavBar = styled.div`
     z-index: 1;
@@ -10,10 +10,10 @@ const NavBar = styled.div`
     top: 0;
     right: 0;
     left: 0;
-    padding: 5px 10px;
+    padding: 10px;
     margin-bottom: 10px;
-    color: #000;
-    background-color: #FFF;
+    color: ${colors.text};
+    background-color: ${colors.background};
 `;
 
 const Container = styled.div`
@@ -30,7 +30,7 @@ const MenuContainer = styled.div`
     flex-direction: column;
     text-align: center;
     margin-top: 20%;
-    background-color: #FFF;
+    background-color: ${colors.background};
     position: absolute;
     top: 0;
     bottom: 0;
@@ -53,10 +53,10 @@ const LogoContainer = styled.a`
     font-weight: 300;
     font-family: "Open Sans", "Arial", sans-serif;
     text-decoration: none;
-    color: #000;
+    color: ${colors.text};
 
     &:hover {
-        color: #000;
+        color: ${colors.text};
     }
 `;
 
@@ -75,12 +75,12 @@ const Text = styled.div`
 const BurgerLine = styled.div`
   width: 30px;
   height: 3px;
-  background-color: #000;
+  background-color: ${colors.text};
   margin: 7px 0;
 `;
 
 const Burger = ({ onClick }) => (
-  <div style={{ backgroundColor: '#FFF', padding: '5px 7px' }} onClick={onClick}>
+  <div style={{ backgroundColor: colors.background, padding: '5px 7px' }} onClick={onClick}>
     <BurgerLine />
     <BurgerLine />
     <BurgerLine />
@@ -92,14 +92,16 @@ const NavLink = styled.a`
   cursor: pointer;
   margin: 0 15px;
   text-decoration: inherit;
-  color: #000;
+  color: ${colors.url};
   font-size: 24px;
   margin-top: 30px;
   margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 1.1px;
 
   &:hover {
     text-decoration: underline;
-    color: rgba(0, 0, 0, 1);
+    color: ${colors.url};
   }
 `;
 
@@ -129,7 +131,7 @@ const X = ({ onClick }) => {
     text-align: center;
     font-family: Arial, "Open Sans";
     z-index: 2;
-    color: #000;
+    color: ${colors.text};
   `;
 
   return (

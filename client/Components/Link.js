@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../colors';
 
 const PrimaryAnchor = styled.a`
   font-size: ${(props) => props.fontSize || 'unset'};
   font-weight: ${(props) => props.fontWeight || 'initial'};
-  color: ${(props) => props.color || '#0000EE'};
+  color: ${(props) => props.color || colors.url};
   text-decoration: none;
   cursor: pointer;
   width:fit-content; 
@@ -12,7 +13,7 @@ const PrimaryAnchor = styled.a`
 
   &:hover {
     text-decoration: underline;
-    color: ${(props) => props.color || '#0000EE'};
+    color: ${(props) => props.color || colors.url};
   }
 `;
 
@@ -20,13 +21,14 @@ const SecondaryAnchor = styled.a`
   font-size: ${(props) => props.fontSize || '12px'};
   font-weight: ${(props) => props.fontWeight || 'initial'};
   color: #767676;
+  color: ${colors.text2};
   text-decoration: none;
   cursor: pointer;
   width:fit-content; 
   height:fit-content; 
 
   &:hover {
-    color: #0000EE;
+    color: ${colors.url};
   }
 `;
 
