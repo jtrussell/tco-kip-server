@@ -45,7 +45,16 @@ const avatars = [
     '/img/avatars/Protectrix.png',
     '/img/avatars/Reverse_Time.png',
     '/img/avatars/The_Vaultkeeper.png',
-    '/img/avatars/Toad.png'
+    '/img/avatars/Toad.png',
+    '/img/logo.png',
+    '/img/avatars/sanctumonius.png',
+    '/img/avatars/reapout.jpg',
+    '/img/avatars/team-sas.png',
+    '/img/avatars/ttr.png',
+    '/img/avatars/team-gg.jpg',
+    '/img/avatars/crit-camp.jpg',
+    '/img/avatars/keychargers.png',
+    '/img/avatars/united-archons.png'
 ];
 
 export {

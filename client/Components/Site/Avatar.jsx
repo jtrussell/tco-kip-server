@@ -15,7 +15,7 @@ class Avatar extends React.Component {
 
         let icon = this.props.user.avatar || defaultAvatar;
 
-        if (this.props.user.username === 'KiP') {
+        if (this.props.user.username === 'KiP' || this.props.user.username === 'KiP2') {
             icon = '/img/armor.png';
         }
 
