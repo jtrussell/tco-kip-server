@@ -21,7 +21,7 @@ class NewGame extends React.Component {
         this.onSpectatorsClick = this.onSpectatorsClick.bind(this);
         this.onShowHandClick = this.onShowHandClick.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
-        this.onUseGameTimeLimitClick = this.onUseGameTimeLimitClick.bind(this);
+        this.onUseChessClockClick = this.onUseChessClockClick.bind(this);
         this.onGameTimeLimitChange = this.onGameTimeLimitChange.bind(this);
 
         this.state = {
@@ -32,7 +32,7 @@ class NewGame extends React.Component {
             selectedGameFormat: 'normal',
             expansions: { cota: false, aoa: false, wc: true },
             password: '',
-            useGameTimeLimit: false,
+            useChessClock: false,
             gameTimeLimit: 35
         };
     }
@@ -80,7 +80,7 @@ class NewGame extends React.Component {
             quickJoin: this.props.quickJoin,
             muteSpectators: this.state.muteSpectators,
             expansions: this.state.expansions,
-            useGameTimeLimit: this.state.useGameTimeLimit,
+            useChessClock: this.state.useChessClock,
             gameTimeLimit: this.state.gameTimeLimit
         });
     }
@@ -101,8 +101,8 @@ class NewGame extends React.Component {
         this.setState({ expansions: expansions });
     }
 
-    onUseGameTimeLimitClick(event) {
-        this.setState({ useGameTimeLimit: event.target.checked });
+    onUseChessClockClick(event) {
+        this.setState({ useChessClock: event.target.checked });
     }
 
     onGameTimeLimitChange(event) {
@@ -119,19 +119,19 @@ class NewGame extends React.Component {
 
     getOptions() {
         let t = this.props.t;
-            //<Checkbox name='timeLimit' noGroup label={ t('Use a time limit (in minutes)') } fieldClass='col-sm-12'
-                //onChange={ this.onUseGameTimeLimitClick } checked={ this.state.useGameTimeLimit } />
 
         return (<div className='row'>
             <Checkbox name='allowSpectators' noGroup label={ t('Allow spectators') } fieldClass='col-sm-8'
                 onChange={ this.onSpectatorsClick } checked={ this.state.spectators } />
             <Checkbox name='showHands' noGroup label={ t('Show hands to spectators') } fieldClass='col-sm-8'
                 onChange={ this.onShowHandClick } checked={ this.state.showHand } />
-            { this.state.useGameTimeLimit && <div className='col-sm-4'>
-                <input className='form-control' type='number' onChange={ this.onGameTimeLimitChange } value={ this.state.gameTimeLimit } />
-            </div> }
         </div>);
     }
+            //<Checkbox name='chessClock' noGroup label='Use a 35/2 minute chess clock' fieldClass='col-sm-12'
+                //onChange={ this.onUseChessClockClick } checked={ this.state.useChessClock } />
+            //{ this.state.useChessClock && <div className='col-sm-4'>
+                //<input className='form-control' type='number' onChange={ this.onGameTimeLimitChange } value={ this.state.gameTimeLimit } />
+            //</div> }
 
     getGameTypeOptions() {
         let t = this.props.t;

@@ -321,7 +321,7 @@ class Profile extends React.Component {
                                         avatars.map(avatarUrl => (
                                             <Avatar
                                                 onClick={() => this.setState({ avatar: avatarUrl })}
-                                                style={avatarUrl == this.state.avatar ? { background: '#CCC' } : {}}
+                                                style={avatarUrl == this.state.avatar ? { background: '#555' } : {}}
                                             >
                                                 <AvatarImg style={avatarUrl.includes('house') ? { boxShadow: 'none' } : {}} src={avatarUrl} />
                                             </Avatar>

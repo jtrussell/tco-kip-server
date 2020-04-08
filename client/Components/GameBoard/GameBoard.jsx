@@ -16,8 +16,9 @@ import GameChat from './GameChat';
 import GameConfigurationModal from './GameConfigurationModal';
 import Droppable from './Droppable';
 import TimeLimitClock from './TimeLimitClock';
+import ChessClock from './ChessClock';
 import * as actions from '../../actions';
-import getCardImageURL from '../../getCardImageURL'; 
+import getCardImageURL from '../../getCardImageURL';
 import DeckTracker from '../../kip/Components/DeckTracker';
 
 import { withTranslation, Trans } from 'react-i18next';
@@ -250,16 +251,18 @@ export class GameBoard extends React.Component {
         this.props.sendGameMessage('drop', card.uuid, source, target);
     }
 
-    getTimer() {
-        let timeLimitClock = null;
-        if(this.props.currentGame.useGameTimeLimit && this.props.currentGame.gameTimeLimitStarted) {
-            timeLimitClock = (<TimeLimitClock
-                timeLimitStarted={ this.props.currentGame.gameTimeLimitStarted }
-                timeLimitStartedAt={ this.props.currentGame.gameTimeLimitStartedAt }
-                timeLimit={ this.props.currentGame.gameTimeLimitTime } />);
+    getChessClock() {
+        let clock = null;
+        if(this.props.currentGame.useChessClock) {
+            const players = Object.values(this.props.currentGame.players)
+            const activePlayer = players.find(player => player.activePlayer);
+            clock = (<ChessClock
+                players={ this.props.currentGame.players }
+                activePlayer={ activePlayer }
+            />);
         }
 
-        return timeLimitClock;
+        return clock;
     }
 
     onCommand(command, arg, uuid, method) {
@@ -368,7 +371,7 @@ export class GameBoard extends React.Component {
                         </Droppable>
                     </div>
                 </div>
-                { this.getTimer() }
+                { this.getChessClock() }
                 <div className='player-home-row our-side'>
                     <PlayerRow isMe={ !this.state.spectating }
                         player={ 1 }

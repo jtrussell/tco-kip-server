@@ -6,10 +6,6 @@ const kip = require('./kip');
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
 
-const replaceAt = function(string, index, replacement) {
-    return string.substr(0, index) + replacement + string.substr(index + replacement.length);
-};
-
 class PendingGame {
     constructor(owner, details) {
         this.owner = owner;
@@ -28,7 +24,7 @@ class PendingGame {
         this.node = {};
         this.createdAt = new Date();
         this.gameChat = new GameChat();
-        this.useGameTimeLimit = details.useGameTimeLimit;
+        this.useChessClock = details.useChessClock;
         this.gameTimeLimit = details.gameTimeLimit;
     }
 
@@ -329,7 +325,7 @@ class PendingGame {
                     settings: spectator.settings
                 };
             }),
-            useGameTimeLimit: this.useGameTimeLimit,
+            useChessClock: this.useChessClock,
             gameTimeLimit: this.gameTimeLimit
         };
     }
@@ -372,7 +368,7 @@ class PendingGame {
             showHand: this.showHand,
             started: this.started,
             spectators,
-            useGameTimeLimit: this.useGameTimeLimit,
+            useChessClock: this.useChessClock,
             gameTimeLimit: this.gameTimeLimit
         };
     }

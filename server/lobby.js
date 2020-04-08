@@ -825,7 +825,7 @@ class Lobby {
             showHand: game.showHand,
             gameType: game.gameType,
             adaptiveData: oldGame.adaptiveData,
-            useGameTimeLimit: game.useGameTimeLimit,
+            useChessClock: game.useChessClock,
             gameTimeLimit: game.gameTimeLimit,
             gameFormat: game.gameFormat
         });

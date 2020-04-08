@@ -62,7 +62,7 @@ class Game extends EventEmitter {
         this.cancelPromptUsed = false;
         this.currentPhase = '';
         this.password = details.password;
-        this.useGameTimeLimit = details.useGameTimeLimit;
+        this.useChessClock = details.useChessClock;
         this.gameTimeLimit = details.gameTimeLimit;
         this.timeLimit = new TimeLimit(this);
 
@@ -596,7 +596,7 @@ class Game extends EventEmitter {
 
         this.playersAndSpectators = players;
 
-        if(this.useGameTimeLimit) {
+        if(this.useChessClock) {
             let timeLimitStartType = 'whenSetupFinished';
             let timeLimitInMinutes = this.gameTimeLimit;
             this.timeLimit.initialiseTimeLimit(timeLimitStartType, timeLimitInMinutes);
@@ -1089,7 +1089,7 @@ class Game extends EventEmitter {
                 started: this.started,
                 winner: this.winner ? this.winner.name : undefined,
                 cancelPromptUsed: this.cancelPromptUsed,
-                useGameTimeLimit: this.useGameTimeLimit,
+                useChessClock: this.useChessClock,
                 gameTimeLimitStarted: this.timeLimit.timeLimitStarted,
                 gameTimeLimitStartedAt: this.timeLimit.timeLimitStartedAt,
                 gameTimeLimitTime: this.timeLimit.timeLimitInMinutes

@@ -38,6 +38,18 @@ class ActivePlayerPrompt extends React.Component {
     }
 
     localizedText(source, text, values) {
+        if (text === 'Fight with this creature') {
+            return 'Fight';
+        }
+
+        if (text === 'Remove this creature\'s stun') {
+            return 'Unstun';
+        }
+
+        if (text === 'Reap with this creature') {
+            return 'Reap';
+        }
+
         let { t, i18n } = this.props;
 
         if(!isNaN(text)) {

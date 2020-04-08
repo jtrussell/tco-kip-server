@@ -72,7 +72,7 @@ class GameList extends React.Component {
 
     getPlayerCards(player, firstPlayer) {
         let houses = player.houses && player.houses.map(house => {
-            return <img key={ house } className='img-responsive' src={ `/img/house/${house}.png` } />;
+            return <img key={ player.name + house } className='img-responsive' src={ `/img/house/${house}.png` } />;
         });
 
         if(firstPlayer) {
@@ -172,7 +172,7 @@ class GameList extends React.Component {
                             <span className='game-icons'>
                                 { game.showHand && <img src='/img/ShowHandIcon.png' className='game-list-icon' alt={ t('Show hands to spectators') } title={ t('Show hands to spectators') } /> }
                                 { game.needsPassword && <span className='password-game glyphicon glyphicon-lock' /> }
-                                { game.useGameTimeLimit && <img src='/img/timelimit.png' className='game-list-icon' alt={ t('Time limit used') } /> }
+                                { game.useChessClock && <img src='/img/timelimit.png' className='game-list-icon' alt={ t('Time limit used') } /> }
                                 { game.gameFormat === 'sealed' && <img src='/img/sealed.png' className='game-list-icon' alt={ t('Sealed game format') } title={ t('Sealed game format') } /> }
                                 { game.gameFormat === 'reversal' && <img src='/img/reversal.png' className='game-list-icon' alt={ t('Reversal game format') } title={ t('Reversal game format') } /> }
                             </span>
@@ -214,7 +214,7 @@ class GameList extends React.Component {
         }
 
         return (
-            <div>
+            <div key={gameType}>
                 <div className={ gameHeaderClass }>{ titles[gameType] } ({ gamesToReturn.length })
                 </div>
                 { gamesToReturn }
