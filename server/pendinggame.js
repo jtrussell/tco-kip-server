@@ -16,9 +16,6 @@ class PendingGame {
         this.players = {};
         this.spectators = {};
         this.id = uuid.v1();
-        this.id = replaceAt(this.id, 9, 'K');
-        this.id = replaceAt(this.id, 10, 'i');
-        this.id = replaceAt(this.id, 11, 'P');
         this.name = details.name;
         this.allowSpectators = details.spectators;
         this.showHand = details.showHand;
