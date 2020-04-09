@@ -7,6 +7,7 @@ const user = require('./user');
 const messages = require('./messages');
 const banlist = require('./banlist');
 const kip = require('../kip');
+const challonge = require('./challonge');
 
 module.exports.init = function(server, options) {
     account.init(server, options);
@@ -17,5 +18,6 @@ module.exports.init = function(server, options) {
     user.init(server);
     messages.init(server);
     banlist.init(server);
+    challonge.init(server);
     kip.setupAPI(server);
 };

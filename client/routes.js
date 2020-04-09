@@ -1,6 +1,7 @@
 /* eslint react/display-name: 0 react/no-multi-comp: 0 */
 
 import React from 'react';
+import FAQ from './pages/FAQ';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
@@ -24,31 +25,26 @@ import Community from './pages/Community';
 import BanlistAdmin from './pages/BanlistAdmin';
 import Leaderboard from './pages/Leaderboard';
 import TCOArticle from './pages/TCOArticle';
+import Tournaments from './pages/Tournaments';
 
 const routes = [
     { path: '/', action: () => <Lobby key='lobby' /> },
+    { path: '/faq', action: () => <FAQ /> },
+    { path: '/tournaments', action: () => <Tournaments/> },
     { path: '/tco', action: () => <TCOArticle/> },
     { path: '/leaderboard', action: () => <Leaderboard/> },
     { path: '/leaderboards', action: () => <Leaderboard/> },
     { path: '/activation', action: context => <Activation key='activation' id={ context.params.id } token={ context.params.token } /> },
-    { path: '/blocklist', action: () => <BlockList key='blocklist' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
-    { path: '/news', action: () => <NewsAdmin key='newsadmin' />, permission: 'canEditNews' },
     { path: '/play', action: context => (context.currentGame && context.currentGame.started) ? <GameBoard key='gameboard' /> : <GameLobby key='gamelobby' /> },
     { path: '/profile', action: () => <Profile key='profile' /> },
     { path: '/register', action: () => <Register key='register' /> },
     { path: '/reset-password', action: context => <ResetPassword key='resetpassword' id={ context.params.id } token={ context.params.token } /> },
-    { path: '/security', action: () => <Security key='security' /> },
-    { path: '/users', action: () => <UserAdmin key='useradmin' />, permission: 'canManageUsers' },
-    { path: '/nodes', action: () => <NodesAdmin key='nodesadmin' />, permission: 'canManageNodes' },
-    { path: '/privacy', action: () => <Privacy key='privacy' /> },
-    { path: '/community', action: () => <Community key='community' /> },
-    { path: '/banlist', action: () => <BanlistAdmin key='banlist' permission='canManageBanlist' /> },
-    { path: '/admin/motd', action: () => <MotdAdmin key='motdadmin' />, permission: 'canManageMotd' }
+    { path: '/security', action: () => <Security key='security' /> }
 ];
 
 export default routes;

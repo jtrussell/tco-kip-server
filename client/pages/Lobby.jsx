@@ -32,13 +32,6 @@ const Text = styled.div`
     font-family: 'Open Sans';
 `;
 
-const TrackerLogo = styled.div`
-    width: 42px;
-    height: 42px;
-    display: inline-block;
-    margin-left: -5px;
-`;
-
 const EventTime = styled.span`
     font-size: 14px;
     margin-left: 15px;
@@ -169,31 +162,6 @@ class Lobby extends React.Component {
         );
     }
 }
-
-//<Blurb>
-//<Title>
-//Our Discord
-//</Title>
-//<Text>
-//</Text>
-//</Blurb>
-//<Blurb>
-//<Title>
-//<div style={{ display: 'flex' }}>
-//<TrackerLogo>
-//<img src='/img/tracker-icon128.png' style={{ transformOrigin: 'top left', transform: 'scale(0.3)' }}/>
-//</TrackerLogo>
-//The Crucible Tracker
-//</div>
-//</Title>
-//<Text>
-//{` Our platform has a native integration with `}
-//<a href="https://www.thecrucibletracker.com" style={{ display: 'inline-block', color: 'rgb(0, 0, 238)' }}>
-//{isMobile ? 'The' : 'The'} Crucible Tracker
-//</a>
-//{`. You can opt-out of tracking at any time by visiting your profile page on this site.`}
-//</Text>
-//</Blurb>
 
 const Wrapper = () => (
     <Lobby isMobile={ useMediaQuery({ maxWidth: 767 }) }/>

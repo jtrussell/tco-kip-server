@@ -162,7 +162,7 @@ class PendingGame {
             return;
         }
 
-        if(!this.started) {
+        if(!this.started && player.user.id !== 'tournament-placeholder') {
             this.addMessage('{0} has left the game', playerName);
         }
 

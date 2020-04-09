@@ -8186,7 +8186,7 @@ ul.htp-sub-list {
   justify-content: flex-end;
   position: fixed;
   left: 5px;
-  z-index: 10;
+  z-index: 99999;
   bottom: 50px;
 }
 .prompt-area .panel {

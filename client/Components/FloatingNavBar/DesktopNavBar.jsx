@@ -106,6 +106,7 @@ class Component extends React.Component {
         this.state = {};
     }
 
+                        //{ this.props.user && <Button navigate={ this.props.navigate } path='/decks'>Decks</Button> }
     render() {
         return (
             <NavBar>
@@ -116,8 +117,8 @@ class Component extends React.Component {
                             KiP Tournaments
                         </LogoContainer>
                         <Button navigate={ this.props.navigate } path='/play'>Play</Button>
-                        { this.props.user && <Button navigate={ this.props.navigate } path='/decks'>Decks</Button> }
                         <Button navigate={ this.props.navigate } path='/leaderboard' >Leaderboards</Button>
+                        <Button navigate={ this.props.navigate } path='/faq'>FAQ</Button>
                     </LeftItems>
                     <RightItems>
                         { !this.props.user && <Button navigate={ this.props.navigate } path='/login'>Login</Button> }

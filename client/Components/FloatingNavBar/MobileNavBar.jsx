@@ -111,6 +111,9 @@ const Nav = ({ onClick }) => (
     <NavLink href="/leaderboard">
       Leaderboards
     </NavLink>
+    <NavLink href="/faq">
+      FAQ
+    </NavLink>
     <NavLink href="/play">
       Play
     </NavLink>

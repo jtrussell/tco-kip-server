@@ -104,9 +104,12 @@ class Application extends React.Component {
 
         const showFloatingNavBar = [
             '/',
+            '/faq',
             '/profile',
             '/leaderboard',
             '/leaderboards',
+            '/tournament',
+            '/tournaments',
         ].includes(this.props.path);
 
         return (<div style={ { height: '100%' } }>

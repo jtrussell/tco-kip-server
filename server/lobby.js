@@ -252,6 +252,10 @@ class Lobby {
         }
 
         for(let player of Object.values(game.getPlayersAndSpectators())) {
+            if(player.user.id === 'tournament-placeholder') {
+                continue;
+            }
+
             if(!this.sockets[player.id]) {
                 logger.info('Wanted to send to ', player.id, ' but have no socket');
                 continue;
@@ -272,7 +276,7 @@ class Lobby {
     }
 
     clearStalePendingGames() {
-        const timeout = 60 * 60 * 1000;
+        const timeout = 30 * 60 * 1000;
         let staleGames = Object.values(this.games).filter(game => !game.started && Date.now() - game.createdAt > timeout);
 
         for(let game of staleGames) {
@@ -422,7 +426,29 @@ class Lobby {
         }
     }
 
+    createTournamentGame(gameDetails) {
+        const fakeOwner = {
+            hasUserBlocked: () => {},
+            username: '',
+            id: 'tournament-placeholder',
+            avatar: '/img/logo.png',
+            blockList: [],
+            getDetails: () => {}
+        };
+
+        let game = new PendingGame(fakeOwner, gameDetails);
+        game.newGame('', fakeOwner, gameDetails.password);
+
+        this.games[game.id] = game;
+        this.broadcastGameMessage('newgame', game);
+    }
+
     onNewGame(socket, gameDetails) {
+        if(gameDetails.tournamentId) {
+            this.createTournamentGame(gameDetails);
+            return;
+        }
+
         let existingGame = this.findGameForUser(socket.user.username);
         if(existingGame) {
             return;
@@ -474,11 +500,14 @@ class Lobby {
         let message = game.join(socket.id, socket.user, password);
         if(message) {
             socket.send('passworderror', message);
-
             return;
         }
 
         socket.joinChannel(game.id);
+
+        if(game.owner.id === 'tournament-placeholder') {
+            game.leave('');
+        }
 
         this.sendGameState(game);
         this.broadcastGameMessage('updategame', game);
