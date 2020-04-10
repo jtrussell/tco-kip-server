@@ -15,7 +15,6 @@ function processDecks(decks, state) {
         if(!state.cards || !deck.houses) {
             deck.status = {};
             deck.cards = [];
-
             return;
         }
 
@@ -142,9 +141,7 @@ export default function(state = { decks: [] }, action) {
                 selectedDeck: action.response.deck,
                 decks: decks
             });
-
             processDecks(newState.decks, state);
-
             return newState;
         case 'DECK_DELETED':
             newState = Object.assign({}, state, {

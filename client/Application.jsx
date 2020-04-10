@@ -108,7 +108,7 @@ class Application extends React.Component {
             '/profile',
             '/leaderboard',
             '/leaderboards',
-            '/tournament',
+            '/decks',
             '/tournaments',
         ].includes(this.props.path);
 

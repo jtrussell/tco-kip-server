@@ -10,6 +10,7 @@ class Input extends React.Component {
                     <input name={ this.props.name } type={ this.props.type } className='form-control' id={ this.props.name }
                         placeholder={ this.props.placeholder } value={ this.props.value } onChange={ this.props.onChange } onBlur={ this.props.onBlur }
                         autoFocus={ this.props.autoFocus }
+                        autoComplete={ this.props.autoComplete }
                         { ...this.props.validationAttributes } />
                     <span className='text-danger' data-valmsg-replace='true' data-valmsg-for={ this.props.name } />
                 </div>

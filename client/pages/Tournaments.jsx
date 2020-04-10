@@ -103,7 +103,8 @@ class Tournaments extends React.Component {
 
         console.log(tournament);
 
-        const openMatch = tournament.matches.find(({ match }) => match.state === 'open');
+        const openMatches = tournament.matches.filter(({ match }) => match.state === 'open');
+        const openMatch = openMatches[0];
         if (!openMatch) {
             alert('The tournament has no open matches');
             this.setState({ creating: false });
@@ -111,7 +112,7 @@ class Tournaments extends React.Component {
         }
 
         const round = openMatch.match.round;
-        const confirmationMessage = `Create ${tournament.participants.length / 2 | 0} tables for round ${round}?`;
+        const confirmationMessage = `Create ${openMatches.length} tables for round ${round}?`;
 
         if (!confirm(confirmationMessage)) {
             this.setState({ creating: false });

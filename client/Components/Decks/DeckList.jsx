@@ -120,31 +120,29 @@ class DeckList extends React.Component {
                 <form className='form'>
                     <div className='col-md-8'>
                         <div className='form-group'>
-                            <label className='control-label'><Trans>Filter</Trans>:</label><input autoFocus className='form-control' placeholder={ t('Search...') } type='text' onChange={ e => this.changeFilter(e.target.value) }/>
+                            <input className='form-control' placeholder='Search by deck name' type='text' onChange={ e => this.changeFilter(e.target.value) }/>
                         </div>
                     </div>
                     <div className='col-md-4'>
                         <div className='form-group'>
-                            <label className='control-label'><Trans>Show</Trans>:</label>
                             <select className='form-control' onChange={ this.onPageSizeChanged }>
-                                <option>10</option>
-                                <option>25</option>
-                                <option>50</option>
+                                <option>10 decks</option>
+                                <option>25 decks</option>
+                                <option>50 decks</option>
                             </select>
                         </div>
                     </div>
                     <div className='col-md-12'>
                         <div className='form-group'>
-                            <label className='control-label'><Trans>Filter By Expansion</Trans>:</label>
                             <select className='form-control' onChange={ this.onChangeExpansionFilter }>
-                                <option />
+                                <option value=''>All Expansions</option>
                                 <option>World&#39;s Collide</option>
                                 <option>Age of Ascension</option>
                                 <option>Call of the Archons</option>
                             </select>
                         </div>
                     </div>
-                    <div className='col-md-12'><Trans>Sort by</Trans>:<RadioGroup buttons={ sortButtons } onValueSelected={ this.onSortChanged } defaultValue={ this.state.sortOrder } /></div>
+                    <div className='col-md-12'><Trans>Sort by</Trans><RadioGroup buttons={ sortButtons } onValueSelected={ this.onSortChanged } defaultValue={ this.state.sortOrder } /></div>
                     <nav className='col-md-12' aria-label={ t('Page navigation') } >
                         <ul className='pagination'>
                             <li>
