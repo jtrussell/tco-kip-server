@@ -136,26 +136,52 @@ class NewGame extends React.Component {
     getGameTypeOptions() {
         let t = this.props.t;
 
+        const stylesSelected = {
+            color: '#000',
+            paddingRight: '5px',
+        };
+
         let gameTypes = [
-            { name: 'chainbound', label: 'Chainbound' },
-            { name: 'freeplay', label: 'Free Play' },
-            { name: 'adaptive', label: 'Adaptive' },
-            { name: 'adaptiveShort', label: 'Adaptive Short', beta: true }
+            {
+                name: 'chainbound',
+                label: 'Chainbound',
+                classNameSelected: 'label-success',
+            },
+            {
+                name: 'freeplay',
+                label: 'Free Play',
+                classNameSelected: 'label-warning',
+            },
+            {
+                name: 'adaptive',
+                label: 'Adaptive',
+                classNameSelected: 'label-danger',
+            },
+            {
+                name: 'adaptiveShort',
+                label: 'Adaptive Short',
+                classNameSelected: 'adaptive-short',
+            }
         ];
-            //{ name: 'beginner', label: t('Beginner') },
 
         return (
             <div className='row game-type' style={{ paddingBottom: '10px' }}>
-                <div className='col-sm-12 game-type'>
-                    <b><Trans>Game Type</Trans></b>
+                <div className='col-sm-12 game-type' style={{ marginBottom: '5px' }}>
+                    <div><Trans>Game Type</Trans></div>
                 </div>
-                <div className='col-sm-10'>
+                <div className='col-sm-10' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     { gameTypes.map(gameType => {
-                        return (<label key={ gameType.name } className='radio-inline'>
-                            <input type='radio' onChange={ this.onGameTypeChange.bind(this, gameType.name) } checked={ this.isGameTypeSelected(gameType.name) } />
-                                { gameType.label }
-                                { gameType.beta && <span style={{ color: '#000', backgroundColor: '#DEC052', padding: '3px 5px', fontSize: '12px', marginLeft: '5px'}}>beta</span>}
-                        </label>);
+                        return (
+                            <label
+                                key={ gameType.name }
+                                className={`radio-inline ${this.isGameTypeSelected(gameType.name) ? gameType.classNameSelected : '' }`}
+                                style={this.isGameTypeSelected(gameType.name) ? stylesSelected : {} }
+                            >
+                                <input type='radio' onChange={ this.onGameTypeChange.bind(this, gameType.name) } checked={ this.isGameTypeSelected(gameType.name) } />
+                                    { gameType.label }
+                                    { gameType.beta && <span style={{ color: '#000', backgroundColor: '#DEC052', padding: '3px 5px', fontSize: '12px', marginLeft: '5px'}}>beta</span>}
+                            </label>
+                        );
                     }) }
                 </div>
             </div>);

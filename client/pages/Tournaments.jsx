@@ -20,11 +20,12 @@ const Title = styled.div`
     font-size: 25px;
     font-weight: 300;
     font-family: 'Open Sans';
+    margin-bottom: 20px;
 `;
 
 const Input = styled.input`
     padding: 5px 8px;
-    width: 200px;
+    width: 400px;
     border: unset;
     font-size: 14px;
     border-radius: 2px;
@@ -163,7 +164,13 @@ class Tournaments extends React.Component {
                         <Input ref={ this.challongeRef } placeholder='Challonge ID'/>
                         <Input ref={ this.gameTypeRef } placeholder='Game Type'/>
                         <Input ref={ this.passwordRef } placeholder='Password'/>
-                        <Button onClick={ this.onCreate.bind(this) } disabled={ this.state.creating }> { this.state.creating ? 'Creating' : 'Create' }</Button>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            width: '100%',
+                        }}>
+                            <Button onClick={ this.onCreate.bind(this) } disabled={ this.state.creating }> { this.state.creating ? 'Creating' : 'Create' }</Button>
+                        </div>
                     </div>
                 </div>
             </Container>

@@ -126,7 +126,7 @@ class GameList extends React.Component {
                 players.push(
                     <div key={ players[0].name } className={ 'game-player-row other-player' }>
                         <div className='game-faction-row other-player'>
-                            <button className='btn btn-success gamelist-button img-responsive' onClick={ event => this.joinGame(event, game) }><Trans>Join</Trans></button>
+                            <button className={`btn ${game.needsPassword ? 'btn-default' : 'btn-success'} gamelist-button img-responsive`} onClick={ event => this.joinGame(event, game) }><Trans>Join</Trans></button>
                         </div>
                     </div>);
             } else {
@@ -142,6 +142,10 @@ class GameList extends React.Component {
         let t = this.props.t;
 
         for(const game of games) {
+            if(this.props.gameFilter.showOnlyNewGames && game.started) {
+                continue;
+            }
+
             if(!this.props.gameFilter[game.gameFormat]) {
                 continue;
             }

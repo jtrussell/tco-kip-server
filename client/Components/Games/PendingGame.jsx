@@ -137,9 +137,17 @@ class PendingGame extends React.Component {
             </div>);
     }
 
+    getGameType() {
+        return {
+            adaptive: 'Adaptive',
+            chainbound: 'Chainbound',
+            adaptiveShort: 'Adaptive Short',
+            freeplay: 'Free Play',
+        }[this.props.currentGame.gameType];
+    }
+
     getGameStatus() {
         let t = this.props.t;
-
 
         if(this.props.connecting) {
             return 'Connecting to game server';
@@ -236,7 +244,10 @@ class PendingGame extends React.Component {
                         <button className='btn btn-success' disabled={ !this.isGameReady() || this.props.connecting || this.state.waiting } onClick={ this.onStartClick }><Trans>Start</Trans></button>
                         <button className='btn btn-primary' onClick={ this.onLeaveClick }><Trans>Leave</Trans></button>
                     </div>
-                    <div className='game-status'>{ this.getGameStatus() }</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                        <div>{ this.getGameStatus() }</div>
+                        <div>{ this.getGameType() }</div>
+                    </div>
                 </Panel>
                 <Panel title={ t('Players') }>
                     {

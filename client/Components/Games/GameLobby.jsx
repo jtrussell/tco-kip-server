@@ -45,6 +45,7 @@ class GameLobby extends React.Component {
             adaptive: true,
             adaptiveShort: true,
             normal: true,
+            showOnlyNewGames: false
         };
 
         this.state = {
@@ -255,6 +256,7 @@ class GameLobby extends React.Component {
                                     <Checkbox name='freeplay' label='Free Play' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'freeplay') } checked={ this.state.filter['freeplay'] } />
                                     <Checkbox name='adaptive' label='Adaptive' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'adaptive') } checked={ this.state.filter['adaptive'] } />
                                     <Checkbox name='adaptiveShort' label='Adaptive Short' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'adaptive short') } checked={ this.state.filter['adaptiveShort'] } />
+                                    <Checkbox name='showOnlyNewGames' label={ t('Only show new games') } fieldClass='col-sm-6' noGroup onChange={ this.onCheckboxChange.bind(this, 'showOnlyNewGames') } checked={ this.state.filter['showOnlyNewGames'] } />
                                 </Panel>
                             </div>
                         </div>

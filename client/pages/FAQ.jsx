@@ -84,7 +84,7 @@ const faq = [{
     answer: 'No, we lose about $300 a month across KiP and the Crucible Tracker. In the event we turn a profit, that money would be reinvested into the community (e.g. to KeyForge artists, local game stores, better prize support, EU servers).',
 }, {
     question: 'Why do this if you lose money?',
-    answer: 'This is a labor of love. This site is a gift to the KeyForge community.',
+    answer: 'Our work is a labor of love and this site is a gift to the KeyForge community.',
 }, {
     question: 'Where are your servers located?',
     answer: 'Our servers are on the east coast of the United States.',
