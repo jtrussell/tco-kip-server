@@ -5,6 +5,7 @@ const kip = require('./kip');
 
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
+const TeamKiP = require('./team-kip');
 
 class PendingGame {
     constructor(owner, details) {
@@ -114,6 +115,12 @@ class PendingGame {
         return _.contains(this.owner.blockList, user.username.toLowerCase());
     }
 
+    canJoinKiPPracticeGame(user) {
+        const playerNames = Object.values(this.getPlayers()).map(p => p.name);
+        const isKiPGame = playerNames.every(name => TeamKiP.includes(name));
+        return isKiPGame && TeamKiP.includes(user.username);
+    }
+
     join(id, user, password) {
         if(_.size(this.players) === 2 || this.started) {
             return 'Game full';
@@ -124,7 +131,7 @@ class PendingGame {
         }
 
         if(this.password) {
-            if(crypto.createHash('md5').update(password).digest('hex') !== this.password) {
+            if(crypto.createHash('md5').update(password).digest('hex') !== this.password && !this.canJoinKiPPracticeGame(user)) {
                 return 'Incorrect game password';
             }
         }
@@ -145,7 +152,7 @@ class PendingGame {
         }
 
         if(this.password) {
-            if(crypto.createHash('md5').update(password).digest('hex') !== this.password) {
+            if(crypto.createHash('md5').update(password).digest('hex') !== this.password && !this.canJoinKiPPracticeGame(user)) {
                 return 'Incorrect game password';
             }
         }

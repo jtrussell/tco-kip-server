@@ -20,6 +20,19 @@ import ChessClock from './ChessClock';
 import * as actions from '../../actions';
 import getCardImageURL from '../../getCardImageURL';
 import DeckTracker from '../../kip/Components/DeckTracker';
+import Menu from './Menu';
+import styled from 'styled-components';
+
+const MenuContainer = styled.div`
+    max-width: 280px;
+    min-width: 160px;
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+`;
 
 import { withTranslation, Trans } from 'react-i18next';
 
@@ -64,6 +77,7 @@ export class GameBoard extends React.Component {
         this.onCommand = this.onCommand.bind(this);
         this.onConcedeClick = this.onConcedeClick.bind(this);
         this.onLeaveClick = this.onLeaveClick.bind(this);
+        this.onReportWin = this.onReportWin.bind(this);
         this.onShuffleClick = this.onShuffleClick.bind(this);
         this.onMenuItemClick = this.onMenuItemClick.bind(this);
         this.sendChatMessage = this.sendChatMessage.bind(this);
@@ -79,7 +93,9 @@ export class GameBoard extends React.Component {
             showCardMenu: {},
             showMessages: true,
             lastMessageCount: 0,
-            newMessages: 0
+            newMessages: 0,
+            menuOptions: [],
+            showDeckTracker: false,
         };
     }
 
@@ -124,35 +140,57 @@ export class GameBoard extends React.Component {
 
             if(isPlayer) {
                 const opponentName = playerNames.filter(p => p !== props.user.username)[0];
+
+                menuOptions = [{
+                    text: 'Manual Mode',
+                    onClick: this.onManualModeClick,
+                }, {   
+                    text: 'Toggle Deck Tracker',
+                    onClick: () => this.setState({ showDeckTracker: !this.state.showDeckTracker }),
+                }];
+                const hasWinner = props.currentGame.winner;
+                if (!hasWinner) {
+                    menuOptions.push({   
+                        text: 'Concede',
+                        onClick: this.onConcedeClick 
+                    });
+                }
+
                 if (opponentName) {
                     const opponent = props.currentGame.players[opponentName];
-                    if (opponent && (opponent.left || opponent.disconnected)) {
-                        menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                    const hasOpponentWhoLeft = opponent && (opponent.left || opponent.disconnected);
+                    const isManualMode = props.currentGame.manualMode;
+
+                    if (hasOpponentWhoLeft || isManualMode || hasWinner) {
+                        menuOptions.push({
+                            text: 'Leave Game',
+                            onClick: this.onLeaveClick
+                        });
+                    }
+
+                    if (hasOpponentWhoLeft && !hasWinner) {
+                        menuOptions.push({
+                            text: 'Report as Win',
+                            onClick: this.onReportWin
+                        });
                     }
                 } else {
-                    menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                    menuOptions.push({
+                        text: 'Leave Game',
+                        onClick: this.onLeaveClick
+                    });
                 }
-
-                if ((props.currentGame.winner || props.currentGame.manualMode) && !menuOptions.find(i => i.text === 'Leave Game')) {
-                    menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
-                }
-
-                menuOptions.unshift({ text: 'Concede', onClick: this.onConcedeClick });
             } else {
-                menuOptions.push({ text: 'Leave Game', onClick: this.onLeaveClick });
+                menuOptions.push({
+                    text: 'Leave Game',
+                    onClick: this.onLeaveClick
+                });
             }
 
-            let spectators = props.currentGame.spectators.map(spectator => {
-                return <li className='spectator-popup-item' key={ spectator.id }>{ spectator.name }</li>;
+            menuOptions.unshift({
+                text: `${props.currentGame.spectators.length} spectators`,
+                options: props.currentGame.spectators.map(s => s.name)
             });
-
-            let spectatorPopup = (
-                <ul className='spectators-popup absolute-panel'>
-                    { spectators }
-                </ul>
-            );
-
-            menuOptions.unshift({ text: '{{users}} spectators', values: { users: props.currentGame.spectators.length }, popup: spectatorPopup });
 
             this.setContextMenu(menuOptions);
         } else {
@@ -161,17 +199,22 @@ export class GameBoard extends React.Component {
     }
 
     setContextMenu(menu) {
-        if(this.props.setContextMenu) {
-            this.props.setContextMenu(menu);
-        }
+        this.setState({
+            menuOptions: menu
+        });
+        //if(this.props.setContextMenu) {
+            //this.props.setContextMenu(menu);
+        //}
     }
 
     onConcedeClick() {
-        if (!window.confirm('Are you sure you want to concede?')) {
-            return;
-        }
-
-        this.props.sendGameMessage('concede');
+        toastr.confirm('Are you sure you want to concede?', {
+            okText: 'Yes',
+            cancelText: 'Cancel',
+            onOk: () => {
+                this.props.sendGameMessage('concede');
+            }
+        });
     }
 
     isGameActive() {
@@ -208,8 +251,8 @@ export class GameBoard extends React.Component {
 
         if(!this.state.spectating && this.isGameActive()) {
             toastr.confirm(t('Your game is not finished, are you sure you want to leave?'), {
-                okText: t('Ok'),
-                cancelText: t('Cancel'),
+                okText: 'Yes',
+                cancelText: 'Cancel',
                 onOk: () => {
                     this.props.sendGameMessage('leavegame');
                     this.props.closeGameSocket();
@@ -221,6 +264,16 @@ export class GameBoard extends React.Component {
 
         this.props.sendGameMessage('leavegame');
         this.props.closeGameSocket();
+    }
+
+    onReportWin() {
+        toastr.confirm('Are you sure you want to report as a win?', {
+            okText: 'Yes',
+            cancelText: 'Cancel',
+            onOk: () => {
+                this.props.sendGameMessage('wingame');
+            }
+        });
     }
 
     onMouseOver(card) {
@@ -477,6 +530,9 @@ export class GameBoard extends React.Component {
 
         return (
             <div className={ boardClass }>
+                <MenuContainer>
+                    <Menu user={this.props.user} options={this.state.menuOptions}/>
+                </MenuContainer>
                 <GameConfigurationModal
                     optionSettings={ thisPlayer.optionSettings }
                     onOptionSettingToggle={ this.onOptionSettingToggle.bind(this) }
@@ -541,7 +597,7 @@ export class GameBoard extends React.Component {
                         activeHouse={ thisPlayer.activeHouse } manualModeEnabled={ manualMode } showManualMode={ !this.state.spectating }
                         muteSpectators={ this.props.currentGame.muteSpectators } onMuteClick={ this.onMuteClick } deckUuid={ thisPlayer.deckUuid }/>
                 </div>
-                {!this.state.spectating && <DeckTracker
+                {(!this.state.spectating && this.state.showDeckTracker) && <DeckTracker
                     user={this.props.user.username}
                     game={this.props.currentGame}
                 />}

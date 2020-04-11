@@ -6,7 +6,7 @@ class DeckTracker extends React.Component {
     constructor() {
         super(...arguments);
         this.state = {
-            minimized: true
+            minimized: false
         };
         this.containerRef = React.createRef();
         this.topBarRef = React.createRef();

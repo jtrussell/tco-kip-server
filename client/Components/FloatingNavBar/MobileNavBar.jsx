@@ -29,7 +29,7 @@ const MenuContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-top: 20%;
+    padding-top: 20%;
     background-color: ${colors.background};
     position: absolute;
     top: 0;

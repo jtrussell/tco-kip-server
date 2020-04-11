@@ -97,16 +97,6 @@ export class PlayerStats extends React.Component {
                 { this.getButton('amber', 'Amber') }
                 { this.props.showMessages &&
                     <div className='state chat-status'>
-                        {
-                            this.props.showManualMode &&
-                            <div className='state'>
-                                <button
-                                    className={ 'btn btn-transparent btn-noimg ' + (this.props.manualModeEnabled ? 'manual' : 'auto') }
-                                    onClick={ this.props.onManualModeClick } >
-                                    <span><Trans>Manual Mode</Trans></span>
-                                </button>
-                            </div>
-                        }
                     </div>
                 }
             </div>
