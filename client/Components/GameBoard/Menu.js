@@ -97,6 +97,8 @@ const InnerDropdown = styled.div`
 const InnerDropdownItem = styled(DropdownItem)`
     overflow: hidden;
     word-wrap: nowrap;
+    font-size: 12px;
+    padding: 5px 8px;
 
     background-color: ${colors.background2};
 

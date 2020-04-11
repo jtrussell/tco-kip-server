@@ -192,6 +192,11 @@ export class GameBoard extends React.Component {
                 options: props.currentGame.spectators.map(s => s.name)
             });
 
+            menuOptions.unshift({
+                text: 'Profile',
+                onClick: () => this.props.navigate('/profile')
+            });
+
             this.setContextMenu(menuOptions);
         } else {
             this.setContextMenu([]);

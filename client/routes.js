@@ -31,6 +31,7 @@ const routes = [
     { path: '/', action: () => <Lobby key='lobby' /> },
     { path: '/faq', action: () => <FAQ /> },
     { path: '/tournaments', action: () => <Tournaments/>, permission: 'isTO' },
+    //{ path: '/tournaments', action: () => <Tournaments/> },
     { path: '/tco', action: () => <TCOArticle/> },
     { path: '/leaderboard', action: () => <Leaderboard/> },
     { path: '/leaderboards', action: () => <Leaderboard/> },
