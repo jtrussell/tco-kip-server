@@ -134,7 +134,7 @@ class Decks extends React.Component {
                 this.handleSelectDeck(linkedDecks[0]);
             }
         }).catch(error => {
-            setTimeout(() => this.loadDecks(), 500);
+            setTimeout(() => this.loadDecks(), 2000);
         });
     }
 
