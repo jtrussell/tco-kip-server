@@ -98,7 +98,9 @@ class Decks extends React.Component {
 
     waitToLoadDecks(props) {
         if (props.tReady && !this._hasLoadedDecks) {
-            this.loadDecks();
+            setTimeout(() => {
+                this.loadDecks();
+            }, 2000);
             this._hasLoadedDecks = true;
         }
     }

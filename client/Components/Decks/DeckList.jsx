@@ -72,7 +72,7 @@ class DeckList extends React.Component {
         let numDecksNotFiltered = 0;
 
         if(!decks || decks.length === 0) {
-            deckRows = t('You have no decks, try adding one');
+            deckRows = 'Loading... if no decks appear after a few seconds, try refreshing the page.';
         } else {
             let index = 0;
             let sortedDecks = decks;
