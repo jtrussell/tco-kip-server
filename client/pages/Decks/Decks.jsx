@@ -88,8 +88,21 @@ class Decks extends React.Component {
         this.setState({ deckString: event.target.value });
     }
 
+    UNSAFE_componentWillReceiveProps(props) {
+        this.waitToLoadDecks(props);
+    }
+
     componentDidMount() {
-        this.loadDecks();
+        this.waitToLoadDecks(this.props);
+    }
+
+    waitToLoadDecks(props) {
+        if (props.tReady && !this._hasLoadedDecks) {
+            setTimeout(() => {
+                this.loadDecks();
+            }, 2000);
+            this._hasLoadedDecks = true;
+        }
     }
 
     loadDecks() {

@@ -34,6 +34,14 @@ const Input = styled.input`
     color: #000;
 `;
 
+const Select = styled.select`
+    height: 30px;
+    width: 400px;
+    font-size: 14px;
+    margin: 10px 0;
+    color: #000;
+`;
+
 const ButtonContainer = styled.div`
     padding: 7px 10px;
     margin: 10px 0;
@@ -80,8 +88,8 @@ class Tournaments extends React.Component {
         const gameType = this.gameTypeRef.current.value;
         const password = this.passwordRef.current.value || '';
 
-        if (!gameType || !['freeplay', 'chainbound', 'adaptive', 'adaptiveShort'].includes(gameType)) {
-            alert('The game type is invalid. Please pick either freeplay, chainbound, adaptive, or adaptiveShort');
+        if (!challongeId) {
+            alert('Challonge ID cannot be empty');
             this.setState({ creating: false });
             return;
         }
@@ -100,8 +108,6 @@ class Tournaments extends React.Component {
                     playerB: playerB.participant.name,
                 }
             });
-
-        console.log(tournament);
 
         const openMatches = tournament.matches.filter(({ match }) => match.state === 'open');
         const openMatch = openMatches[0];
@@ -163,7 +169,13 @@ class Tournaments extends React.Component {
                             Create Tables
                         </Title>
                         <Input ref={ this.challongeRef } placeholder='Challonge ID'/>
-                        <Input ref={ this.gameTypeRef } placeholder='Game Type'/>
+                        <Select ref={ this.gameTypeRef }>
+                            <option disabled value=''>Game Variant</option>
+                            <option value='freeplay'>Free Play</option>
+                            <option value='adaptive'>Adaptive</option>
+                            <option value='adaptiveShort'>Adaptive Short</option>
+                            <option value='chainbound'>Chainbound</option>
+                        </Select>
                         <Input ref={ this.passwordRef } placeholder='Password'/>
                         <div style={{
                             display: 'flex',

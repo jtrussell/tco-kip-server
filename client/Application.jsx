@@ -112,10 +112,23 @@ class Application extends React.Component {
             '/tournaments',
         ].includes(this.props.path);
 
+        let navBarComponent = <NavBar title='KiP Tournaments' />;
+        let floatingNavBarComponent = <FloatingNavBar isMobile={this.props.isMobile}/>;
+
+        if (gameBoardVisible) {
+            navBarComponent = null;
+            floatingNavBarComponent = null;
+        }
+
+        if (showFloatingNavBar)
+            navBarComponent = null;
+        else
+            floatingNavBarComponent = null;
+
         return (<div style={ { height: '100%' } }>
             <div className={ backgroundClass } style={bgStyles} />
-            { !showFloatingNavBar && <NavBar title='KiP Tournaments' /> }
-            { showFloatingNavBar && <FloatingNavBar isMobile={this.props.isMobile}/> }
+                {navBarComponent}
+                {floatingNavBarComponent}
             <div className='wrapper'>
                 <div className='content'>
                     <ErrorBoundary navigate={ this.props.navigate } errorPath={ this.props.path } message={ 'We\'re sorry - something\'s gone wrong.' }>
