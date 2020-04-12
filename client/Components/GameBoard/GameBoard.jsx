@@ -142,11 +142,11 @@ export class GameBoard extends React.Component {
                 const opponentName = playerNames.filter(p => p !== props.user.username)[0];
 
                 menuOptions = [{
-                    text: 'Manual Mode',
-                    onClick: this.onManualModeClick,
-                }, {   
                     text: 'Toggle Deck Tracker',
                     onClick: () => this.setState({ showDeckTracker: !this.state.showDeckTracker }),
+                }, {
+                    text: 'Profile',
+                    onClick: () => this.props.navigate('/profile')
                 }];
                 const hasWinner = props.currentGame.winner;
                 if (!hasWinner) {
@@ -193,8 +193,8 @@ export class GameBoard extends React.Component {
             });
 
             menuOptions.unshift({
-                text: 'Profile',
-                onClick: () => this.props.navigate('/profile')
+                text: 'Manual Mode',
+                onClick: this.onManualModeClick,
             });
 
             this.setContextMenu(menuOptions);
