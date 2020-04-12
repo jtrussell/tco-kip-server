@@ -192,10 +192,12 @@ export class GameBoard extends React.Component {
                 options: props.currentGame.spectators.map(s => s.name)
             });
 
-            menuOptions.unshift({
-                text: 'Manual Mode',
-                onClick: this.onManualModeClick,
-            });
+            if (isPlayer) {
+                menuOptions.unshift({
+                    text: 'Manual Mode',
+                    onClick: this.onManualModeClick,
+                });
+            }
 
             this.setContextMenu(menuOptions);
         } else {
