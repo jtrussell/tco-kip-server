@@ -100,7 +100,7 @@ class Decks extends React.Component {
         if (props.tReady && !this._hasLoadedDecks) {
             setTimeout(() => {
                 this.loadDecks();
-            }, 2000);
+            }, 0);
             this._hasLoadedDecks = true;
         }
     }
@@ -133,6 +133,8 @@ class Decks extends React.Component {
             if (!this.state.selectedDeck && linkedDecks.length) {
                 this.handleSelectDeck(linkedDecks[0]);
             }
+        }).catch(error => {
+            setTimeout(() => this.loadDecks(), 500);
         });
     }
 
