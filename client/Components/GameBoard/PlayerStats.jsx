@@ -41,16 +41,6 @@ export class PlayerStats extends React.Component {
         );
     }
 
-    getKeyCost() {
-        return (
-            <div className='state' title={ 'Current Key Cost' }>
-                <div className={ 'stat-image keyCost' }>
-                    <div className='stat-value'>{ this.getStatValueOrDefault('keyCost') }</div>
-                </div>
-            </div>
-        );
-    }
-
     onSettingsClick(event) {
         event.preventDefault();
 
@@ -105,11 +95,11 @@ export class PlayerStats extends React.Component {
                 { (this.props.side === 'top' && this.props.houses) ? this.getHouses() : null }
 
                 { this.getButton('amber', 'Amber') }
+                { this.getButton('keyCost', 'Current Key Cost') }
                 { this.props.showMessages &&
                     <div className='state chat-status'>
                     </div>
                 }
-                { this.getKeyCost() }
             </div>
         );
     }
