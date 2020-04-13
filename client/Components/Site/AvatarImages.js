@@ -59,9 +59,11 @@ const avatars = [
     '/img/avatars/wildwormhole.jpg',
     '/img/avatars/afk.png',
     '/img/avatars/hffs.jpg',
+    '/img/avatars/dtae.jpg',
+    '/img/avatars/future-sight.png',
     '/img/avatars/autocannons.jpg',
-    '/img/avatars/london-urchins.jpg',
-    '/img/avatars/archons-corner.jpg'
+    '/img/avatars/archons-corner.jpg',
+    '/img/avatars/london-urchins.jpg'
 ];
 
 export {
