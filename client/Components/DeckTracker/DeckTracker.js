@@ -1,6 +1,6 @@
 import React from 'react';
 import Cards from './Cards';
-import xyDrag from './xyDrag';
+import xyDrag from '../xyDrag';
 
 class DeckTracker extends React.Component {
     constructor() {

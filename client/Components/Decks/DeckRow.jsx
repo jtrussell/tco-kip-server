@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import DeckChains from '../../kip/Components/DeckChains';
+import DeckChains from '../DeckChains';
 
 import { withTranslation } from 'react-i18next';
 import { buildArchon } from '../../archonMaker';

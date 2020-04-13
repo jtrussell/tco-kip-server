@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import xyDrag from '../../kip/Components/DeckTracker/xyDrag';
+import xyDrag from '../xyDrag';
 
 class ChessClock extends React.Component {
     constructor(props) {

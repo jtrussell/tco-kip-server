@@ -8181,15 +8181,19 @@ ul.htp-sub-list {
   margin: 5px 5px;
 }
 .prompt-area {
-  display: flex;
+  pointer-events: none;
+  display: inline-flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: fixed;
-  left: 5px;
+  position: absolute;
+  left: 0px;
+  bottom: 55px;
+  width: fit-content;
+  height: 100%;
   z-index: 99999;
-  bottom: 50px;
 }
 .prompt-area .panel {
+  pointer-events: auto;
   background: black;
 }
 .player-prompt-body {

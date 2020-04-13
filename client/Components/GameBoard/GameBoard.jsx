@@ -19,7 +19,7 @@ import TimeLimitClock from './TimeLimitClock';
 import ChessClock from './ChessClock';
 import * as actions from '../../actions';
 import getCardImageURL from '../../getCardImageURL';
-import DeckTracker from '../../kip/Components/DeckTracker';
+import DeckTracker from '../DeckTracker';
 import Menu from './Menu';
 import styled from 'styled-components';
 
@@ -562,6 +562,25 @@ export class GameBoard extends React.Component {
                     <PlayerStats stats={ otherPlayer.stats } side='top' deckUuid={ otherPlayer.deckUuid } houses={ otherPlayer.houses } activeHouse={ otherPlayer.activeHouse }
                         user={ otherPlayer.user } activePlayer={ otherPlayer.activePlayer } />
                 </div>
+                <div className='prompt-area'>
+                    <div className='inset-pane'>
+                        {thisPlayer.promptType !== 'adaptive-short-deck-select' && (
+                            <ActivePlayerPrompt
+                                cards={ this.props.cards }
+                                buttons={ thisPlayer.buttons }
+                                controls={ thisPlayer.controls }
+                                promptText={ thisPlayer.menuTitle }
+                                promptType={ thisPlayer.promptType }
+                                promptTitle={ thisPlayer.promptTitle }
+                                onButtonClick={ this.onCommand }
+                                onMouseOver={ this.onMouseOver }
+                                onMouseOut={ this.onMouseOut }
+                                user={ this.props.user }
+                                phase={ thisPlayer.phase }
+                            />
+                        )}
+                    </div>
+                </div>
                 <div className='main-window'>
                     { this.renderBoard(thisPlayer, otherPlayer) }
                     <CardZoom imageUrl={ cardToZoom ? getCardImageURL(cardToZoom.name) : '' }
@@ -570,21 +589,6 @@ export class GameBoard extends React.Component {
                     <div className='right-side'>
                         <div className='prompt-area'>
                             <div className='inset-pane'>
-                                {thisPlayer.promptType !== 'adaptive-short-deck-select' && (
-                                    <ActivePlayerPrompt
-                                        cards={ this.props.cards }
-                                        buttons={ thisPlayer.buttons }
-                                        controls={ thisPlayer.controls }
-                                        promptText={ thisPlayer.menuTitle }
-                                        promptType={ thisPlayer.promptType }
-                                        promptTitle={ thisPlayer.promptTitle }
-                                        onButtonClick={ this.onCommand }
-                                        onMouseOver={ this.onMouseOver }
-                                        onMouseOut={ this.onMouseOut }
-                                        user={ this.props.user }
-                                        phase={ thisPlayer.phase }
-                                    />
-                                )}
                                 {thisPlayer.promptType === 'adaptive-short-deck-select' && (
                                     <AdaptiveShortDeckSelectPrompt
                                         cards={ this.props.cards }

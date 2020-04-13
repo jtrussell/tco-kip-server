@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
-import AbilityTargeting from './AbilityTargeting';
-import CardNameLookup from './CardNameLookup';
-import TraitNameLookup from './TraitNameLookup';
-import HouseSelect from './HouseSelect';
-import OptionsSelect from './OptionsSelect';
-import Panel from '../Site/Panel';
+import AbilityTargeting from '../AbilityTargeting';
+import CardNameLookup from '../CardNameLookup';
+import TraitNameLookup from '../TraitNameLookup';
+import HouseSelect from '../HouseSelect';
+import OptionsSelect from '../OptionsSelect';
+import Panel from './Panel';
 
 const MaxButtonTextLength = 28;
 
@@ -226,7 +226,7 @@ class ActivePlayerPrompt extends React.Component {
         }
 
         return (
-            <Panel title={ this.props.t(this.props.phase + ' phase') } titleClass='phase-indicator' panelBodyClass='player-prompt-body'>
+            <Panel title={ this.props.t(this.props.phase + ' phase') } titleClass='phase-indicator' panelBodyClass='player-prompt-body' styles={{ userSelect: 'none' }}>
                 { timer }
                 { promptTitle }
                 <div className='menu-pane'>
