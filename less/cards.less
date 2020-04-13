@@ -12,6 +12,30 @@
   position: relative;
 }
 
+.foil {
+  -webkit-animation: rainbow 8s steps(36) infinite;
+}
+
+@-webkit-keyframes rainbow {
+  75% { -webkit-filter:hue-rotate(0deg); }
+  100% { -webkit-filter:hue-rotate(125deg); }
+}
+
+@keyframes rainbow {
+  70% {
+    -webkit-filter:hue-rotate(0deg);
+            filter:hue-rotate(0deg);
+    }
+  85% {
+    -webkit-filter:hue-rotate(125deg);
+            filter:hue-rotate(125deg);
+    }
+  100% {
+    -webkit-filter:hue-rotate(0deg);
+            filter:hue-rotate(0deg);
+    }
+}
+
 @keyframes glowing {
   from {
     background-color: #749a02;

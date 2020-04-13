@@ -46,8 +46,7 @@ function createImageSource(options) {
 
 let options = commandLineArgs(optionsDefinition);
 
-//let db = monk(configService.getValue('dbPath'));
-let db = monk('mongodb://grant:KLIC9dird.jiy@cluster0-shard-00-00-dtbgk.mongodb.net:27017,cluster0-shard-00-01-dtbgk.mongodb.net:27017,cluster0-shard-00-02-dtbgk.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority');
+let db = monk(process.env.KIP_DB_URL);
 
 let dataSource = createDataSource(options);
 let imageSource = createImageSource(options);

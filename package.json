@@ -4,7 +4,7 @@
   "description": "A Keyforge Card Game Server",
   "main": "index.js",
   "scripts": {
-    "mongod": "mongod --dbpath=/data --port 27017\n",
+    "mongo": "mongo 'mongodb://127.0.0.1:27017/keyforge'",
     "start": "NODE_ENV=development PORT=4000 POSTGRES_CONNECTION_STRING=postgres://postgres:postgres@127.0.0.1/postgres REDIS_URL=redis://localhost:4001 MONGODB_CONNECTION_STRING=mongodb://127.0.0.1:27017/keyforge node .",
     "psql": "docker exec -it tco-kip-server_postgres_1 psql postgres://postgres:postgres@127.0.0.1/postgres",
     "fetchdata": "node server/scripts/fetchdata",

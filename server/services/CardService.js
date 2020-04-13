@@ -1,5 +1,6 @@
 const _ = require('underscore');
 
+const allCards = require('../../cards');
 const logger = require('../log.js');
 
 class CardService {
@@ -19,22 +20,17 @@ class CardService {
     }
 
     getAllCards(options) {
-        return this.cards.find({})
-            .then(result => {
-                let cards = {};
+        let cards = {};
 
-                _.each(result, card => {
-                    if(options && options.shortForm) {
-                        cards[card.id] = _.pick(card, 'id', 'name', 'type', 'house', 'rarity', 'number', 'image', 'amber', 'locale', 'traits');
-                    } else {
-                        cards[card.id] = card;
-                    }
-                });
+        _.each(allCards, card => {
+            if(options && options.shortForm) {
+                cards[card.id] = _.pick(card, 'id', 'name', 'type', 'house', 'rarity', 'number', 'image', 'amber', 'locale', 'traits');
+            } else {
+                cards[card.id] = card;
+            }
+        });
 
-                return cards;
-            }).catch(err => {
-                logger.info(err);
-            });
+        return Promise.resolve(cards);
     }
 
     getAllPacks() {

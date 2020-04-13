@@ -67,6 +67,9 @@ class CardImage extends Component {
 
         return (
             <Fragment>
+                { this.props.foil && (
+                    <img src={ this.state.src } alt={ this.props.alt } className={ this.props.className + ' foil' } style={{ zIndex: 1, clipPath: 'inset(0 0 47% 0)' }}/>
+                )}
                 <img src={ this.state.src } alt={ this.props.alt } className={ this.props.className } />
                 {this.props.maverick && <Maverick style={maverickStyles} src={ `/img/maverick/maverick-${this.props.maverick}${this.props.amber > 0 ? '-amber' : ''}.png`}/>}
                 {(this.props.maverick && !this.props.anomaly) && <MaverickCorner style={maverickCornerStyles} src={ `/img/maverick/maverick-corner.png`}/>}

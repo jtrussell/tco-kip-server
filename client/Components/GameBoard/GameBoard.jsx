@@ -209,9 +209,6 @@ export class GameBoard extends React.Component {
         this.setState({
             menuOptions: menu
         });
-        //if(this.props.setContextMenu) {
-            //this.props.setContextMenu(menu);
-        //}
     }
 
     onConcedeClick() {
@@ -373,7 +370,7 @@ export class GameBoard extends React.Component {
         return player;
     }
 
-  renderBoard(thisPlayer, otherPlayer) {
+    renderBoard(thisPlayer, otherPlayer) {
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
@@ -416,6 +413,7 @@ export class GameBoard extends React.Component {
                             onMouseOut={ this.onMouseOut }
                             onMouseOver={ this.onMouseOver }
                             rowDirection='reverse'
+                            playerName={ this.props.playerName }
                             user={ this.props.user } />
                         <Droppable onDragDrop={ this.onDragDrop } source='play area' manualMode={ this.props.currentGame.manualMode }>
                             <PlayerBoard
@@ -534,6 +532,22 @@ export class GameBoard extends React.Component {
                 )
             }
         }
+
+        [
+            thisPlayer, otherPlayer
+        ].forEach(player => {
+            const foiledCards = player.deckCards.filter(c => c.foil);
+            foiledCards.forEach(card => {
+                ['hand', 'deck', 'discard', 'archives', 'purged', 'cardsInPlay']
+                    .forEach(location => {
+                        player.cardPiles[location].forEach(locationCard => {
+                            if (locationCard.id === card.id) {
+                                locationCard.foil = true;
+                            }
+                        });
+                    });
+            });
+        });
 
         return (
             <div className={ boardClass }>

@@ -1,10 +1,41 @@
 const logger = require('../log.js');
 const util = require('../util.js');
 
+const foilMap = {
+    'stronglink-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
+        'restringuntus': 1
+    },
+    'JusticeBlinded-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
+        'restringuntus': 1
+    },
+
+    'JusticeBlinded-90a9d1a3-ea89-4147-ac8f-02de7e89bad9': {
+        'hunting-witch': 1
+    }
+};
+
 class DeckService {
     constructor(db) {
         this.decks = db.get('decks');
         this.games = db.get('games');
+    }
+
+    async checkForFoil(deck) {
+        const foilMapId = `${deck.username}-${deck.uuid}`;
+
+        if(foilMap[foilMapId]) {
+            deck.cards = deck.cards.map(card => {
+                const foil = !!foilMap[foilMapId][card.id];
+                if(foil) {
+                    console.log('foiling', card.id);
+                    card.foil = foil;
+                }
+
+                return card;
+            });
+        }
+
+        return deck;
     }
 
     async getById(id) {
@@ -12,6 +43,7 @@ class DeckService {
 
         try {
             deck = await this.decks.findOne({ _id: id });
+            deck = await this.checkForFoil(deck);
             deck.usageCount = await this.decks.count({ name: deck.name });
         } catch(err) {
             logger.error('Unable to fetch deck', err);
@@ -26,6 +58,7 @@ class DeckService {
 
         try {
             deck = await this.decks.findOne({ identity });
+            deck = await this.checkForFoil(deck);
         } catch(err) {
             logger.error('Unable to fetch deck', err);
             throw new Error('Unable to fetch deck ' + id);
@@ -54,6 +87,7 @@ class DeckService {
 
     getByUuid(uuid) {
         return this.decks.findOne({ uuid: uuid })
+            .then(this.checkForFoil)
             .catch(err => {
                 logger.error('Unable to fetch deck', err);
                 throw new Error('Unable to fetch deck ' + uuid);
@@ -64,6 +98,7 @@ class DeckService {
         let decks = await this.decks.find({ username: username, banned: false }, { sort: { lastUpdated: -1 } });
 
         for(let deck of decks) {
+            deck = await this.checkForFoil(deck);
             deck.usageCount = await this.decks.count({ name: deck.name });
             // deck.wins = await this.games.count({ 'players.deck': deck.identity, winner: username });
             // deck.losses = await this.games.count({ 'players.deck': deck.identity, 'players.name': username, winner: { $nin: [null, username] } });
@@ -97,15 +132,27 @@ class DeckService {
 
         let cards = deckResponse._linked.cards.map(card => {
             let id = card.card_title.toLowerCase().replace(/[,?.!"„“”]/gi, '').replace(/[ '’]/gi, '-');
+
             if(card.is_maverick) {
-                return { id: id, count: 1, maverick: card.house.replace(' ', '').toLowerCase() };
+                return {
+                    id: id,
+                    count: 1,
+                    maverick: card.house.replace(' ', '').toLowerCase()
+                };
             }
 
             if(card.is_anomaly) {
-                return { id: id, count: 1, anomaly: card.house.replace(' ', '').toLowerCase() };
+                return {
+                    id: id,
+                    count: 1,
+                    anomaly: card.house.replace(' ', '').toLowerCase()
+                };
             }
 
-            return { id: id, count: deckResponse.data._links.cards.filter(uuid => uuid === card.id).length };
+            return {
+                id: id,
+                count: deckResponse.data._links.cards.filter(uuid => uuid === card.id).length
+            };
         });
         let uuid = deckResponse.data.id;
 
