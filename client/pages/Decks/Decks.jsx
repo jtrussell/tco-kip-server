@@ -93,6 +93,7 @@ class Decks extends React.Component {
     }
 
     componentDidMount() {
+        this._loadDecksAttempts = 0;
         this.waitToLoadDecks(this.props);
     }
 
@@ -134,7 +135,12 @@ class Decks extends React.Component {
                 this.handleSelectDeck(linkedDecks[0]);
             }
         }).catch(error => {
-            setTimeout(() => this.loadDecks(), 2000);
+            setTimeout(() => {
+                this._loadDecksAttempts += 1;
+                if (this._loadDecksAttempts < 10) {
+                    this.loadDecks();
+                }
+            }, 2000);
         });
     }
 
