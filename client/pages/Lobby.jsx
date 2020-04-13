@@ -104,7 +104,7 @@ class Lobby extends React.Component {
                             Saturday, April 18th
                         </Title>
                         <Text>
-                            <span>True Archon Survival (Day 1)</span>
+                            <Link text='True Archon Survival (Day 1)' url='https://challonge.com/truesurvival'/>
                             <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
                     </div>
@@ -113,7 +113,7 @@ class Lobby extends React.Component {
                             Sunday, April 19th
                         </Title>
                         <Text>
-                            <span>True Archon Survival (Day 2)</span>
+                            <Link text='True Archon Survival (Day 2)' url='https://challonge.com/truesurvival'/>
                             <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
                     </Blurb>
