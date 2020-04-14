@@ -57,7 +57,7 @@ class DeckList extends React.Component {
     onPageSizeChanged(event) {
         this.setState({
             currentPage: 0,
-            pageSize: event.target.value
+            pageSize: parseInt(event.target.value, 10)
         });
     }
 
@@ -126,9 +126,9 @@ class DeckList extends React.Component {
                     <div className='col-md-4'>
                         <div className='form-group'>
                             <select className='form-control' onChange={ this.onPageSizeChanged }>
-                                <option>10 decks</option>
-                                <option>25 decks</option>
-                                <option>50 decks</option>
+                                <option value='10'>10 decks</option>
+                                <option value='25'>25 decks</option>
+                                <option value='50'>50 decks</option>
                             </select>
                         </div>
                     </div>
