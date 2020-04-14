@@ -36,19 +36,50 @@
     }
 }
 
-@keyframes glowing {
+@keyframes blueglow {
   from {
-    background-color: #749a02;
-    box-shadow: 0 0 9px #333;
+    box-shadow: 0 0 0px 3px #434BD1;
   }
   50% {
-    background-color: #91bd09;
-    box-shadow: 0 0 18px #91bd09;
+    box-shadow: 0 0 0px 3px #4E57FC;
   }
   to {
-    background-color: #749a02;
-    box-shadow: 0 0 9px #333;
+    box-shadow: 0 0 0px 3px #434bd9;
   }
+}
+
+@keyframes orangeglow {
+  from {
+    box-shadow: 0 0 0px 3px #d19643;
+  }
+  50% {
+    box-shadow: 0 0 0px 3px #fcb64e;
+  }
+  to {
+    box-shadow: 0 0 0px 3px #d19643;
+  }
+}
+
+@keyframes greenglow {
+  from {
+    box-shadow: 0 0 0px 3px #3ec943;
+  }
+  50% {
+    box-shadow: 0 0 0px 3px #4cfc78;
+  }
+  to {
+    box-shadow: 0 0 0px 3px #3ec943;
+  }
+}
+
+.blue-glow {
+  animation: blueglow 2000ms infinite;
+  border-radius: 4px;
+}
+
+.green-glow {
+  animation: greenglow 2000ms infinite;
+  border-radius: 4px;
 }
 
 .card {
@@ -105,7 +136,8 @@
   }
 
   &.selectable {
-    box-shadow: 0 0 10px 1px fadeout(lighten(@brand-primary, 60%), 10%);
+    animation: orangeglow 2000ms infinite;
+    /*box-shadow: 0 0 10px 1px fadeout(lighten(@brand-primary, 60%), 10%);*/
 
     &.controlled {
       box-shadow: @controlledBox, 0 0 10px 1px fadeout(lighten(@brand-primary, 60%), 10%);
@@ -117,7 +149,7 @@
   }
 
   &.can-play {
-    animation: glowing 2000ms infinite;
+    animation: blueglow 2000ms infinite;
 
     &.controlled {
       box-shadow: @controlledBox, 0 0 10px 1px fadeout(lighten(@brand-primary, 60%), 10%);
@@ -457,8 +489,6 @@
 .drag-preview {
   pointer-events: none;
   position: fixed;
-
-  opacity: 0.5;
   z-index: @layer-top;
 }
 

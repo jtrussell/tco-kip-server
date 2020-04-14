@@ -27,11 +27,23 @@ const cardSource = {
 };
 
 function collect(connect, monitor) {
+    let xOffset = 0;
+    let yOffset = 0;
+    if (monitor.isDragging()) {
+        const clientOffset = monitor.getClientOffset();
+        const clientSourceOffset = monitor.getSourceClientOffset();
+        if (clientOffset && clientSourceOffset) {
+            xOffset = monitor.getClientOffset().x - monitor.getSourceClientOffset().x;
+            yOffset = monitor.getClientOffset().y - monitor.getSourceClientOffset().y;
+        }
+    }
     return {
         connectDragPreview: connect.dragPreview(),
         connectDragSource: connect.dragSource(),
         isDragging: monitor.isDragging(),
-        dragOffset: monitor.getSourceClientOffset()
+        dragOffset: monitor.getSourceClientOffset(),
+        xOffset,
+        yOffset
     };
 }
 
@@ -42,6 +54,7 @@ class InnerCard extends React.Component {
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseOut = this.onMouseOut.bind(this);
         this.onMenuItemClick = this.onMenuItemClick.bind(this);
+        this.cardImageRef = React.createRef();
 
         this.state = {
             showMenu: false
@@ -223,7 +236,7 @@ class InnerCard extends React.Component {
         return this.props.card.facedown || !this.props.card.name;
     }
 
-    getDragFrame(image) {
+    getDragFrame(image, imageClass) {
         if(!this.props.isDragging) {
             return null;
         }
@@ -234,16 +247,25 @@ class InnerCard extends React.Component {
             let x = this.props.dragOffset.x;
             let y = this.props.dragOffset.y;
 
+            const {
+                width,
+                height,
+            } = this.cardImageRef.current.getBoundingClientRect();
+
+            let yCorrection = height / 2 - this.props.yOffset;
+            let xCorrection = width / 2 - this.props.xOffset;
+
             style = {
-                left: x,
-                top: y
+                left: x - xCorrection,
+                top: y - yCorrection,
             };
         }
 
         return (
-            <div className='drag-preview' style={ style }>
+            <div className={`drag-preview green-glow ${imageClass}`} style={ style }>
                 { image }
-            </div>);
+            </div>
+        );
     }
 
     getCard() {
@@ -265,22 +287,28 @@ class InnerCard extends React.Component {
             'exhausted': (this.props.orientation === 'exhausted' || this.props.card.exhausted || this.props.orientation === 'horizontal')
         });
 
-        let image = (<CardImage className={ imageClass }
-            foil={ this.props.card.foil }
-            img={ this.imageUrl }
-            language={ this.props.language }
-            maverick={ !this.isFacedown() ? this.props.card.maverick : null }
-            anomaly={ !this.isFacedown() ? this.props.card.anomaly : null }
-            amber={ !this.isFacedown() ? this.props.card.cardPrintedAmber : 0 }/>);
+        let image = (
+            <CardImage className={ imageClass }
+                foil={ this.props.card.foil }
+                img={ this.imageUrl }
+                language={ this.props.language }
+                maverick={ !this.isFacedown() ? this.props.card.maverick : null }
+                anomaly={ !this.isFacedown() ? this.props.card.anomaly : null }
+                amber={ !this.isFacedown() ? this.props.card.cardPrintedAmber : 0 }
+            />
+        );
 
         let content = this.props.connectDragSource(
-            <div className='card-frame'>
-                { this.getDragFrame(image) }
+            <div className='card-frame' >
+                { this.getDragFrame(image, imageClass) }
                 { this.getCardOrder() }
                 <div className={ cardClass }
                     onMouseOver={ (this.props.disableMouseOver || this.isFacedown()) ? null : this.onMouseOver.bind(this, this.props.card) }
                     onMouseOut={ (this.props.disableMouseOver || this.isFacedown()) ? null : this.onMouseOut }
-                    onClick={ ev => this.onClick(ev, this.props.card) }>
+                    onClick={ ev => this.onClick(ev, this.props.card) }
+                    style={ this.props.isDragging ? { filter: 'brightness(0.6)' } : {}}
+                    ref={ this.cardImageRef }
+                >
                     <div>
                         <span className='card-name'>{ this.props.card.name }</span>
                         { image }

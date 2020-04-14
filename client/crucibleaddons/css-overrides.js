@@ -148,10 +148,6 @@ const start = () => {
       filter: grayscale(1);
     }
 
-    .can-play {
-      animation: none !important;
-    }
-
     .menu-pane-source {
       background: black;
     }
