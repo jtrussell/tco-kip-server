@@ -232,8 +232,6 @@ class GameLobby extends React.Component {
                 modalBody = <PasswordGame />;
                 break;
         }
-                                //<button className='btn btn-primary' onClick={ this.onNewGameClick } disabled={ !!this.props.currentGame }><Trans>New Game</Trans></button>
-                                //<button className='btn btn-primary' onClick={ this.onQuickJoinClick } disabled={ !!this.props.currentGame }><Trans>Quick Join</Trans></button>
  
         return (
             <div className='full-height' style={{ marginTop: '10px' }}>
@@ -245,8 +243,8 @@ class GameLobby extends React.Component {
                         <div className='col-xs-12 game-controls'>
                             <div className='col-sm-3 join-buttons'>
                                 <div style={{ padding: '10px' }}>The site will enter maintenance mode for 15 minutes after all games end.</div>
-                                <button className='btn btn-primary disabled' disabled={ true }><Trans>New Game</Trans></button>
-                                <button className='btn btn-primary disabled' disabled={ true }><Trans>Quick Join</Trans></button>
+                                <button className='btn btn-primary' onClick={ this.onNewGameClick } disabled={ !!this.props.currentGame }><Trans>New Game</Trans></button>
+                                <button className='btn btn-primary' onClick={ this.onQuickJoinClick } disabled={ !!this.props.currentGame }><Trans>Quick Join</Trans></button>
                             </div>
                             <div className='col-sm-9 game-filter'>
                                 <Panel type='primary'>
