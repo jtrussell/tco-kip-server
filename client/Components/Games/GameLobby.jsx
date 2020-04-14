@@ -242,7 +242,6 @@ class GameLobby extends React.Component {
                     <Panel title={ t('Current Games') }>
                         <div className='col-xs-12 game-controls'>
                             <div className='col-sm-3 join-buttons'>
-                                <div style={{ padding: '10px' }}>The site will enter maintenance mode for 15 minutes after all games end.</div>
                                 <button className='btn btn-primary' onClick={ this.onNewGameClick } disabled={ !!this.props.currentGame }><Trans>New Game</Trans></button>
                                 <button className='btn btn-primary' onClick={ this.onQuickJoinClick } disabled={ !!this.props.currentGame }><Trans>Quick Join</Trans></button>
                             </div>
