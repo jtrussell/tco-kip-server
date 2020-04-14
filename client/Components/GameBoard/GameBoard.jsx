@@ -132,7 +132,10 @@ export class GameBoard extends React.Component {
             this.setState({ spectating: true });
         }
 
-        let menuOptions = [];
+        let menuOptions = [{
+            text: 'Profile',
+            onClick: () => this.props.navigate('/profile')
+        }];
 
         if(props.currentGame && props.currentGame.started) {
             const playerNames = Object.keys(props.currentGame.players);
