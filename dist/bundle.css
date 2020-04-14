@@ -8821,7 +8821,7 @@ hr.phasestart {
   position: relative;
 }
 .foil {
-  -webkit-animation: rainbow 8s steps(36) infinite;
+  -webkit-animation: rainbow 12s steps(60) infinite;
 }
 @-webkit-keyframes rainbow {
   75% {

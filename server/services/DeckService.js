@@ -8,9 +8,14 @@ const foilMap = {
     'JusticeBlinded-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
         'restringuntus': 1
     },
-
     'JusticeBlinded-90a9d1a3-ea89-4147-ac8f-02de7e89bad9': {
         'hunting-witch': 1
+    },
+    'Leolinci96-025be087-60d0-46bc-b337-d23fa50df676': {
+        'raiding-knight': 1
+    },
+    'stronglink-025be087-60d0-46bc-b337-d23fa50df676': {
+        'raiding-knight': 1
     }
 };
 
@@ -27,7 +32,6 @@ class DeckService {
             deck.cards = deck.cards.map(card => {
                 const foil = !!foilMap[foilMapId][card.id];
                 if(foil) {
-                    console.log('foiling', card.id);
                     card.foil = foil;
                 }
 

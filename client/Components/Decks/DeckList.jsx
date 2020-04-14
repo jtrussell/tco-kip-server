@@ -15,14 +15,25 @@ class DeckList extends React.Component {
             expansionFilter: '',
             sortOrder: 'datedesc',
             pageSize: 10,
-            currentPage: 0
+            currentPage: 0,
+            starredDecks: {},
         };
+
+        try {
+            const starredDecks = localStorage.getItem('starredDecks');
+            if (starredDecks) {
+                this.state.starredDecks = JSON.parse(starredDecks);
+            }
+        } catch (e) {
+            console.log(e);
+        }
 
         this.changeFilter = _.debounce(filter => this.onChangeFilter(filter), 200);
         this.onChangeExpansionFilter = this.onChangeExpansionFilter.bind(this);
         this.filterDeck = this.filterDeck.bind(this);
         this.onSortChanged = this.onSortChanged.bind(this);
         this.onPageSizeChanged = this.onPageSizeChanged.bind(this);
+        this.onToggleStar = this.onToggleStar.bind(this);
     }
 
     filterDeck(deck) {
@@ -65,6 +76,31 @@ class DeckList extends React.Component {
         this.setState({ currentPage: page });
     }
 
+    onToggleStar(uuid) {
+        if (this.props.disableStarring) {
+            return;
+        }
+
+        const deckState = {};
+        if (this.state.starredDecks[uuid]) {
+            deckState[uuid] = !this.state.starredDecks[uuid];
+        } else {
+            deckState[uuid] = true;
+        }
+
+        const starredDecks = Object.assign(this.state.starredDecks, deckState)
+        this.setState({
+            starredDecks,
+        })
+
+        try {
+            localStorage.setItem('starredDecks', JSON.stringify(starredDecks));
+        } catch (e) {
+            console.log(e);
+        }
+
+    }
+
     render() {
         let { activeDeck, className, decks, onSelectDeck, t } = this.props;
 
@@ -92,13 +128,23 @@ class DeckList extends React.Component {
                     break;
             }
 
+            sortedDecks = _.sortBy(sortedDecks, (deck) => this.state.starredDecks[deck.uuid] ? -1 : 1);
             sortedDecks = sortedDecks.filter(this.filterDeck);
             numDecksNotFiltered = sortedDecks.length;
 
             sortedDecks = sortedDecks.slice(this.state.currentPage * this.state.pageSize, (this.state.currentPage * this.state.pageSize) + this.state.pageSize);
 
             for(let deck of sortedDecks) {
-                deckRows.push(<DeckRow active={ activeDeck && activeDeck._id === deck._id } deck={ deck } key={ index++ } onSelect={ onSelectDeck } />);
+                deckRows.push(
+                    <DeckRow 
+                        active={ activeDeck && activeDeck._id === deck._id }
+                        deck={ deck }
+                        key={ index++ }
+                        onSelect={ onSelectDeck }
+                        starred={ !!this.state.starredDecks[deck.uuid] }
+                        onToggleStar={ this.onToggleStar }
+                    />
+                );
             }
         }
 

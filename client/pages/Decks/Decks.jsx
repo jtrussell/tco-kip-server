@@ -39,9 +39,6 @@ class Decks extends React.Component {
         this.state = {
             importError: '',
             deckString: '',
-            decks: [],
-            cards: {},
-            selectedDeck: null,
         };
 
         this.handleDeleteDeck = this.handleDeleteDeck.bind(this);
@@ -60,7 +57,7 @@ class Decks extends React.Component {
         let uuid = this.state.deckString.match(regex);
 
         if(uuid && uuid[0] !== '00000000-0000-0000-0000-000000000000') {
-            const duplicate = this.state.decks.find(deck => {
+            const duplicate = this.props.decks.find(deck => {
                 return deck.uuid === uuid[0];
             });
             if (duplicate) {
@@ -88,95 +85,56 @@ class Decks extends React.Component {
         this.setState({ deckString: event.target.value });
     }
 
-    UNSAFE_componentWillReceiveProps(props) {
-        this.waitToLoadDecks(props);
-    }
-
-    componentDidMount() {
-        this._loadDecksAttempts = 0;
-        this.waitToLoadDecks(this.props);
-    }
-
-    waitToLoadDecks(props) {
-        if (props.tReady && !this._hasLoadedDecks) {
-            setTimeout(() => {
-                this.loadDecks();
-            }, 0);
-            this._hasLoadedDecks = true;
-        }
-    }
-
-    loadDecks() {
-        Promise.all([
-            fetch('/api/decks', {
-               headers: {
-                   'Authorization': `Bearer ${this.props.token}`
-               },
-            })
-            .then(res => res.json())
-        ,
-            fetch('/api/cards', {
-               headers: {
-                   'Authorization': `Bearer ${this.props.token}`
-               },
-            })
-            .then(res => res.json())
-        ]).then(data => {
-            const decks = data[0].decks;
-            const cards = data[1].cards;
-            const linkedDecks = linkDeckCards(decks, cards);
-
-            this.setState({
-                cards,
-                decks: linkedDecks,
-            });
-
-            if (!this.state.selectedDeck && linkedDecks.length) {
-                this.handleSelectDeck(linkedDecks[0]);
+    componentWillMount() {
+        let checkCount = 0;
+        const checkForCards = () => {
+            checkCount += 1;
+            if (checkCount > 10) {
+                return;
             }
-        }).catch(error => {
-            setTimeout(() => {
-                this._loadDecksAttempts += 1;
-                if (this._loadDecksAttempts < 10) {
-                    this.loadDecks();
-                }
-            }, 2000);
-        });
+
+            if (this.props.cards) {
+                this.props.loadDecks();
+            } else {
+                setTimeout(checkForCards, 100 * (checkCount + 1));
+            }
+        }
+
+        if (!this.props.decks || !this.props.decks.length) {
+            checkForCards();
+        }
+
+        if (this.props.selectedDeck) {
+            this.buildImageForDeck(this.props.selectedDeck);
+        }
     }
 
     componentWillReceiveProps(props) {
-        if (!this.props) {
-            return;
-        }
-
-        const shouldRefresh = (
-            (props.deleteSuccess && !this.props.deleteSuccess) ||
-            (props.importSuccess && !this.props.importSuccess)
-        );
-
-        if (shouldRefresh) {
-            this.loadDecks();
+        if (props.selectedDeck) {
+            this.buildImageForDeck(props.selectedDeck);
         }
     }
 
     handleDeleteDeck() {
-        this.props.deleteDeck(this.state.selectedDeck);
+        this.props.deleteDeck(this.props.selectedDeck);
 
-        const remainingDecks = this.state.decks.filter(d => d.uuid !== this.state.selectedDeck.uuid);
+        const remainingDecks = this.props.decks.filter(d => d.uuid !== this.props.selectedDeck.uuid);
         if (remainingDecks.length) {
             this.handleSelectDeck(remainingDecks[0]);
         }
     }
 
     handleSelectDeck(deck) {
-        this.setState({
-            selectedDeck: deck,
-        });
+        this.props.selectDeck(deck);
+        this.buildImageForDeck(deck);
+    }
 
-        if (this.state.decks.length && Object.keys(this.state.cards).length && deck) {
-            buildDeckList(deck, 'en', (t) => t, this.state.cards)
+    buildImageForDeck(deck) {
+        if (deck) {
+            buildDeckList(deck, 'en', (t) => t, this.props.cards)
                 .then(img => this.setState({
                     deckImage: img,
+                    deckUuid: deck.uuid
                 }));
         }
     }
@@ -235,7 +193,7 @@ class Decks extends React.Component {
                             </div>
                         </Input>
                     </div>
-                    <DeckList className='deck-list' activeDeck={ this.state.selectedDeck } decks={ this.state.decks } onSelectDeck={ this.handleSelectDeck } />
+                    <DeckList className='deck-list' activeDeck={ this.props.selectedDeck } decks={ this.props.decks } onSelectDeck={ this.handleSelectDeck } />
                 </Panel>
                 <div>
                     <div style={{
@@ -245,13 +203,15 @@ class Decks extends React.Component {
                         justifyContent: 'flex-end',
                         alignItems: 'center',
                     }}>
-                        { this.state.selectedDeck &&
+                        { this.props.selectedDeck &&
                             <ConfirmedButton onClick={ this.handleDeleteDeck }><Trans>Delete</Trans></ConfirmedButton>
                         }
                     </div>
-                    { (this.state.selectedDeck && this.state.deckImage) &&
-                        <Deck src={ this.state.deckImage }/>
-                    }
+                        { (this.props.selectedDeck && this.state.deckImage) &&
+                            <a target='_blank' href={`https://www.decksofkeyforge.com/decks/${this.state.deckUuid}`}>
+                                <Deck src={ this.state.deckImage }/>
+                            </a>
+                        }
                 </div>
                 </div>
             </Container>
@@ -271,7 +231,6 @@ Decks.propTypes = {
     deleteDeck: PropTypes.func,
     i18n: PropTypes.object,
     loadDecks: PropTypes.func,
-    loading: PropTypes.bool,
     navigate: PropTypes.func,
     selectedDeck: PropTypes.object,
     t: PropTypes.func
@@ -286,8 +245,9 @@ function mapStateToProps(state) {
         deleteSuccess: state.api.DELETE_DECK ? state.api.DELETE_DECK.success : undefined,
         importSuccess: state.api.SAVE_DECK ? state.api.SAVE_DECK.success : undefined,
         cards: state.cards.cards,
+        decks: state.cards.decks,
         deckDeleted: state.cards.deckDeleted,
-        loading: state.api.loading,
+        selectedDeck: state.cards.selectedDeck
     };
 }
 
