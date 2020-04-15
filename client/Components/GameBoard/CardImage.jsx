@@ -65,9 +65,9 @@ class CardImage extends Component {
             maverickCornerStyles.top = 'initial';
         }
 
-        let clipPath = 'inset(0 0 47% 0)';
+        let clipPath = 'polygon(0 0, 100% 0, 100% 44%, 88% 54%, 80% 55%, 60% 53%, 34% 53%, 18% 55%, 14% 53%, 12% 53%, 0% 46%)';
         if (this.props.type === 'artifact') {
-            clipPath = 'inset(13% 0px 40%)';
+            clipPath = 'polygon(0px 0px, 100% 0px, 100% 63%, 92% 62%, 82% 59%, 61% 59%, 40% 59%, 16% 59%, 5% 63%, 0px 62%, 0% 46%)';
         }
 
         return (

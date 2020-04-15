@@ -137,7 +137,9 @@ class DeckList extends React.Component {
             sortedDecks = sortedDecks.filter(this.filterDeck);
             numDecksNotFiltered = sortedDecks.length;
 
-            sortedDecks = sortedDecks.slice(this.state.currentPage * this.state.pageSize, (this.state.currentPage * this.state.pageSize) + this.state.pageSize);
+            if (!this.props.showAll) {
+                sortedDecks = sortedDecks.slice(this.state.currentPage * this.state.pageSize, (this.state.currentPage * this.state.pageSize) + this.state.pageSize);
+            }
 
             for(let deck of sortedDecks) {
                 deckRows.push(
@@ -168,7 +170,7 @@ class DeckList extends React.Component {
 
         return (
             <div className={ className }>
-                <form className='form' onSubmit={ this.handleSubmit }>
+                { !this.props.hideControls && <form className='form' onSubmit={ this.handleSubmit }>
                     <div className='col-md-8'>
                         <div className='form-group'>
                             <input className='form-control' placeholder='Search by deck name' type='text' onChange={ e => this.changeFilter(e.target.value) }/>
@@ -209,7 +211,7 @@ class DeckList extends React.Component {
                             </li>
                         </ul>
                     </nav>
-                </form>
+                </form> }
                 <div className='col-md-12'>{ deckRows }</div>
             </div>);
     }

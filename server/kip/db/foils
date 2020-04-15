@@ -1,0 +1,8 @@
+create table foils (
+  id SERIAL PRIMARY KEY,
+  player_id INTEGER REFERENCES players (id),
+  card_id TEXT,
+  deck_uuid TEXT,
+  style TEXT,
+  UNIQUE (player_id, card_id, deck_uuid)
+);

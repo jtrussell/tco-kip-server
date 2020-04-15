@@ -153,7 +153,6 @@ class Decks extends React.Component {
             return (
                 <Container>
                     <Background/>
-                    Loading... refresh if nothing appears.
                 </Container>
             );
         }
@@ -245,7 +244,6 @@ Decks.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        token: state.auth.token,
         apiLoading: state.api.REQUEST_DECKS ? state.api.REQUEST_DECKS.loading : undefined,
         apiMessage: state.api.REQUEST_DECKS ? state.api.REQUEST_DECKS.message : undefined,
         apiSuccess: state.api.REQUEST_DECKS ? state.api.REQUEST_DECKS.success : undefined,

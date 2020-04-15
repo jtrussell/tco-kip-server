@@ -11,7 +11,8 @@ export default (deck, cards) => {
             card: Object.assign({}, cards[card.id]),
             id: card.id,
             maverick: card.maverick,
-            anomaly: card.anomaly
+            anomaly: card.anomaly,
+            house: card.card.house
         };
 
         result.card.image = card.id;

@@ -3,7 +3,8 @@ const menus = [
     { path: '/register', title: 'Register', showOnlyWhenLoggedOut: true, position: 'right' },
     { path: '/play', title: 'Play', position: 'left' },
     { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true, position: 'left' },
-    { path: '/leaderboard', title: 'Leaderboard', position: 'left' },
+    { path: '/leaderboard', title: 'Leaderboards', position: 'left' },
+    { path: '/foil', title: 'Foils', position: 'left' },
     {
         title: 'Placeholder',
         childItems: [

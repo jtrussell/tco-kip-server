@@ -12,6 +12,7 @@ import { tryParseJSON } from './util';
 import AlertPanel from './Components/Site/AlertPanel';
 import * as actions from './actions';
 import { useMediaQuery } from 'react-responsive';
+import Footer from './Components/Footer';
 
 class Application extends React.Component {
     constructor(props) {
@@ -105,6 +106,8 @@ class Application extends React.Component {
         const showFloatingNavBar = [
             '/',
             '/faq',
+            '/foil',
+            '/foils',
             '/profile',
             '/leaderboard',
             '/leaderboards',
@@ -125,6 +128,10 @@ class Application extends React.Component {
         else
             floatingNavBarComponent = null;
 
+        let showFooter = [
+            '/',
+        ].includes(this.props.path);
+
         return (<div style={ { height: '100%' } }>
             <div className={ backgroundClass } style={bgStyles} />
                 {navBarComponent}
@@ -135,6 +142,7 @@ class Application extends React.Component {
                         { component }
                     </ErrorBoundary>
                 </div>
+                {showFooter && <Footer navigate={ this.props.navigate } />}
             </div>
         </div>);
     }

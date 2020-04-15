@@ -1,37 +1,12 @@
 const logger = require('../log.js');
 const util = require('../util.js');
 
-const foilMap = {
-    'stronglink-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
-        restringuntus: 1
-    },
-    'JusticeBlinded-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
-        restringuntus: 1
-    },
-    'JusticeBlinded-90a9d1a3-ea89-4147-ac8f-02de7e89bad9': {
-        'hunting-witch': 1
-    },
-    'Leolinci96-025be087-60d0-46bc-b337-d23fa50df676': {
-        'raiding-knight': 1
-    },
-    'mortivas-3b97a81d-27e0-4e00-9a49-a2ace502ce72': {
-        'orb-of-invidius': 1
-    },
-    'mortivas-db929309-4df3-4970-b61a-d157916c115f': {
-        bumblebird: 1
-    },
-    'JayPower-ece48966-6e2c-438b-8ea2-c902b7ef1ae8': {
-        rotgrub: 1,
-        'com-officer-kirby': 1
-    },
-    'Jkhops21-ece48966-6e2c-438b-8ea2-c902b7ef1ae8': {
-        infurnace: 1
-    },
-    'JayPower-728e9b9d-d652-4b59-85aa-7692c8d1e04f': {
-        'heart-of-the-forest': 1
-    }
-};
-
+const pg = require('pg');
+const request = require('request');
+const postgresDB = new pg.Pool({
+    connectionString: process.env.POSTGRES_CONNECTION_STRING,
+    ssl: process.env.NODE_ENV !== 'development'
+});
 
 class DeckService {
     constructor(db) {
@@ -40,18 +15,28 @@ class DeckService {
     }
 
     async checkForFoil(deck) {
-        const foilMapId = `${deck.username}-${deck.uuid}`;
+        const client = await postgresDB.connect();
+        const query = `
+          SELECT
+            foils.card_id
+          FROM
+            foils
+            LEFT OUTER JOIN players ON (players.id = foils.player_id)
+          WHERE
+            players.name = $1 AND foils.deck_uuid = $2
+        `;
+        const response = await client.query(query, [deck.username, deck.uuid]);
+        client.release();
 
-        if(foilMap[foilMapId]) {
-            deck.cards = deck.cards.map(card => {
-                const foil = !!foilMap[foilMapId][card.id];
-                if(foil) {
-                    card.foil = foil;
-                }
+        const foiledCards = response.rows.map(r => r.card_id);
+        deck.cards = deck.cards.map(card => {
+            const foil = foiledCards.includes(card.id);
+            if(foil) {
+                card.foil = foil;
+            }
 
-                return card;
-            });
-        }
+            return card;
+        });
 
         return deck;
     }
@@ -116,7 +101,7 @@ class DeckService {
         let decks = await this.decks.find({ username: username, banned: false }, { sort: { lastUpdated: -1 } });
 
         for(let deck of decks) {
-            deck = await this.checkForFoil(deck);
+            //deck = await this.checkForFoil(deck);
             deck.usageCount = await this.decks.count({ name: deck.name });
             // deck.wins = await this.games.count({ 'players.deck': deck.identity, winner: username });
             // deck.losses = await this.games.count({ 'players.deck': deck.identity, 'players.name': username, winner: { $nin: [null, username] } });

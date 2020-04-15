@@ -1,0 +1,18 @@
+INSERT INTO foils VALUES (DEFAULT, 4, 'restringuntus', 'a61aa0d7-0a94-4abe-8f33-0695f5410845', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 2192, 'restringuntus', 'a61aa0d7-0a94-4abe-8f33-0695f5410845', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+INSERT INTO foils VALUES (DEFAULT, 2192, 'hunting-witch', '90a9d1a3-ea89-4147-ac8f-02de7e89bad9', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 421, 'orb-of-invidius', '3b97a81d-27e0-4e00-9a49-a2ace502ce72', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+INSERT INTO foils VALUES (DEFAULT, 421, 'bumblebird', 'db929309-4df3-4970-b61a-d157916c115f', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 5106, 'rotgrub', 'ece48966-6e2c-438b-8ea2-c902b7ef1ae8', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+INSERT INTO foils VALUES (DEFAULT, 5106, 'com-officer-kirby', 'ece48966-6e2c-438b-8ea2-c902b7ef1ae8', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+INSERT INTO foils VALUES (DEFAULT, 5106, 'heart-of-the-forest', '728e9b9d-d652-4b59-85aa-7692c8d1e04f', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 433, 'infurnace', 'ece48966-6e2c-438b-8ea2-c902b7ef1ae8', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 457, 'shooler', '3c2a28b4-4a51-4190-b385-ea453260889a', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+INSERT INTO foils VALUES (DEFAULT, 457, 'subtle-maul', '3c2a28b4-4a51-4190-b385-ea453260889a', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
+
+INSERT INTO foils VALUES (DEFAULT, 189, 'timetraveller', '791d638a-6715-4e36-9d33-3c7bbf93cf20', 'linear-hue-0-125') ON CONFLICT (player_id, card_id, deck_uuid) DO NOTHING;
