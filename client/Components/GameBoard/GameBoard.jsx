@@ -22,6 +22,8 @@ import getCardImageURL from '../../getCardImageURL';
 import DeckTracker from '../DeckTracker';
 import Menu from './Menu';
 import styled from 'styled-components';
+import { withTranslation, Trans } from 'react-i18next';
+import TrackerLink from './TrackerLink';
 
 const MenuContainer = styled.div`
     max-width: 280px;
@@ -33,8 +35,6 @@ const MenuContainer = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
-
-import { withTranslation, Trans } from 'react-i18next';
 
 const startCrucibleAddons = require('../../crucibleaddons/index');
 
@@ -96,6 +96,7 @@ export class GameBoard extends React.Component {
             newMessages: 0,
             menuOptions: [],
             showDeckTracker: false,
+            showTrackerLink: false,
         };
     }
 
@@ -111,6 +112,10 @@ export class GameBoard extends React.Component {
 
         let lastMessageCount = this.state.lastMessageCount;
         let currentMessageCount = props.currentGame ? props.currentGame.messages.length : 0;
+
+        if (props.currentGame.winner && !this.state.showTrackerLink) {
+            this.setState({ showTrackerLink: true });
+        }
 
         if(this.state.showMessages) {
             this.setState({ lastMessageCount: currentMessageCount, newMessages: 0 });
@@ -630,6 +635,7 @@ export class GameBoard extends React.Component {
                     game={this.props.currentGame}
                 />}
                 {adaptivePrompt}
+                {this.state.showTrackerLink && <TrackerLink gameId={ this.props.currentGame.id }/>}
             </div >);
     }
 }
