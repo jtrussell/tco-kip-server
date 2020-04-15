@@ -8831,6 +8831,10 @@ hr.phasestart {
     -webkit-filter: hue-rotate(125deg);
   }
 }
+/*for artifacts*/
+/*clip-path: inset(0px 0px 38%);*/
+/*-webkit-filter:hue-rotate(-125deg);*/
+/*filter:hue-rotate(-125deg);*/
 @keyframes rainbow {
   70% {
     -webkit-filter: hue-rotate(0deg);
