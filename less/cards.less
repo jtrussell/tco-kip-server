@@ -16,6 +16,10 @@
   -webkit-animation: rainbow 12s steps(60) infinite;
 }
 
+.foil2 {
+  -webkit-animation: rainbowtwo 12s steps(60) infinite;
+}
+
 @-webkit-keyframes rainbow {
   75% { -webkit-filter:hue-rotate(0deg); }
   100% { -webkit-filter:hue-rotate(125deg); }
@@ -29,6 +33,26 @@
   85% {
     -webkit-filter:hue-rotate(125deg);
             filter:hue-rotate(125deg);
+    }
+  100% {
+    -webkit-filter:hue-rotate(0deg);
+            filter:hue-rotate(0deg);
+    }
+}
+
+@-webkit-keyframes rainbowtwo {
+  75% { -webkit-filter:hue-rotate(0deg); }
+  100% { -webkit-filter:hue-rotate(-125deg); }
+}
+
+@keyframes rainbowtwo {
+  70% {
+    -webkit-filter:hue-rotate(0deg);
+            filter:hue-rotate(0deg);
+    }
+  85% {
+    -webkit-filter:hue-rotate(-125deg);
+            filter:hue-rotate(-125deg);
     }
   100% {
     -webkit-filter:hue-rotate(0deg);

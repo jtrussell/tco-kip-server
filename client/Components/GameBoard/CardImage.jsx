@@ -65,10 +65,15 @@ class CardImage extends Component {
             maverickCornerStyles.top = 'initial';
         }
 
+        let clipPath = 'inset(0 0 47% 0)';
+        if (this.props.type === 'artifact') {
+            clipPath = 'inset(13% 0px 40%)';
+        }
+
         return (
             <Fragment>
                 { this.props.foil && (
-                    <img src={ this.state.src } alt={ this.props.alt } className={ this.props.className + ' foil' } style={{ zIndex: 1, clipPath: 'inset(0 0 47% 0)' }}/>
+                    <img src={ this.state.src } alt={ this.props.alt } className={ this.props.className + ' foil' } style={{ zIndex: 1, clipPath }}/>
                 )}
                 <img src={ this.state.src } alt={ this.props.alt } className={ this.props.className } />
                 {this.props.maverick && <Maverick style={maverickStyles} src={ `/img/maverick/maverick-${this.props.maverick}${this.props.amber > 0 ? '-amber' : ''}.png`}/>}

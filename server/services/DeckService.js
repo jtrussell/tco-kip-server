@@ -3,10 +3,10 @@ const util = require('../util.js');
 
 const foilMap = {
     'stronglink-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
-        'restringuntus': 1
+        restringuntus: 1
     },
     'JusticeBlinded-a61aa0d7-0a94-4abe-8f33-0695f5410845': {
-        'restringuntus': 1
+        restringuntus: 1
     },
     'JusticeBlinded-90a9d1a3-ea89-4147-ac8f-02de7e89bad9': {
         'hunting-witch': 1
@@ -14,10 +14,24 @@ const foilMap = {
     'Leolinci96-025be087-60d0-46bc-b337-d23fa50df676': {
         'raiding-knight': 1
     },
-    'stronglink-025be087-60d0-46bc-b337-d23fa50df676': {
-        'raiding-knight': 1
+    'mortivas-3b97a81d-27e0-4e00-9a49-a2ace502ce72': {
+        'orb-of-invidius': 1
+    },
+    'mortivas-db929309-4df3-4970-b61a-d157916c115f': {
+        bumblebird: 1
+    },
+    'JayPower-ece48966-6e2c-438b-8ea2-c902b7ef1ae8': {
+        rotgrub: 1,
+        'com-officer-kirby': 1
+    },
+    'Jkhops21-ece48966-6e2c-438b-8ea2-c902b7ef1ae8': {
+        infurnace: 1
+    },
+    'JayPower-728e9b9d-d652-4b59-85aa-7692c8d1e04f': {
+        'heart-of-the-forest': 1
     }
 };
+
 
 class DeckService {
     constructor(db) {

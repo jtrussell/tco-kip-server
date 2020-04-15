@@ -290,6 +290,7 @@ class InnerCard extends React.Component {
         let image = (
             <CardImage className={ imageClass }
                 foil={ this.props.card.foil }
+                type={ this.props.card.type }
                 img={ this.imageUrl }
                 language={ this.props.language }
                 maverick={ !this.isFacedown() ? this.props.card.maverick : null }
