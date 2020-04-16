@@ -129,7 +129,7 @@ class Foils extends React.Component {
             return;
         }
 
-        toastr.confirm(`Proceed with "${this.props.selectedDeck.name}"?`, {
+        toastr.confirm(`Do you want to use ${this.props.selectedDeck.name}?`, {
             okText: 'Yes',
             cancelText: 'Cancel',
             onOk: () => {
@@ -239,6 +239,14 @@ class Foils extends React.Component {
             <Container>
                 <Background/>
                 <div style={{
+                    margin: '20px auto',
+                    fontSize: '20px',
+                    color: '#FFF',
+                    display: this.state.foilCardA ? 'none' : '',
+                }}>
+                    Pick a deck and we'll foil two cards at random! You can do this once.
+                </div>
+                <div style={{
                     display: 'flex',
                     justifyContent: 'center',
                 }}>
@@ -254,11 +262,14 @@ class Foils extends React.Component {
                                 fontSize: '22px',
                                 color: 'white',
                                 zIndex: 3,
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
                             }}>
                                 { this.state.coverCards ?
-                                    `Adding foils to ${this.props.selectedDeck.name}${'.'.repeat(this.state.i % 4)}`
+                                    `Finding the perfect foils for ${this.props.selectedDeck.name}${'.'.repeat(this.state.i % 4)}`
                                  :
-                                    `Added to ${this.props.selectedDeck.name}!`
+                                    `Success! These have been added to ${this.props.selectedDeck.name}!`
                                 }
                             </div>
                             <div style={{

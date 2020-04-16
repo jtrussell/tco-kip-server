@@ -116,6 +116,12 @@ const setup = (server) => {
         }
 
         const client = await postgresDB.connect();
+
+        // lazy but effective for now
+        await client.query(`
+          INSERT INTO players VALUES (DEFAULT, 0, 0, 0, 0, 0, 0, $1) ON CONFLICT (name) DO NOTHING
+        `, [req.body.playerName]);
+
         const hasFoilQuery = `
           SELECT
             foils.card_id,
@@ -134,6 +140,16 @@ const setup = (server) => {
             return;
         }
 
+        const playerIdQuery = `
+          SELECT
+            players.id
+          FROM
+              players
+          WHERE
+            players.name = $1
+        `;
+        const playedIdResponse = await client.query(playerIdQuery, [req.body.playerName]);
+
         req.body.cards.forEach(async ({ cardId }) => {
             const addFoilQuery = `
               INSERT INTO
@@ -144,7 +160,7 @@ const setup = (server) => {
                 (player_id, card_id, deck_uuid)
               DO NOTHING;
             `;
-            await client.query(addFoilQuery, [hasFoilResponse.rows[0].id, cardId, req.params.uuid]);
+            await client.query(addFoilQuery, [playedIdResponse.rows[0].id, cardId, req.params.uuid]);
         });
 
         client.release();

@@ -32,6 +32,9 @@ const faq = [{
     question: 'Will you use foil cards to make money?',
     answer: 'No',
 }, {
+    question: 'Which decks can I add foil cards to?',
+    answer: 'You can add foil cards to any deck you have imported',
+}, {
     question: 'Why add foil cards?',
     answer: 'Foil cards add fun flavor to online gameplay. The pursuit of foil cards is meant to entertain and keep you excited about KeyForge.',
 }, {
