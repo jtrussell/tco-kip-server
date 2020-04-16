@@ -4,6 +4,13 @@ const postgresDB = new pg.Pool({
     connectionString: process.env.POSTGRES_CONNECTION_STRING,
     ssl: process.env.NODE_ENV !== 'development'
 });
+const monk = require('monk');
+const ConfigService = require('../services/ConfigService');
+const DeckService = require('../services/DeckService.js');
+const { wrapAsync } = require('../util.js');
+const configService = new ConfigService();
+let db = monk(configService.getValue('dbPath'));
+let deckService = new DeckService(db);
 
 const setup = (server) => {
     server.get('/api/status', function (req, res) {
@@ -71,6 +78,78 @@ const setup = (server) => {
             }
         });
     });
+
+    server.get('/api/users/:username/foils', wrapAsync(async function(req, res) {
+        if(!req.params.username || req.params.username === '') {
+            return res.status(404).send({ message: 'Player is undefined' });
+        }
+
+        const client = await postgresDB.connect();
+        const hasFoilQuery = `
+          SELECT
+            foils.card_id,
+            foils.deck_uuid
+          FROM
+            foils
+            LEFT OUTER JOIN players ON (players.id = foils.player_id)
+          WHERE
+            players.name = $1
+        `;
+        const hasFoilResponse = await client.query(hasFoilQuery, [req.params.username]);
+        client.release();
+        res.json({ foils: hasFoilResponse.rows });
+    }));
+
+    server.post('/api/decks/:uuid/foils', wrapAsync(async function(req, res) {
+        if(!req.params.uuid || req.params.uuid === '') {
+            return res.status(404).send({ message: 'No such deck' });
+        }
+
+        if(!req.body.playerName || req.body.playerName === '') {
+            return res.status(400).send({ message: 'Player is undefined' });
+        }
+
+        let deck = await deckService.getByUuid(req.params.uuid);
+
+        if(!deck) {
+            return res.status(404).send({ message: 'No such deck' });
+        }
+
+        const client = await postgresDB.connect();
+        const hasFoilQuery = `
+          SELECT
+            foils.card_id,
+            players.id
+          FROM
+            foils
+            LEFT OUTER JOIN players ON (players.id = foils.player_id)
+          WHERE
+            players.name = $1
+        `;
+        const hasFoilResponse = await client.query(hasFoilQuery, [req.body.playerName]);
+
+        if(hasFoilResponse.rows.length > 0) {
+            res.status(400).send('Foil cards have already been redeemed for this user');
+            client.release();
+            return;
+        }
+
+        req.body.cards.forEach(async ({ cardId }) => {
+            const addFoilQuery = `
+              INSERT INTO
+                foils
+              VALUES
+                (DEFAULT, $1, $2, $3, 'linear-hue-0-125')
+              ON CONFLICT
+                (player_id, card_id, deck_uuid)
+              DO NOTHING;
+            `;
+            await client.query(addFoilQuery, [hasFoilResponse.rows[0].id, cardId, req.params.uuid]);
+        });
+
+        client.release();
+        res.send('Ok');
+    }));
 };
 
 module.exports = { setup };

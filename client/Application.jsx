@@ -106,6 +106,7 @@ class Application extends React.Component {
         const showFloatingNavBar = [
             '/',
             '/faq',
+            '/faq-foils',
             '/foil',
             '/foils',
             '/profile',

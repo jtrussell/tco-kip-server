@@ -2,6 +2,7 @@
 
 import React from 'react';
 import FAQ from './pages/FAQ';
+import FoilFAQ from './pages/FoilFAQ';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
@@ -31,6 +32,7 @@ import Foils from './pages/Foils';
 const routes = [
     { path: '/', action: () => <Lobby key='lobby' /> },
     { path: '/faq', action: () => <FAQ /> },
+    { path: '/faq-foils', action: () => <FoilFAQ /> },
     { path: '/foil', action: () => <Foils/> },
     { path: '/foils', action: () => <Foils/> },
     { path: '/tournaments', action: () => <Tournaments/>, permission: 'isTO' },

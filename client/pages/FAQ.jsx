@@ -25,41 +25,6 @@ const Title = styled.div`
     font-family: 'Open Sans';
 `;
 
-const Text = styled.div`
-    color: ${colors.text} !important;
-    font-size: 20px;
-    font-weight: 200;
-    font-family: 'Open Sans';
-`;
-
-const EventTime = styled.span`
-    font-size: 14px;
-    margin-left: 15px;
-`;
-
-const Image = styled.div`
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px 0px;
-`;
-
-const Overlay = styled.div`
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    color: #FFF;
-    padding: 5px;
-    font-size: 20px;
-`;
-
-const LargeImage = styled.img`
-    width: 1000px;
-`;
-
 const faq = [{
     question: 'What is KiP Tournaments?',
     answer: 'KiP Tournaments allows you to play KeyForge online. We use this site to host weekly tournaments large and small.',
