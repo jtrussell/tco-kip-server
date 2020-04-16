@@ -63,7 +63,8 @@ const avatars = [
     '/img/avatars/future-sight.png',
     '/img/avatars/autocannons.jpg',
     '/img/avatars/archons-corner.jpg',
-    '/img/avatars/london-urchins.jpg'
+    '/img/avatars/london-urchins.jpg',
+    '/img/avatars/mc-crew.png'
 ];
 
 export {

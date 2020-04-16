@@ -11,7 +11,7 @@ import Card from '../../Components/GameBoard/Card';
 import getCardImageURL from '../../getCardImageURL';
 import { withTranslation, Trans } from 'react-i18next';
 import { buildDeckList } from '../../archonMaker';
-import linkDeckCards from './linkDeckCards';
+import linkDeckCards from '../Decks/linkDeckCards';
 import colors from '../../colors';
 
 const Container = styled.div`
@@ -231,6 +231,17 @@ class Foils extends React.Component {
                     }}>
                         You already have foil cards in <Link text='this deck' url={`https://www.decksofkeyforge.com/decks/${this.state.ownedFoils[0].deck_uuid }`}/>
                     </div>
+                    <button
+                        style={{
+                            margin: '0 auto',
+                            width: '144px',
+                            backgroundSize: '144px 32px',
+                        }}
+                        className='btn btn-primary'
+                        onClick={ () => this.props.navigate('/faq-foils') }
+                    >
+                       { 'FAQ' }
+                   </button>
                 </Container>
             );
         }

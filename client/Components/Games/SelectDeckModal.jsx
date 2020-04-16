@@ -17,15 +17,32 @@ class SelectDeckModal extends React.Component {
         } else if(this.props.apiError) {
             decks = <AlertPanel type='error' message={ this.props.apiError } />;
         } else {
+            const earlyAccessDecks = [{
+                id: '00000000-0000-0000-0000-ea0000000001',
+                houses: ['dis', 'logos', 'shadows'],
+            }]
             decks = (
                 <div>
-                    <DeckList disableStarring={true} className='deck-list-popup' decks={ this.props.decks } onSelectDeck={ this.props.onDeckSelected } />
-                    { this.props.standaloneDecks && this.props.standaloneDecks.length !== 0 && (
-                        <div>
-                            <h3 className='deck-list-header'><Trans>Or choose a standalone deck</Trans>:</h3>
-                            <DeckList disableStarring={true} className='deck-list-popup' decks={ this.props.standaloneDecks } onSelectDeck={ this.props.onDeckSelected } />
-                        </div>)
-                    }
+                    { this.props.allowEarlyAccessDecks && (
+                        <div style={{ marginBottom: '20px', height: '200px' }}>
+                            <div style={{ margin: '0 0 5px 20px' }}>
+                                Early Access Decks
+                            </div>
+                            <DeckList
+                                disableStarring={true}
+                                hideControls={true}
+                                className='deck-list-popup'
+                                decks={ earlyAccessDecks }
+                                onSelectDeck={ this.props.onDeckSelected }
+                            />
+                        </div>
+                    )}
+                    <DeckList
+                        disableStarring={true}
+                        className='deck-list-popup'
+                        decks={ this.props.decks }
+                        onSelectDeck={ this.props.onDeckSelected }
+                    />
                 </div>
             );
         }
@@ -36,17 +53,5 @@ class SelectDeckModal extends React.Component {
             </Modal>);
     }
 }
-
-SelectDeckModal.displayName = 'SelectDeckModal';
-SelectDeckModal.propTypes = {
-    apiError: PropTypes.string,
-    decks: PropTypes.array,
-    i18n: PropTypes.object,
-    id: PropTypes.string,
-    loading: PropTypes.bool,
-    onDeckSelected: PropTypes.func,
-    standaloneDecks: PropTypes.array,
-    t: PropTypes.func
-};
 
 export default withTranslation()(SelectDeckModal);

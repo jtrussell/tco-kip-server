@@ -25,13 +25,16 @@ export default (deck, cards) => {
         return result;
     });
 
-    const newCards = [];
-    deck.cards.forEach((card) => {
-        for(let i = 0; i < card.count; i++) {
-            newCards.push(card);
-        }
-    });
-    deck.cards = newCards;
+    if (deck.cards.length < 36) {
+        const newCards = [];
+        deck.cards.forEach((card) => {
+            for(let i = 0; i < card.count; i++) {
+                newCards.push(card);
+            }
+        });
+        deck.cards = newCards;
+    }
+
     deck.status = {
         basicRules: true,
         flagged: !!deck.flagged,

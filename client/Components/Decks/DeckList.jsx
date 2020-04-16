@@ -14,7 +14,7 @@ class DeckList extends React.Component {
             searchFilter: '',
             expansionFilter: '',
             sortOrder: 'datedesc',
-            pageSize: 10,
+            pageSize: 20,
             currentPage: 0,
             starredDecks: {},
         };
@@ -66,8 +66,8 @@ class DeckList extends React.Component {
         });
     }
 
-    onSortChanged(value) {
-        this.setState({ sortOrder: value });
+    onSortChanged(event) {
+        this.setState({ sortOrder: event.target.value });
     }
 
     onPageSizeChanged(event) {
@@ -155,13 +155,6 @@ class DeckList extends React.Component {
             }
         }
 
-        let sortButtons = [
-            { value: 'datedesc', label: t('Date Desc') },
-            { value: 'dateasc', label: t('Date Asc') },
-            { value: 'nameasc', label: t('Name Asc') },
-            { value: 'namedesc', label: t('Name Desc') }
-        ];
-
         let pager = [];
         let pages = _.range(0, Math.ceil(numDecksNotFiltered / this.state.pageSize));
         for(let page of pages) {
@@ -176,12 +169,23 @@ class DeckList extends React.Component {
                             <input className='form-control' placeholder='Search by deck name' type='text' onChange={ e => this.changeFilter(e.target.value) }/>
                         </div>
                     </div>
-                    <div className='col-md-4'>
+                    <div className='col-md-4' style={{ display: 'none' }}>
                         <div className='form-group'>
                             <select className='form-control' onChange={ this.onPageSizeChanged }>
                                 <option value='10'>10 decks</option>
                                 <option value='25'>25 decks</option>
                                 <option value='50'>50 decks</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className='col-md-4'>
+                        <div className='form-group'>
+                            <select className='form-control' onChange={ this.onSortChanged }>
+                                <option value='' hidden disabled>Sort By</option>
+                                <option value='datedesc'>Date Desc</option>
+                                <option value='dateasc'>Date Asc</option>
+                                <option value='nameasc'>Name Asc</option>
+                                <option value='namedesc'>Name Desc</option>
                             </select>
                         </div>
                     </div>
@@ -195,9 +199,8 @@ class DeckList extends React.Component {
                             </select>
                         </div>
                     </div>
-                    <div className='col-md-12'><Trans>Sort by</Trans><RadioGroup buttons={ sortButtons } onValueSelected={ this.onSortChanged } defaultValue={ this.state.sortOrder } /></div>
                     <nav className='col-md-12' aria-label={ t('Page navigation') } >
-                        <ul className='pagination'>
+                        <ul className='pagination' style={{ margin: '0 0 10px 0' }}>
                             <li>
                                 <a href='#' aria-label={ t('Previous') } onClick={ this.onPageChanged.bind(this, 0) }>
                                     <span aria-hidden='true'>&laquo;</span>

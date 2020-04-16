@@ -20,12 +20,14 @@ class NewGame extends React.Component {
         this.onNameChange = this.onNameChange.bind(this);
         this.onSpectatorsClick = this.onSpectatorsClick.bind(this);
         this.onShowHandClick = this.onShowHandClick.bind(this);
+        this.onAllowEarlyAccessDecksClick = this.onAllowEarlyAccessDecksClick.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onUseChessClockClick = this.onUseChessClockClick.bind(this);
         this.onGameTimeLimitChange = this.onGameTimeLimitChange.bind(this);
 
         this.state = {
             spectators: true,
+            allowEarlyAccessDecks: false,
             showHand: false,
             muteSpectators: false,
             selectedGameType: 'chainbound',
@@ -63,6 +65,10 @@ class NewGame extends React.Component {
         this.setState({ showHand: event.target.checked });
     }
 
+    onAllowEarlyAccessDecksClick(event) {
+        this.setState({ allowEarlyAccessDecks: event.target.checked });
+    }
+
     onSubmitClick(event) {
         event.preventDefault();
 
@@ -81,6 +87,7 @@ class NewGame extends React.Component {
             muteSpectators: this.state.muteSpectators,
             expansions: this.state.expansions,
             useChessClock: this.state.useChessClock,
+            allowEarlyAccessDecks: this.state.allowEarlyAccessDecks,
             gameTimeLimit: this.state.gameTimeLimit
         });
     }
@@ -120,6 +127,17 @@ class NewGame extends React.Component {
     getOptions() {
         let t = this.props.t;
 
+            //<Checkbox name='allowEarlyAccessDecks' noGroup label={ t('Allow Mass Mutation Decks') } fieldClass='col-sm-8'
+                //onChange={ this.onAllowEarlyAccessDecksClick } checked={ this.state.allowEarlyAccessDecks }
+            //>
+                //<span style={{
+                    //fontSize: '12px',
+                    //backgroundColor: 'rgb(247, 214, 92)',
+                    //margin: '5px',
+                    //color: '#000',
+                    //padding: '2px 7px',
+                //}}>NEW</span>
+            //</Checkbox>
         return (<div className='row'>
             <Checkbox name='allowSpectators' noGroup label={ t('Allow spectators') } fieldClass='col-sm-8'
                 onChange={ this.onSpectatorsClick } checked={ this.state.spectators } />

@@ -164,6 +164,7 @@ class GameList extends React.Component {
 
             let formattedTime = moment.utc(timeDifference).format('HH:mm');
 
+                                //{ game.allowEarlyAccessDecks && <img src='/img/logo.png' className='game-list-icon' alt='Allow Mass Mutation Decks' title='Allow Mass Mutation Decks' /> }
             gamesToReturn.push((
                 <div key={ game.id }>
                     <hr />

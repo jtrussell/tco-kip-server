@@ -275,6 +275,7 @@ class PendingGame extends React.Component {
                 <SelectDeckModal
                     apiError={ this.props.apiError }
                     decks={ this.props.decks }
+                    allowEarlyAccessDecks={ this.props.currentGame.allowEarlyAccessDecks }
                     id='decks-modal'
                     loading={ this.props.loading }
                     onDeckSelected={ this.selectDeck.bind(this) }

@@ -39,9 +39,9 @@ const EventTime = styled.span`
 
 const Image = styled.div`
     position: relative;
-    height: 300px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px 0px;
+    margin-top: 20px;
 `;
 
 const Overlay = styled.div`
@@ -60,6 +60,18 @@ const LargeImage = styled.img`
     width: 1000px;
 `;
 
+const FoilAd = styled.a`
+    color: #000;
+    background-color: #f7d65c;
+    font-size: 18px;
+    padding: 5px 8px;
+
+    &:hover {
+        color: #000;
+        background-color: #ffe37a;
+    }
+`;
+
 class Lobby extends React.Component {
     render() {
         const {
@@ -69,34 +81,21 @@ class Lobby extends React.Component {
         return (
             <Container>
                 <Background />
-                <Image>
-                    <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
-                    <Overlay>
-                        <span style={{
-                            backgroundColor: 'rgba(0,0,0)',
-                            padding: '12px 14px',
-                        }}>
-                            Shadow Worlds — Early May
-                        </span>
-                    </Overlay>
+                {!isMobile && (<Image>
+                    <a href='https://www.facebook.com/groups/kotevent/permalink/891154581314876'>
+                        <img src='/img/kote4.png'/>
+                    </a>
                 </Image>
-                <div>
-                    <div style={{
-                        marginTop: '40px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'baseline',
-                    }}>
-                        <Title>
-                            Online KeyForge Tournaments
-                        </Title>
-                        <Text>
-                            <Link newTab url='https://discord.gg/fauXD9q' text='KiP Discord'/>
-                        </Text>
-                    </div>
+                )}
+                <div style={{ width: '100%', marginTop: isMobile ? '10px' : '40px' }}>
+                    <FoilAd href='/foil' className='foil'>
+                        OPEN TWO RANDOM FOILS
+                    </FoilAd>
+                </div>
+                <div style={{ width: '100%', marginTop: '0px' }}>
                     <Blurb>
                         <Title color='#6f7d85' fontSize="18px">
-                            Upcoming
+                            Upcoming Tournaments
                         </Title>
                     </Blurb>
                     <div>
@@ -119,7 +118,7 @@ class Lobby extends React.Component {
                     </Blurb>
                     <Blurb>
                         <Title color='#6f7d85' fontSize="18px">
-                            Past Events
+                            Past Tournaments
                         </Title>
                     </Blurb>
                     <div>
@@ -176,6 +175,17 @@ class Lobby extends React.Component {
                         </Text>
                     </Blurb>
                 </div>
+                <Image>
+                    <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
+                    <Overlay>
+                        <span style={{
+                            backgroundColor: 'rgba(0,0,0)',
+                            padding: '12px 14px',
+                        }}>
+                            Shadow Worlds — Early May
+                        </span>
+                    </Overlay>
+                </Image>
             </Container>
         );
     }

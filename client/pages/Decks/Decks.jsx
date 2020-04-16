@@ -131,13 +131,7 @@ class Decks extends React.Component {
 
     buildImageForDeck(deck) {
         if (deck && this.props.cards && Object.keys(this.props.cards).length) {
-            if (deck.cards.length < 36) {
-                try {
-                    linkDeckCards(deck, this.props.cards);
-                } catch (e) {
-                    console.log(e);
-                }
-            }
+            linkDeckCards(deck, this.props.cards);
             buildDeckList(deck, 'en', (t) => t, this.props.cards)
                 .then(img => this.setState({
                     deckImage: img,
