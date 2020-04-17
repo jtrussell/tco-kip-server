@@ -27,7 +27,7 @@ export class PlayerStats extends React.Component {
 
     getButton(stat, name, statToSet = stat) {
         return (
-            <div className='state'>
+            <div className='state' title={ name }>
                 { this.props.showControls ? <button className='btn btn-stat' onClick={ this.sendUpdate.bind(this, statToSet, 'down') }>
                     <img src='/img/Minus.png' title='-' alt='-' />
                 </button> : null }
@@ -95,6 +95,7 @@ export class PlayerStats extends React.Component {
                 { (this.props.side === 'top' && this.props.houses) ? this.getHouses() : null }
 
                 { this.getButton('amber', 'Amber') }
+                { this.getButton('keyCost', 'Current Key Cost') }
                 { this.props.showMessages &&
                     <div className='state chat-status'>
                     </div>
