@@ -1,4 +1,4 @@
-create table players (
+CREATE TABLE players (
   id SERIAL PRIMARY KEY,
   adaptive_wins SMALLINT DEFAULT 0,
   adaptive_losses SMALLINT DEFAULT 0,

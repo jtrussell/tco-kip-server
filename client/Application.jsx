@@ -109,6 +109,7 @@ class Application extends React.Component {
             '/faq-foils',
             '/foil',
             '/foils',
+            '/redeem',
             '/profile',
             '/leaderboard',
             '/leaderboards',

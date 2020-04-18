@@ -28,10 +28,14 @@ class ConfirmedButton extends React.Component {
     render() {
         return (
             <span>
-                <button className='btn btn-danger' onClick={ this.handleClick }>{ this.props.children }</button>
-                { this.state.showConfirm &&
-                    <button className='btn btn-danger' onClick={ this.handleConfirmClick }><Trans>Confirm</Trans></button>
-                }
+                { this.state.showConfirm ? (
+                    <div>
+                        <button className='btn btn-default' onClick={ this.handleClick }>Cancel</button>
+                        <button className='btn btn-danger' onClick={ this.handleConfirmClick }>Confirm</button>
+                    </div>
+                ) : (
+                    <button className='btn btn-danger' onClick={ this.handleClick }>{ this.props.children }</button>
+                )}
             </span>);
     }
 }

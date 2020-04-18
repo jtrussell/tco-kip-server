@@ -8744,6 +8744,7 @@ hr.phasestart {
   max-width: 30.33333333px;
   margin-left: 5px;
   margin-top: 5px;
+  margin-bottom: 50px;
 }
 .keys.small {
   max-height: 54.6px;
@@ -8775,6 +8776,9 @@ hr.phasestart {
 }
 .stat-image.chains {
   background-image: url("/img/chains.png");
+}
+.stat-image.keyCost {
+  background-image: url("/img/keyCost.png");
 }
 .stat-value {
   background: rgba(0, 0, 0, 0.6) center;
@@ -9821,6 +9825,8 @@ a:hover {
 }
 .rrt-confirm {
   background: #824d9e !important;
+  width: 400px !important;
+  margin-left: -200px !important;
 }
 .no-padding {
   padding: 0;

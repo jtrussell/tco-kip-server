@@ -70,9 +70,9 @@ class DeckRow extends React.Component {
                         )}
                         { this.props.deck.name }
                     </div>
-                    <div style={{ display: 'inline-block', transform: 'scale(0.8)', transformOrigin: 'bottom left', marginLeft: this.props.starred ? '20px' : '' }}>
+                    {!this.props.hideChains && <div style={{ display: 'inline-block', transform: 'scale(0.8)', transformOrigin: 'bottom left', marginLeft: this.props.starred ? '20px' : '' }}>
                         {this.props.deck.chains > 0 && <DeckChains chains={ this.props.deck.chains } /> }
-                    </div>
+                    </div>}
                 </div>
                 <div style={{
                     display: 'flex',
@@ -82,12 +82,12 @@ class DeckRow extends React.Component {
                     fontSize: '11px',
                     color: 'rgb(255, 255, 255)',
                 }}>
-                    {expansionMap[this.props.deck.expansion]}
-                    <div>
+                    {!this.props.hideSet && expansionMap[this.props.deck.expansion]}
+                    {!this.props.hideHouses && <div>
                         <img style={{ width: '23px' }} src={ '/img/house/' + this.props.deck.houses[0] + '.png' } />
                         <img style={{ width: '23px' }} src={ '/img/house/' + this.props.deck.houses[1] + '.png' } />
                         <img style={{ width: '23px' }} src={ '/img/house/' + this.props.deck.houses[2] + '.png' } />
-                    </div>
+                    </div>}
                 </div>
             </Container>);
     }

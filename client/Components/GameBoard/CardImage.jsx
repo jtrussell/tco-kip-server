@@ -5,17 +5,19 @@ import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 
 const Maverick = styled.img`
+    z-index: 2;
     position: absolute;
     top: 0;
     left: 0;
-    width: 27px;
+    width: 31%;
 `;
 
 const MaverickCorner = styled.img`
+    z-index: 3;
     position: absolute;
     top: 0;
     right: 0;
-    width: 27px;
+    width: 31%;
 `;
 
 class CardImage extends Component {

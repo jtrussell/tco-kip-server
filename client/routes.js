@@ -27,6 +27,7 @@ import BanlistAdmin from './pages/BanlistAdmin';
 import Leaderboard from './pages/Leaderboard';
 import TCOArticle from './pages/TCOArticle';
 import Tournaments from './pages/Tournaments';
+import Redeem from './pages/Redeem';
 import Foils from './pages/Foils';
 
 const routes = [
@@ -35,6 +36,7 @@ const routes = [
     { path: '/faq-foils', action: () => <FoilFAQ /> },
     { path: '/foil', action: () => <Foils/> },
     { path: '/foils', action: () => <Foils/> },
+    { path: '/redeem', action: () => <Redeem/> },
     { path: '/tournaments', action: () => <Tournaments/>, permission: 'isTO' },
     //{ path: '/tournaments', action: () => <Tournaments/> },
     { path: '/tco', action: () => <TCOArticle/> },

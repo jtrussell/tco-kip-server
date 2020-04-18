@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import colors from '../../colors';
 
 const NavBar = styled.div`
-    z-index: 1;
+    z-index: 100;
     position: fixed;
     top: 0;
-    right: 0;
-    left: 0;
+    width: calc(100% - 30px);
+    margin-left: 15px;
     padding-top: 20px;
     margin-bottom: 20px;
     color: ${colors.text};
@@ -114,10 +114,11 @@ class Component extends React.Component {
                     <LeftItems>
                         <LogoContainer href='/'>
                             <Logo src='/img/logo.png'/>
-                            KiP Tournaments
+                            KiPT
                         </LogoContainer>
                         <Button navigate={ this.props.navigate } path='/play'>Play</Button>
                         { this.props.user && <Button navigate={ this.props.navigate } path='/decks'>Decks</Button> }
+                        { this.props.user && <Button navigate={ this.props.navigate } path='/foils'>Foils</Button> }
                         <Button navigate={ this.props.navigate } path='/leaderboard' >Leaderboards</Button>
                     </LeftItems>
                     <RightItems>

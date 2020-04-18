@@ -20,7 +20,7 @@ const panelSource = {
             position: 'fixed'
         };
 
-        localStorage.setItem(`${props.name}-${props.side}`, JSON.stringify(style));
+        //localStorage.setItem(`${props.name}-${props.side}`, JSON.stringify(style));
     }
 };
 
@@ -38,7 +38,7 @@ class MovablePanel extends React.Component {
         super(props);
 
         const key = `${props.name}-${props.side}`;
-        const savedStyle = localStorage.getItem(key);
+        const savedStyle = undefined;//localStorage.getItem(key);
         const style = (savedStyle && JSON.parse(savedStyle)) || PopupDefaults[key];
 
         this.state = {

@@ -1,0 +1,1 @@
+INSERT INTO coupons (player_id, type, date_issued) VALUES (2, 'foil', '2020-04-17T23:00:26.123Z');

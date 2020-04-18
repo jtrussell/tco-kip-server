@@ -1,0 +1,8 @@
+CREATE TABLE coupons (
+  id SERIAL PRIMARY KEY,
+  player_id INTEGER REFERENCES players (id),
+  used BOOLEAN DEFAULT FALSE,
+  type TEXT,
+  date_issued TIMESTAMP,
+  date_used TIMESTAMP
+);

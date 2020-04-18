@@ -1,4 +1,4 @@
-create table foils (
+CREATE TABLE foils (
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES players (id),
   card_id TEXT,

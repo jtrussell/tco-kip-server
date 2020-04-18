@@ -6,5 +6,7 @@ export default {
     url: '#44d0fc',
     urlDisabled: '#2d95b5',
     text: '#FFF',
-    text2: '#6f7d85'
+    text2: '#6f7d85',
+
+    darkBlue: 'rgb(80,133,243)',
 };

@@ -150,6 +150,9 @@ class DeckList extends React.Component {
                         onSelect={ onSelectDeck }
                         starred={ !!this.state.starredDecks[deck.uuid] }
                         onToggleStar={ this.onToggleStar }
+                        hideHouses={ this.props.hideHouses }
+                        hideSet={ this.props.hideSet }
+                        hideChains={ this.props.hideChains }
                     />
                 );
             }

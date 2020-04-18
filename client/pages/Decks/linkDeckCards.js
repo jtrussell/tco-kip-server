@@ -8,6 +8,7 @@ export default (deck, cards) => {
     deck.cards = deck.cards.map(card => {
         let result = {
             count: card.count,
+            foil: card.foil,
             card: Object.assign({}, cards[card.id]),
             id: card.id,
             maverick: card.maverick,
@@ -25,7 +26,7 @@ export default (deck, cards) => {
         return result;
     });
 
-    if (deck.cards.length < 36) {
+    if(deck.cards.length < 36) {
         const newCards = [];
         deck.cards.forEach((card) => {
             for(let i = 0; i < card.count; i++) {

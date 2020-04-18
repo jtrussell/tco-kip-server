@@ -1,11 +1,11 @@
-
-    //{ path: '/foil', title: 'Foils', position: 'left' },
+//{ path: '/foil', title: 'Foils', position: 'left' },
 
 const menus = [
     { path: '/login', title: 'Login', showOnlyWhenLoggedOut: true, position: 'right' },
     { path: '/register', title: 'Register', showOnlyWhenLoggedOut: true, position: 'right' },
     { path: '/play', title: 'Play', position: 'left' },
     { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true, position: 'left' },
+    { path: '/foils', title: 'Foils', showOnlyWhenLoggedIn: true, position: 'left' },
     { path: '/leaderboard', title: 'Leaderboards', position: 'left' },
     {
         title: 'Placeholder',

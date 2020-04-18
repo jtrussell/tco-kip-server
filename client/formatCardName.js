@@ -6,5 +6,6 @@ export default (card) => {
     card = card.replace(/'/g, '’');
     card = card.replace(/“/g, '"');
     card = card.replace(/”/g, '"');
+    card = card.replace(/\?/g, '');
     return card;
 };

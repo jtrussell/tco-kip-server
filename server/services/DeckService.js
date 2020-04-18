@@ -101,7 +101,7 @@ class DeckService {
         let decks = await this.decks.find({ username: username, banned: false }, { sort: { lastUpdated: -1 } });
 
         for(let deck of decks) {
-            //deck = await this.checkForFoil(deck);
+            deck = await this.checkForFoil(deck);
             deck.usageCount = await this.decks.count({ name: deck.name });
             // deck.wins = await this.games.count({ 'players.deck': deck.identity, winner: username });
             // deck.losses = await this.games.count({ 'players.deck': deck.identity, 'players.name': username, winner: { $nin: [null, username] } });

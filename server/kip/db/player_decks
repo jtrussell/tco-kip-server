@@ -1,4 +1,4 @@
-create table player_decks (
+CREATE TABLE player_decks (
   id SERIAL PRIMARY KEY,
   uuid TEXT,
   owner TEXT,
