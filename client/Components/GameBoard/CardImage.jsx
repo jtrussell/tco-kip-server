@@ -59,12 +59,19 @@ class CardImage extends Component {
             maverickStyles.top = '-1px';
             maverickStyles.right = '-2px';
             maverickStyles.left = 'initial';
+            maverickStyles.width = '23%';
 
             maverickCornerStyles.transform = 'rotate(90deg)';
             maverickCornerStyles.right = '-2px';
             maverickCornerStyles.bottom = '3px';
             maverickCornerStyles.left = 'initial';
             maverickCornerStyles.top = 'initial';
+            maverickCornerStyles.width = '22%';
+        }
+
+        if (this.props.className.includes('target-card-image')) {
+            maverickStyles.display = 'none';
+            maverickCornerStyles.display = 'none';
         }
 
         let clipPath = 'polygon(0 0, 100% 0, 100% 44%, 88% 54%, 80% 55%, 60% 53%, 34% 53%, 18% 55%, 14% 53%, 12% 53%, 0% 46%)';
