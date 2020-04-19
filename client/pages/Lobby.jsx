@@ -72,6 +72,18 @@ const FoilAd = styled.a`
     }
 `;
 
+const upcomingTournaments = [{
+    title: 'Shadow World\'s Last Chance Qualifier #1',
+    date: 'Saturday, April 25th',
+    time: '12pm EST, 6pm CEST',
+    url: 'https://kip.challonge.com/oz6a9q42',
+}, {
+    title: 'Shadow World\'s Last Chance Qualifier #2',
+    date: 'Saturday, April 25th',
+    time: '8pm EST, 2am CEST',
+    url: 'https://kip.challonge.com/3v4cae72',
+}]
+
 class Lobby extends React.Component {
     render() {
         const {
@@ -98,24 +110,17 @@ class Lobby extends React.Component {
                             Upcoming Tournaments
                         </Title>
                     </Blurb>
-                    <div>
-                        <Title>
-                            Saturday, April 18th
-                        </Title>
-                        <Text>
-                            <Link text='True Archon Survival (Day 1)' url='https://challonge.com/truesurvival'/>
-                            <EventTime>12pm EST, 6pm CEST</EventTime>
-                        </Text>
-                    </div>
-                    <Blurb>
-                        <Title>
-                            Sunday, April 19th
-                        </Title>
-                        <Text>
-                            <Link text='True Archon Survival (Day 2)' url='https://challonge.com/truesurvival'/>
-                            <EventTime>12pm EST, 6pm CEST</EventTime>
-                        </Text>
-                    </Blurb>
+                    {upcomingTournaments.map((tournament, i) => (
+                        <div style={{ marginTop: i === 0 ? '' : '40px' }}>
+                            <Title>
+                                { tournament.date }
+                            </Title>
+                            <Text>
+                                <Link text={ tournament.title } url={ tournament.url }/>
+                                <EventTime>{ tournament.time }</EventTime>
+                            </Text>
+                        </div>
+                    ))}
                     <Blurb>
                         <Title color='#6f7d85' fontSize="18px">
                             Past Tournaments
@@ -123,13 +128,22 @@ class Lobby extends React.Component {
                     </Blurb>
                     <div>
                         <Title>
+                            Saturday and Sunday, April 18th to 19th
+                        </Title>
+                        <Text>
+                            <Link text='$5 True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
+                            <EventTime>12pm EST, 6pm CEST</EventTime>
+                        </Text>
+                    </div>
+                    <Blurb>
+                        <Title>
                             Saturday, April 11th
                         </Title>
                         <Text>
                             <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
                             <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
-                    </div>
+                    </Blurb>
                     <Blurb>
                         <Title>
                             Friday, April 10th
@@ -148,33 +162,8 @@ class Lobby extends React.Component {
                             <EventTime>12pm EST, 6pm CEST</EventTime>
                         </Text>
                     </Blurb>
-                    <Blurb>
-                        <Title>
-                            Saturday, April 4th
-                        </Title>
-                        <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/ig2xxxr5'/>
-                            <EventTime>12pm EST, 6pm CEST</EventTime>
-                        </Text>
-                        <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/odbjswmw'/>
-                            <EventTime>8PM EST, 2AM CEST</EventTime>
-                        </Text>
-                    </Blurb>
-                    <Blurb>
-                        <Title>
-                            Friday, April 3rd
-                        </Title>
-                        <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/8fs4vmt9'/>
-                            <EventTime>12pm EST, 6pm CEST</EventTime>
-                        </Text>
-                        <Text>
-                            <Link text='$5 Archon Solo Bo1 Swiss (16 players)' url='https://challonge.com/3rv1y1s0'/>
-                            <EventTime>8PM EST, 2AM CEST</EventTime>
-                        </Text>
-                    </Blurb>
                 </div>
+                <br/>
                 <Image>
                     <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
                     <Overlay>
