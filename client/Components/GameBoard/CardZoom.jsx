@@ -24,12 +24,12 @@ class CardZoom extends React.Component {
         }
 
         return (
-            <div className='card-large vertical'>
+            <div className={`card-large vertical ${this.props.size === 'x-large' ? 'zoom-card-x-large' : ''}`}>
                 { this.props.show &&
                 <div className='card-zoomed shadow'>
                     { this.props.card.imageUrl ?
                         <div className='card-zoomed shadow'>
-                            <img className='image-large img-responsive' src={ this.props.card.imageUrl }/>
+                            <img className={ `${this.props.size === 'x-large' ? 'image-x-large' : 'image-large'} img-responsive`} src={ this.props.card.imageUrl }/>
                         </div>
                         :
                         <div className='card-zoomed shadow'>

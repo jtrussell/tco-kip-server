@@ -591,9 +591,13 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='main-window'>
                     { this.renderBoard(thisPlayer, otherPlayer) }
-                    <CardZoom imageUrl={ cardToZoom ? getCardImageURL(cardToZoom.name) : '' }
-                        show={ !!cardToZoom } cardName={ cardToZoom ? cardToZoom.name : null }
-                        card={ cardToZoom } />
+                    <CardZoom
+                        imageUrl={ cardToZoom ? getCardImageURL(cardToZoom.name) : '' }
+                        show={ !!cardToZoom }
+                        cardName={ cardToZoom ? cardToZoom.name : null }
+                        card={ cardToZoom }
+                        size={ cardToZoom ? cardToZoom.size : null }
+                    />
                     <div className='right-side'>
                         <div className='prompt-area'>
                             <div className='inset-pane'>

@@ -9102,6 +9102,19 @@ hr.phasestart {
   z-index: 9999;
   height: 364px;
 }
+.zoom-card-x-large {
+  height: 546px !important;
+  width: 390px !important;
+}
+.image-x-large {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  z-index: 9999;
+  height: 546px !important;
+  width: 390px !important;
+}
 .upgrade {
   margin-top: -106px;
 }
