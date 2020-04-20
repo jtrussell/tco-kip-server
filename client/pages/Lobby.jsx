@@ -116,7 +116,7 @@ class Lobby extends React.Component {
                                 { tournament.date }
                             </Title>
                             <Text>
-                                <Link text={ tournament.title } url={ tournament.url }/>
+                                <Link newTab text={ tournament.title } url={ tournament.url }/>
                                 <EventTime>{ tournament.time }</EventTime>
                             </Text>
                         </div>
@@ -132,7 +132,7 @@ class Lobby extends React.Component {
                                 Saturday and Sunday, April 18th to 19th
                             </Title>
                             <Text>
-                                <Link text='$5 True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
+                                <Link newTab text='$5 True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </div>
@@ -141,7 +141,7 @@ class Lobby extends React.Component {
                                 Saturday, April 11th
                             </Title>
                             <Text>
-                                <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
+                                <Link newTab text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -150,7 +150,7 @@ class Lobby extends React.Component {
                                 Friday, April 10th
                             </Title>
                             <Text>
-                                <Link text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
+                                <Link newTab text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -159,7 +159,7 @@ class Lobby extends React.Component {
                                 Sunday, April 5th
                             </Title>
                             <Text>
-                                <Link text='Free Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
+                                <Link newTab text='Free Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
