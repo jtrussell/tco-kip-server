@@ -73,15 +73,15 @@ const FoilAd = styled.a`
 `;
 
 const upcomingTournaments = [{
-    title: 'Shadow World\'s Last Chance Qualifier #1',
+    title: 'Shadow World\'s Last Chance Qualifier - Archon Short Adaptive',
     date: 'Saturday, April 25th',
     time: '12pm EST, 6pm CEST',
-    url: 'https://kip.challonge.com/oz6a9q42',
+    url: 'https://kip.challonge.com/LCQShortAdaptive',
 }, {
-    title: 'Shadow World\'s Last Chance Qualifier #2',
+    title: 'Shadow World\'s Last Chance Qualifier - Solo Archon (Bo1)',
     date: 'Saturday, April 25th',
     time: '8pm EST, 2am CEST',
-    url: 'https://kip.challonge.com/3v4cae72',
+    url: 'https://kip.challonge.com/LCQSoloArchon',
 }]
 
 class Lobby extends React.Component {
