@@ -145,7 +145,7 @@ class Tournaments extends React.Component {
                     useChessClock: false,
                     gameTimeLimit: 35,
                 });
-            }, i * 200);
+            }, i * 10);
         });
     }
 
