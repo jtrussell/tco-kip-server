@@ -1,25 +1,30 @@
 export default {
     'deck-bottom': {
-        bottom: '140px'
+        bottom: '220px',
+        right: '0'
     },
     'discard-bottom': {
-        bottom: '155px'
+        bottom: '220px',
+        right: '0'
     },
     'discard-top': {
-        top: '185px'
+        top: '185px',
+        right: '0'
     },
     'archives-bottom': {
-        bottom: '155px'
+        bottom: '220px',
+        right: '0'
     },
     'archives-top': {
-        top: '185px'
+        top: '185px',
+        right: '0'
     },
     'purged-top': {
-        top: '155px',
-        left: '20px'
+        top: '180px',
+        right: '0'
     },
     'purged-bottom': {
-        bottom: '155px',
+        bottom: '220px',
         right: '0'
     }
 };

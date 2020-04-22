@@ -122,7 +122,7 @@ export function connectLobby() {
             reconnection: true,
             reconnectionDelay: 1000,
             reconnectionDelayMax: 5000,
-            reconnectionAttempts: Infinity,
+            reconnectionAttempts: 5,
             query: queryString
         });
 

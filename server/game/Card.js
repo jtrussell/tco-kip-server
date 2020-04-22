@@ -79,6 +79,8 @@ class Card extends EffectSource {
             { command: 'remDamage', text: 'Remove 1 damage' },
             { command: 'addAmber', text: 'Add 1 amber' },
             { command: 'remAmber', text: 'Remove 1 amber' },
+            { command: 'addPower', text: 'Add 1 power token' },
+            { command: 'remPower', text: 'Remove 1 power token' },
             { command: 'addEnrage', text: 'Add 1 enrage' },
             { command: 'remEnrage', text: 'Remove 1 enrage' },
             { command: 'stun', text: 'Stun/Remove Stun' },

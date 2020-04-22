@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Background from '../Components/Background';
 import Link from '../Components/Link';
 import colors from '../colors';
+import { v4 as uuidv4 } from 'uuid';
 
 const Container = styled.div`
     max-width: 1000px;
@@ -53,7 +54,6 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = ({ onClick, children, disabled }) => {
-
     const _onClick = () => {
         if (disabled)
             return;
@@ -100,7 +100,6 @@ class Tournaments extends React.Component {
             .map(({ match }) => {
                 const playerA = tournament.participants.find(({ participant }) => participant.id === match.player1_id);
                 const playerB = tournament.participants.find(({ participant }) => participant.id === match.player2_id);
-                    //label: `${playerA.participant.name} v. ${playerB.participant.name} (table ${match.suggested_play_order})`,
                 return {
                     label: `Table ${match.suggested_play_order} - ${playerA.participant.name} v. ${playerB.participant.name}`,
                     table: match.suggested_play_order,
@@ -125,9 +124,28 @@ class Tournaments extends React.Component {
             return;
         }
 
+        const uuidMap = {};
+        tables.forEach(table => {
+            uuidMap[table.label] = uuidv4();
+        });
+
+        //await fetch(`http://localhost:8000/api/tournaments/${challongeId}/games`, {
+        await fetch(`https://www.thecrucibletracker.com/api/tournaments/${challongeId}/games`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                round,
+                gameIDs: Object.values(uuidMap),
+            })
+        })
+
+        console.log(tournament);
         tables.reverse().forEach((table, i) => {
             setTimeout(() => {
                 this.props.socket.emit('newgame', {
+                    uuid: uuidMap[table.label],
                     tournamentId: challongeId,
                     name: table.label,
                     spectators: true,

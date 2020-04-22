@@ -17,6 +17,13 @@ class PlayerBoard extends React.Component {
         let characters = groupedCards['creature'] || [];
         let other = [];
 
+        locations = locations.sort((a, b) => {
+            if (a.printedHouse === b.printedHouse) {
+                return a.name.localeCompare(b.name);
+            }
+            return a.printedHouse.localeCompare(b.printedHouse);
+        });
+
         for(let key of Object.keys(groupedCards).filter(k => !['artifact', 'creature'].includes(k))) {
             other = other.concat(groupedCards[key]);
         }

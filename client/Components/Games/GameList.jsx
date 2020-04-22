@@ -230,7 +230,35 @@ class GameList extends React.Component {
         let groupedGames = {};
         let t = this.props.t;
 
-        for(const game of this.props.games) {
+        let games = this.props.games.sort((a, b) => {
+            const dateA = moment(a.createdAt);
+            const dateB = moment(b.createdAt);
+
+            if (dateA.isBefore(dateB))
+                return 1;
+
+            if (dateB.isBefore(dateA))
+                return -1;
+
+            return 0;
+        })
+
+        if (this.props.user) {
+            games = games.sort((a, b) => {
+                const indexOfA = a.name.indexOf(this.props.user.username);
+                const indexOfB = b.name.indexOf(this.props.user.username);
+
+                if (indexOfA !== -1 && indexOfB === -1)
+                    return -1;
+
+                if (indexOfB !== -1 && indexOfA === -1)
+                    return 1;
+
+                return 0;
+            });
+        }
+
+        for(const game of games) {
             if(!groupedGames[game.gameType]) {
                 groupedGames[game.gameType] = [game];
             } else {
@@ -239,7 +267,6 @@ class GameList extends React.Component {
         }
 
         let gameList = [];
-
         for(const gameType of ['chainbound', 'freeplay', 'adaptive', 'adaptiveShort']) {
             if(this.props.gameFilter[gameType] && groupedGames[gameType]) {
                 gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));

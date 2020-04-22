@@ -12,7 +12,8 @@ class PendingGame {
         this.owner = owner;
         this.players = {};
         this.spectators = {};
-        this.id = uuid.v1();
+        this.id = details.uuid || uuid.v1();
+        console.log(this.id);
         this.name = details.name;
         this.allowSpectators = details.spectators;
         this.showHand = details.showHand;

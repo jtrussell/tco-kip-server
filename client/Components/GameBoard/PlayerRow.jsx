@@ -99,7 +99,7 @@ class PlayerRow extends React.Component {
         let keys = ['red', 'blue', 'yellow']
             .sort(color => this.props.keys[color] ? -1 : 1)
             .map(color => {
-                return <img key={ `key ${color}` } src={ `/img/${this.props.keys[color] ? 'forgedkey' : 'unforgedkey'}${color}.png` } title={ t('Forged Key') } />;
+                return <img style={{ width: this.props.side === 'top' ? '42px' : '60px' }} key={ `key ${color}` } src={ `/img/${this.props.keys[color] ? 'forgedkey' : 'unforgedkey'}${color}.png` } title={ t('Forged Key') } />;
             });
 
         return <div className={ `keys ${this.props.side === 'top' ? 'large' : 'x-large'}` }>{ keys }</div>;
@@ -182,12 +182,12 @@ class PlayerRow extends React.Component {
                 { this.renderDroppablePile('archives', archives) }
                 { identity }
                 <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ zIndex: 0 }}>
+                    <div style={{ zIndex: 120 }}>
                         { this.renderDroppablePile('deck', drawDeck) }
                     </div>
                     { (this.props.manualMode || this.getStatValueOrDefault('chains') > 0) && (
                         <div style={{
-                            zIndex: 1,
+                            zIndex: 121,
                             position: 'absolute',
                             top: '30%',
                             pointerEvents: this.props.manualMode ? '' : 'none',
