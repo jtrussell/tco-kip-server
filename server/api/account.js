@@ -518,8 +518,8 @@ module.exports.init = function(server, options) {
         await userService.setResetToken(user, resetToken, formattedExpiration);
         let url = `${req.protocol}://${req.get('host')}/reset-password?id=${user._id}&token=${resetToken}`;
         let emailText = `Hi,\n\nIf you requested your KiP Tournaments account password be reset, click this link ${url} to complete the process.\n\n` +
-            'If you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n' +
-            'Best,\n\n' +
+            'If you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n\n' +
+            'Best,\n' +
             `${appName}`;
 
         await sendEmail(user.email, `${appName} - Password Reset`, emailText);
