@@ -23,6 +23,10 @@ class ConfigService {
     }
 
     getValueForSection(section, key) {
+        if(key === 'emailKey' && process.env.SENDGRID_API_KEY) {
+            return process.env.SENDGRID_API_KEY;
+        }
+
         if(key === 'dbPath' && process.env.MONGODB_CONNECTION_STRING) {
             return process.env.MONGODB_CONNECTION_STRING;
         }

@@ -67,7 +67,8 @@ const avatars = [
     '/img/avatars/bristol-plague-rats.jpg',
     '/img/avatars/mc-crew.png',
     '/img/avatars/team-labwork.jpg',
-    '/img/avatars/bootcampx.jpg'
+    '/img/avatars/bootcampx.jpg',
+    '/img/avatars/keysaders.jpg'
 ];
 
 export {

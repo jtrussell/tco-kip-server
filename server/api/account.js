@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const moment = require('moment');
 const _ = require('underscore');
 const fs = require('fs');
+const sendgrid = require('@sendgrid/mail');
 
 const logger = require('../log.js');
 const { wrapAsync } = require('../util.js');
@@ -17,7 +18,7 @@ let configService = new ConfigService();
 let userService;
 let banlistService;
 
-const appName = configService.getValueForSection('lobby', 'appName');
+const appName = 'KiP Tournaments';
 
 function verifyPassword(password, dbPassword) {
     return new Promise((resolve, reject) => {
@@ -32,6 +33,23 @@ function verifyPassword(password, dbPassword) {
 }
 
 async function sendEmail(address, subject, email) {
+    if(!configService.getValueForSection('lobby', 'emailKey')) {
+        logger.info('Trying to send email, but email key not configured.', address, subject, email);
+        return;
+    }
+
+    const message = {
+        to: address,
+        from: `${appName} <no-reply@kiptournaments.com>`,
+        subject: subject,
+        text: email
+    };
+
+    try {
+        return sendgrid.send(message);
+    } catch(err) {
+        logger.error('Unable to send email', err);
+    }
 }
 
 function validateUserName(username) {
@@ -88,15 +106,6 @@ function writeFile(path, data, opts = 'utf8') {
 
 async function downloadAvatar(user) {
     return;
-    let stringToHash = user.enableGravatar ? user.email : crypto.randomBytes(32).toString('hex');
-    let emailHash = crypto.createHash('md5').update(stringToHash).digest('hex');
-    let avatar = await util.httpRequest(`https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=24`, { encoding: null });
-
-    if(!fs.existsSync('public/img/avatar')) {
-        fs.mkdirSync('public/img/avatar/');
-    }
-
-    await writeFile(`public/img/avatar/${user.username}.png`, avatar, 'binary');
 }
 
 module.exports.init = function(server, options) {
@@ -508,12 +517,12 @@ module.exports.init = function(server, options) {
 
         await userService.setResetToken(user, resetToken, formattedExpiration);
         let url = `${req.protocol}://${req.get('host')}/reset-password?id=${user._id}&token=${resetToken}`;
-        let emailText = `Hi,\n\nSomeone, hopefully you, has requested their password on ${appName} (${req.protocol}://${req.get('host')}) to be reset.  If this was you, click this link ${url} to complete the process.\n\n` +
+        let emailText = `Hi,\n\nIf you requested your KiP Tournaments account password be reset, click this link ${url} to complete the process.\n\n` +
             'If you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n' +
-            'Kind regards,\n\n' +
-            `${appName} team`;
+            'Best,\n\n' +
+            `${appName}`;
 
-        await sendEmail(user.email, `${appName} - Password reset`, emailText);
+        await sendEmail(user.email, `${appName} - Password Reset`, emailText);
     }));
 
     server.put('/api/account/:username', passport.authenticate('jwt', { session: false }), wrapAsync(async (req, res) => {

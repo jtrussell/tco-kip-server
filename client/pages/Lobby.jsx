@@ -93,12 +93,6 @@ class Lobby extends React.Component {
         return (
             <Container>
                 <Background />
-                {!isMobile && (<Image>
-                    <a href='https://www.facebook.com/groups/kotevent/permalink/891154581314876'>
-                        <img src='/img/kote4.png'/>
-                    </a>
-                </Image>
-                )}
                 <div style={{ width: '100%', marginTop: isMobile ? '10px' : '40px' }}>
                     <FoilAd href='/foil' className='foil'>
                         OPEN TWO RANDOM FOILS
@@ -132,7 +126,7 @@ class Lobby extends React.Component {
                                 Saturday and Sunday, April 18th to 19th
                             </Title>
                             <Text>
-                                <Link newTab text='$5 True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
+                                <Link newTab text='True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </div>
@@ -141,7 +135,7 @@ class Lobby extends React.Component {
                                 Saturday, April 11th
                             </Title>
                             <Text>
-                                <Link newTab text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
+                                <Link newTab text='Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -150,7 +144,7 @@ class Lobby extends React.Component {
                                 Friday, April 10th
                             </Title>
                             <Text>
-                                <Link newTab text='$5 Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
+                                <Link newTab text='Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
@@ -159,7 +153,7 @@ class Lobby extends React.Component {
                                 Sunday, April 5th
                             </Title>
                             <Text>
-                                <Link newTab text='Free Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
+                                <Link newTab text='Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
                                 <EventTime>12pm EST, 6pm CEST</EventTime>
                             </Text>
                         </Blurb>
