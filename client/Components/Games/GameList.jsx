@@ -243,8 +243,12 @@ class GameList extends React.Component {
             return 0;
         })
 
-        if (this.props.user) {
+        if (this.props.user && this.props.user.username) {
             games = games.sort((a, b) => {
+                if (!a.name || !b.name)
+                    return 0;
+
+
                 const indexOfA = a.name.toLowerCase().indexOf(this.props.user.username.toLowerCase());
                 const indexOfB = b.name.toLowerCase().indexOf(this.props.user.username.toLowerCase());
 

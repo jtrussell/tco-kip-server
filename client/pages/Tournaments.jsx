@@ -101,10 +101,10 @@ class Tournaments extends React.Component {
                 const playerA = tournament.participants.find(({ participant }) => participant.id === match.player1_id);
                 const playerB = tournament.participants.find(({ participant }) => participant.id === match.player2_id);
                 return {
-                    label: `Table ${match.suggested_play_order} - ${playerA.participant.name} v. ${playerB.participant.name}`,
+                    label: `Table ${match.suggested_play_order} - ${playerA.participant.display_name} v. ${playerB.participant.display_name}`,
                     table: match.suggested_play_order,
-                    playerA: playerA.participant.name,
-                    playerB: playerB.participant.name,
+                    playerA: playerA.participant.display_name,
+                    playerB: playerB.participant.display_name,
                 }
             });
 

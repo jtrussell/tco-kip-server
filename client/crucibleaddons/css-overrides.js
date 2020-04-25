@@ -7,43 +7,6 @@ const start = () => {
 
     let cssOverrides = '';
 
-    //const navElements = Array.from(document.querySelectorAll('.navbar-right li'));
-    //let concedeIndex = -1;
-    //let leaveIndex = -1;
-    //navElements.forEach((el, i) => {
-    //const matchLeaveGame = i18n['Leave Game'].find(t => el.innerText === t);
-    //if(matchLeaveGame) {
-    //return;
-    //}
-
-    //const matchConcede = i18n['Concede'].find(t => el.innerText === t);
-    //if(matchConcede) {
-    //return;
-    //}
-
-    //if(/spectators/.test(el.innerText)) {
-    //return;
-    //}
-
-    //cssOverrides += `
-    //.navbar-right li:nth-child(${i + 1}) {
-    //display: none;
-    //}
-    //`;
-    //});
-
-
-    //.navbar-nav:nth-child(1) {
-    //display: none;
-    //}
-
-    //.navbar-right li:nth-child(1) {
-    //right: 110px;
-    //width: 200px;
-    //position: absolute;
-    //top: 0px;
-    //}
-
     const style = document.createElement('style');
     style.type = 'text/css';
     cssOverrides += `
@@ -235,6 +198,14 @@ const start = () => {
     }
 
     .player-home-row:nth-child(1) .discard .panel .card-wrapper {
+      margin-top: 0px;
+    }
+
+    .player-home-row:nth-child(1) .purged .panel .card-wrapper {
+      margin-top: 0px;
+    }
+
+    .player-home-row:nth-child(1) .archives .panel .card-wrapper {
       margin-top: 0px;
     }
 
