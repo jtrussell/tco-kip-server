@@ -202,7 +202,8 @@ class InnerCard extends React.Component {
                 onCardClick={ this.props.onClick }
                 onMouseOut={ this.props.onMouseOut }
                 onMouseOver={ this.props.onMouseOver }
-                source='underneath' />);
+                source='underneath'
+                zIndex='0' />);
     }
 
     getCardOrder() {
