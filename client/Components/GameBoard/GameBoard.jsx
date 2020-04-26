@@ -422,6 +422,7 @@ export class GameBoard extends React.Component {
                             onMouseOver={ this.onMouseOver }
                             rowDirection='reverse'
                             playerName={ this.props.playerName }
+                            side='top'
                             user={ this.props.user } />
                         <Droppable onDragDrop={ this.onDragDrop } source='play area' manualMode={ this.props.currentGame.manualMode }>
                             <PlayerBoard
@@ -433,6 +434,7 @@ export class GameBoard extends React.Component {
                                 onMouseOut={ this.onMouseOut }
                                 onMouseOver={ this.onMouseOver }
                                 rowDirection='default'
+                                side='bottom'
                                 user={ this.props.user } />
                         </Droppable>
                     </div>

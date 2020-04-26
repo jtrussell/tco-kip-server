@@ -317,8 +317,12 @@ class InnerCard extends React.Component {
             };
         }
 
+        let useTaunt = this.props.card.taunt;
+        if (this.props.side === 'top') {
+            useTaunt = useTaunt && !this.props.card.exhausted;
+        }
         return (
-            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${this.props.card.taunt ? 'taunt' : ''}` } >
+            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${useTaunt ? 'taunt' : ''}` } >
                 <img
                     src={ '/img/armor.png' }
                     style={{
@@ -384,8 +388,12 @@ class InnerCard extends React.Component {
             };
         }
 
+        let useTaunt = this.props.card.taunt;
+        if (this.props.side === 'top') {
+            useTaunt = useTaunt && !this.props.card.exhausted;
+        }
         return (
-            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${this.props.card.taunt ? 'taunt' : ''}` } >
+            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${useTaunt ? 'taunt' : ''}` } >
                 <img
                     src={ isEnhanced ? '/img/enhanced-card-power.png' : '/img/card-power.png' }
                     style={{

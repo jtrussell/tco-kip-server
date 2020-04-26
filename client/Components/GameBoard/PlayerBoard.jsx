@@ -74,8 +74,10 @@ class PlayerBoard extends React.Component {
                 onMouseOut={ this.props.onMouseOut }
                 onMouseOver={ this.props.onMouseOver }
                 size='large'
-                source='play area' />)
-        );
+                source='play area'
+                side={ this.props.side }
+            />
+        ));
     }
 
     render() {
