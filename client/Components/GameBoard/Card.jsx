@@ -171,7 +171,7 @@ class InnerCard extends React.Component {
                 onMouseOut={ this.props.disableMouseOver ? null : this.onMouseOut }
                 onClick={ this.props.onClick }
                 onMenuItemClick={ this.props.onMenuItemClick }
-                size={ this.props.size } />);
+                size={ this.props.size } zIndex={1}/>);
 
             index += 1;
 
@@ -447,7 +447,7 @@ class InnerCard extends React.Component {
         );
 
         let content = this.props.connectDragSource(
-            <div className='card-frame' style={{ zIndex: 2 }}>
+            <div className='card-frame' style={{ zIndex: this.props.zIndex || 2 }}>
                 { this.getDragFrame(image, imageClass) }
                 { this.getCardOrder() }
                 <div className={ cardClass }
