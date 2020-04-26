@@ -109,8 +109,17 @@ class InnerCard extends React.Component {
         }
 
         for(const [key, token] of Object.entries(card.tokens || {})) {
-            counters.push({ name: key, count: token, fade: needsFade,
-                showValue: ((token > 1) || !singleValueCounters.includes(key)), broken: key === 'ward' && card.wardBroken });
+            if (key === 'armor' || key === 'power') {
+                continue;
+            }
+
+            counters.push({
+                name: key,
+                count: token,
+                fade: needsFade,
+                showValue: ((token > 1) || !singleValueCounters.includes(key)),
+                broken: key === 'ward' && card.wardBroken
+            });
         }
 
         if(card.pseudoDamage) {
@@ -268,6 +277,144 @@ class InnerCard extends React.Component {
         );
     }
 
+    getArmorIcon() {
+        if(!this.props.card) {
+            return null;
+        }
+
+        if (this.props.card.type !== 'creature') {
+            return null;
+        }
+
+        if (this.props.source !== 'play area') {
+            return null;
+        }
+
+        if (!this.props.card.tokens) {
+            return null;
+        }
+
+        const armor = this.props.card.tokens.armor || '~';
+
+        let style = {
+            pointerEvents: 'none',
+            zIndex: 1,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            boxShadow: 'none',
+        };
+        if (this.props.card.exhausted) {
+            style = {
+                pointerEvents: 'none',
+                zIndex: 1,
+                transform: 'rotate(90deg)',
+                position: 'absolute',
+                top: 0,
+                right: '-4px',
+                boxShadow: 'none',
+            };
+        }
+
+        return (
+            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${this.props.card.taunt ? 'taunt' : ''}` } >
+                <img
+                    src={ '/img/armor.png' }
+                    style={{
+                        position: 'absolute',
+                        width: '20%',
+                        bottom: '2px',
+                        right: '3px',
+                    }}
+                />
+                <div
+                    style={{
+                        position: 'absolute',
+                        width: '20%',
+                        bottom: '3px',
+                        right: '3px',
+                        color: '#FFF',
+                        textShadow: '-0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000',
+                        fontSize: '80%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    {armor}
+                </div>
+            </div>
+        );
+    }
+
+    getPowerIcon() {
+        if(!this.props.card) {
+            return null;
+        }
+
+        if (this.props.card.type !== 'creature') {
+            return null;
+        }
+
+        if (this.props.source !== 'play area') {
+            return null;
+        }
+
+        const power = this.props.card.power;
+        const isEnhanced = power >  this.props.card.printedPower;
+
+        let style = {
+            pointerEvents: 'none',
+            zIndex: 1,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            boxShadow: 'none',
+        };
+        if (this.props.card.exhausted) {
+            style = {
+                pointerEvents: 'none',
+                zIndex: 1,
+                transform: 'rotate(90deg)',
+                position: 'absolute',
+                top: 0,
+                right: '-4px',
+                boxShadow: 'none',
+            };
+        }
+
+        return (
+            <div style={ style } className={ `card ${this.props.size} ${this.props.orientation} ${this.props.card.taunt ? 'taunt' : ''}` } >
+                <img
+                    src={ isEnhanced ? '/img/enhanced-card-power.png' : '/img/card-power.png' }
+                    style={{
+                        position: 'absolute',
+                        width: '20%',
+                        bottom: '2px',
+                        left: '3px',
+                        filter: isEnhanced ? 'brightness(1.2)' : '',
+                    }}
+                />
+                <div
+                    style={{
+                        position: 'absolute',
+                        width: '20%',
+                        bottom: '3px',
+                        left: '3px',
+                        color: '#FFF',
+                        textShadow: '-0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000',
+                        fontSize: '80%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    {power}
+                </div>
+            </div>
+        );
+    }
+
     getCard() {
         if(!this.props.card) {
             return <div />;
@@ -300,7 +447,7 @@ class InnerCard extends React.Component {
         );
 
         let content = this.props.connectDragSource(
-            <div className='card-frame' >
+            <div className='card-frame' style={{ zIndex: 1 }}>
                 { this.getDragFrame(image, imageClass) }
                 { this.getCardOrder() }
                 <div className={ cardClass }
@@ -364,6 +511,8 @@ class InnerCard extends React.Component {
                     { this.getCard() }
                     { this.getupgrades() }
                     { this.renderUnderneathCards() }
+                    { this.getPowerIcon() }
+                    { this.getArmorIcon() }
                 </div>);
         }
 
