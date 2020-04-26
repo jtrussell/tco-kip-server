@@ -27,6 +27,8 @@ export default ({ name, id, cards }) => {
                 onMouseOver={ () => {} }
                 size='x-large'
                 source='play area'
+                hidePowerToken
+                hideArmorToken
             />
         </FoilContainer>
     );

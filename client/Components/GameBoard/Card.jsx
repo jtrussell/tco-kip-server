@@ -513,8 +513,8 @@ class InnerCard extends React.Component {
                     { this.getCard() }
                     { this.getupgrades() }
                     { this.renderUnderneathCards() }
-                    { this.getPowerIcon() }
-                    { this.getArmorIcon() }
+                    { !this.props.hidePowerToken && this.getPowerIcon() }
+                    { !this.props.hideArmorToken && this.getArmorIcon() }
                 </div>);
         }
 
