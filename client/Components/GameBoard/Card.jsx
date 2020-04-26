@@ -298,7 +298,7 @@ class InnerCard extends React.Component {
 
         let style = {
             pointerEvents: 'none',
-            zIndex: 1,
+            zIndex: 2,
             position: 'absolute',
             top: 0,
             left: 0,
@@ -307,7 +307,7 @@ class InnerCard extends React.Component {
         if (this.props.card.exhausted) {
             style = {
                 pointerEvents: 'none',
-                zIndex: 1,
+                zIndex: 2,
                 transform: 'rotate(90deg)',
                 position: 'absolute',
                 top: 0,
@@ -365,7 +365,7 @@ class InnerCard extends React.Component {
 
         let style = {
             pointerEvents: 'none',
-            zIndex: 1,
+            zIndex: 2,
             position: 'absolute',
             top: 0,
             left: 0,
@@ -374,7 +374,7 @@ class InnerCard extends React.Component {
         if (this.props.card.exhausted) {
             style = {
                 pointerEvents: 'none',
-                zIndex: 1,
+                zIndex: 2,
                 transform: 'rotate(90deg)',
                 position: 'absolute',
                 top: 0,
@@ -447,7 +447,7 @@ class InnerCard extends React.Component {
         );
 
         let content = this.props.connectDragSource(
-            <div className='card-frame' style={{ zIndex: 1 }}>
+            <div className='card-frame' style={{ zIndex: 2 }}>
                 { this.getDragFrame(image, imageClass) }
                 { this.getCardOrder() }
                 <div className={ cardClass }
