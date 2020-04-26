@@ -24,7 +24,7 @@ class SquishableCardPanel extends React.Component {
             cards = [...this.props.cards].sort((a, b) => a.facedown && !b.facedown ? -1 : 1);
         }
 
-        let hand = cards.map(card => {
+        let hand = cards.map((card, i) => {
             let left = (cardWidth - offset) * cardIndex++;
 
             let style = {};
@@ -45,7 +45,8 @@ class SquishableCardPanel extends React.Component {
                 size={ this.props.cardSize }
                 style={ style }
                 language={ this.props.i18n.language }
-                source={ this.props.source } />);
+                source={ this.props.source } 
+                />);
         });
 
         return hand;

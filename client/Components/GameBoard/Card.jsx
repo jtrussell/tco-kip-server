@@ -164,14 +164,14 @@ class InnerCard extends React.Component {
         }
 
         let index = 1;
-        let upgrades = this.props.card.upgrades.map(upgrade => {
+        let upgrades = this.props.card.upgrades.map((upgrade) => {
             let returnedupgrade = (<Card key={ upgrade.uuid } source={ this.props.source } card={ upgrade }
                 className={ classNames('upgrade', `upgrade-${index}`) } wrapped={ false }
                 onMouseOver={ this.props.disableMouseOver ? null : this.onMouseOver.bind(this, upgrade) }
                 onMouseOut={ this.props.disableMouseOver ? null : this.onMouseOut }
                 onClick={ this.props.onClick }
                 onMenuItemClick={ this.props.onMenuItemClick }
-                size={ this.props.size } zIndex={1}/>);
+                size={ this.props.size } zIndex={-index}/>);
 
             index += 1;
 
@@ -203,7 +203,7 @@ class InnerCard extends React.Component {
                 onMouseOut={ this.props.onMouseOut }
                 onMouseOver={ this.props.onMouseOver }
                 source='underneath'
-                zIndex='0' />);
+                zIndex='-20' />);
     }
 
     getCardOrder() {
@@ -447,8 +447,9 @@ class InnerCard extends React.Component {
             />
         );
 
+        const defaultZIndex = this.showMenu() ? undefined : 2;
         let content = this.props.connectDragSource(
-            <div className='card-frame' style={{ zIndex: this.props.zIndex || 2 }}>
+            <div className='card-frame' style={{ zIndex: this.props.zIndex || defaultZIndex }}>
                 { this.getDragFrame(image, imageClass) }
                 { this.getCardOrder() }
                 <div className={ cardClass }
