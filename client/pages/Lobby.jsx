@@ -60,20 +60,8 @@ const LargeImage = styled.img`
     width: 1000px;
 `;
 
-const FoilAd = styled.a`
-    color: #000;
-    background-color: #f7d65c;
-    font-size: 18px;
-    padding: 5px 8px;
-
-    &:hover {
-        color: #000;
-        background-color: #ffe37a;
-    }
-`;
-
 const upcomingTournaments = [{
-    title: 'KeyForge 2020 (Unofficial) Shadow Worlds Online - Day 1',
+    title: 'Shadow Worlds 2020 - Day 1',
     date: 'Saturday, May 2nd',
     time: '11:00am EDT',
     url: 'https://kip.challonge.com/ShadowWorlds2020',
@@ -83,6 +71,17 @@ const upcomingTournaments = [{
                             //Upcoming Tournaments
                         //</Title>
                     //</Blurb>
+                    //{upcomingTournaments.map((tournament, i) => (
+                        //<div style={{ marginTop: i === 0 ? '' : '40px' }}>
+                            //<Title>
+                                //{ tournament.date }
+                            //</Title>
+                            //<Text>
+                                //<Link newTab text={ tournament.title } url={ tournament.url }/>
+                                //<EventTime>{ tournament.time }</EventTime>
+                            //</Text>
+                        //</div>
+                    //))}
 
 class Lobby extends React.Component {
     render() {
@@ -94,17 +93,14 @@ class Lobby extends React.Component {
             <Container>
                 <Background />
                 <div style={{ width: '100%', marginTop: '0px' }}>
-                    {upcomingTournaments.map((tournament, i) => (
-                        <div style={{ marginTop: i === 0 ? '' : '40px' }}>
-                            <Title>
-                                { tournament.date }
-                            </Title>
-                            <Text>
-                                <Link newTab text={ tournament.title } url={ tournament.url }/>
-                                <EventTime>{ tournament.time }</EventTime>
-                            </Text>
-                        </div>
-                    ))}
+                    <div style={{ textAlign: 'center', marginTop: '40px' }}>
+                        <Title>
+                            Shadow Worlds 2020 - Day 1
+                        </Title>
+                        <Title>
+                            <Link newTab text='Sign Up Here' url='https://kip.challonge.com/ShadowWorlds2020'/>
+                        </Title>
+                    </div>
                     <div style={{ filter: 'brightness(0.5)', display: 'none' }} >
                         <Blurb>
                             <Title color='#6f7d85' fontSize="18px">
@@ -151,7 +147,9 @@ class Lobby extends React.Component {
                 </div>
                 <br/>
                 <Image>
-                    <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
+                    <a target='_blank' href='https://kip.challonge.com/ShadowWorlds2020'>
+                        <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
+                    </a>
                     <Overlay>
                         <span style={{
                             backgroundColor: 'rgba(0,0,0)',
@@ -161,11 +159,6 @@ class Lobby extends React.Component {
                         </span>
                     </Overlay>
                 </Image>
-                <div style={{ width: '100%', marginTop: isMobile ? '10px' : '40px' }}>
-                    <FoilAd href='/foil' className='foil'>
-                        OPEN TWO RANDOM FOILS
-                    </FoilAd>
-                </div>
             </Container>
         );
     }
