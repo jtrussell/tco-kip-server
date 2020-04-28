@@ -18,7 +18,7 @@ const NavBar = styled.div`
 `;
 
 const Container = styled.div`
-    max-width: 1000px;
+    max-width: 1020px;
     height: 40px;
     margin: 0 auto;
     display: flex;
@@ -39,7 +39,7 @@ const RightItems = styled.div`
 const LogoContainer = styled.a`
     font-size: 30px;
     font-weight: 300;
-    margin: 0 10px;
+    margin: 0 10px 0 0;
     margin-right: 20px;
     font-family: "Open Sans", "Arial", sans-serif;
     text-decoration: none;

@@ -99,7 +99,6 @@ class PendingGame extends React.Component {
 
     selectDeck(deck) {
         $('#decks-modal').modal('hide');
-
         this.props.socket.emit('selectdeck', this.props.currentGame.id, deck._id);
     }
 
@@ -142,6 +141,7 @@ class PendingGame extends React.Component {
             chainbound: 'Chainbound',
             adaptiveShort: 'Adaptive Short',
             freeplay: 'Free Play',
+            triad: 'Triad',
         }[this.props.currentGame.gameType];
     }
 
@@ -278,7 +278,8 @@ class PendingGame extends React.Component {
                     id='decks-modal'
                     loading={ this.props.loading }
                     onDeckSelected={ this.selectDeck.bind(this) }
-                    standaloneDecks={ this.props.standaloneDecks } />
+                    standaloneDecks={ this.props.standaloneDecks }
+                />
             </div >);
     }
 }

@@ -179,6 +179,11 @@ class NewGame extends React.Component {
                 name: 'adaptiveShort',
                 label: 'Adaptive Short',
                 classNameSelected: 'adaptive-short',
+            },
+            {
+                name: 'triad',
+                label: 'Triad',
+                classNameSelected: 'triad',
             }
         ];
 

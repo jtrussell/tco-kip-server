@@ -209,6 +209,9 @@ class GameList extends React.Component {
             case 'adaptiveShort':
                 gameHeaderClass += ' adaptive-short';
                 break;
+            case 'triad':
+                gameHeaderClass += ' triad';
+                break;
         }
 
         const titles = {
@@ -216,6 +219,7 @@ class GameList extends React.Component {
             freeplay: t(gameType),
             adaptive: t(gameType),
             adaptiveShort: 'Adaptive Short',
+            triad: 'Triad',
         }
 
         return (
@@ -271,7 +275,7 @@ class GameList extends React.Component {
         }
 
         let gameList = [];
-        for(const gameType of ['chainbound', 'freeplay', 'adaptive', 'adaptiveShort']) {
+        for(const gameType of ['chainbound', 'freeplay', 'adaptive', 'adaptiveShort', 'triad']) {
             if(this.props.gameFilter[gameType] && groupedGames[gameType]) {
                 gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));
             }

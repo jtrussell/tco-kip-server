@@ -9,6 +9,8 @@ import classNames from 'classnames';
 import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
+import TriadBanDeckPrompt from './Triad/BanDeckPrompt';
+import TriadChooseDeckPrompt from './Triad/ChooseDeckPrompt';
 import AdaptiveShortDeckSelectPrompt from './AdaptiveShortDeckSelectPrompt';
 import CardZoom from './CardZoom';
 import PlayerBoard from './PlayerBoard';
@@ -608,6 +610,34 @@ export class GameBoard extends React.Component {
                                         cards={ this.props.cards }
                                         thisPlayer={ thisPlayer }
                                         otherPlayer={ otherPlayer }
+                                        onButtonClick={ this.onCommand }
+                                        buttons={ thisPlayer.buttons }
+                                        promptText={ thisPlayer.menuTitle }
+                                        promptType={ thisPlayer.promptType }
+                                        promptTitle={ thisPlayer.promptTitle }
+                                        phase={ thisPlayer.phase }
+                                    />
+                                )}
+                                {thisPlayer.promptType === 'triad-ban-deck' && (
+                                    <TriadBanDeckPrompt
+                                        cards={ this.props.cards }
+                                        thisPlayer={ thisPlayer }
+                                        otherPlayer={ otherPlayer }
+                                        triadData={ this.props.currentGame.triadData }
+                                        onButtonClick={ this.onCommand }
+                                        buttons={ thisPlayer.buttons }
+                                        promptText={ thisPlayer.menuTitle }
+                                        promptType={ thisPlayer.promptType }
+                                        promptTitle={ thisPlayer.promptTitle }
+                                        phase={ thisPlayer.phase }
+                                    />
+                                )}
+                                {thisPlayer.promptType === 'triad-choose-deck' && (
+                                    <TriadChooseDeckPrompt
+                                        cards={ this.props.cards }
+                                        thisPlayer={ thisPlayer }
+                                        otherPlayer={ otherPlayer }
+                                        triadData={ this.props.currentGame.triadData }
                                         onButtonClick={ this.onCommand }
                                         buttons={ thisPlayer.buttons }
                                         promptText={ thisPlayer.menuTitle }
