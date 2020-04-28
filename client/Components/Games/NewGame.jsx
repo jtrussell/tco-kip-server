@@ -82,6 +82,7 @@ class NewGame extends React.Component {
                 match: 1,
                 records: []
             },
+            triadData: {},
             password: this.state.password,
             quickJoin: this.props.quickJoin,
             muteSpectators: this.state.muteSpectators,

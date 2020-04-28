@@ -20,7 +20,7 @@ class PendingGame {
         this.gameType = details.gameType;
         this.gameFormat = details.gameFormat;
         this.adaptiveData = details.adaptiveData;
-        this.triadData = {};
+        this.triadData = details.triadData;
         this.expansions = details.expansions;
         this.started = false;
         this.node = {};

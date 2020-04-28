@@ -868,12 +868,6 @@ class Lobby {
         let gameId = oldGame.gameId;
         let game = this.games[gameId];
 
-        logger.info('gamenode game is:');
-        logger.info(JSON.stringify(oldGame));
-
-        logger.info('server game is:');
-        logger.info(JSON.stringify(game.getSaveState()));
-
         if(!game) {
             return;
         }
@@ -886,6 +880,7 @@ class Lobby {
             showHand: game.showHand,
             gameType: game.gameType,
             adaptiveData: oldGame.adaptiveData,
+            triadData: oldGame.triadData,
             useChessClock: game.useChessClock,
             gameTimeLimit: game.gameTimeLimit,
             gameFormat: game.gameFormat
@@ -1028,6 +1023,7 @@ class Lobby {
             syncGame.started = game.started;
             syncGame.gameType = game.gameType;
             syncGame.adaptiveData = game.adaptiveData;
+            syncGame.triadData = game.triadData;
             syncGame.gameFormat = game.gameFormat;
             syncGame.password = game.password;
 

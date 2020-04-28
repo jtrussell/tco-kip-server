@@ -156,6 +156,7 @@ class Tournaments extends React.Component {
                         match: 1,
                         records: []
                     },
+                    triadData: {},
                     password,
                     quickJoin: false,
                     muteSpectators: false,

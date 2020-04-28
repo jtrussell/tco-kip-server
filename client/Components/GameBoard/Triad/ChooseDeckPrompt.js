@@ -4,11 +4,7 @@ import Panel from '../../Site/Panel';
 import { buildDeckList } from '../../../archonMaker';
 import linkDeckCards from '../../../pages/Decks/linkDeckCards';
 import Deck from './Deck';
-
-const Title = styled.div`
-    font-size: 20px;
-    color: #FFF;
-`;
+import Title from './Title';
 
 class ChooseDeckPrompt extends React.Component {
     constructor(props) {
@@ -103,15 +99,6 @@ class ChooseDeckPrompt extends React.Component {
     }
 
     render() {
-        let promptTitle;
-
-        if(this.props.promptTitle) {
-            let promptTitleText = this.safePromptText(this.props.promptTitle);
-            promptTitle = (<div className='menu-pane-source'>
-                Choose Starting Deck
-            </div>);
-        }
-
         let promptText = this.safePromptText(this.props.promptText);
         let promptTexts = [];
 
@@ -144,17 +131,20 @@ class ChooseDeckPrompt extends React.Component {
         const bannedUuid = triadData[playerName].bannedDeck;
         const buttons = this.getButtons();
 
-
         const swapLayoutBtn = (
-            <div style={ { marginTop: '20px' } } onClick={ () => this.setState({ horizontalLayout: !this.state.horizontalLayout }) } >
-                <span style={ { cursor: 'pointer', fontSize: '12px', backgroundColor: '#333', padding: '4px' } }> { this.state.horizontalLayout ? 'use vertial layout' : 'use horizonatal layout' } </span>
+            <div style={ { marginTop: '20px' } } >
+                <span
+                    style={ { cursor: 'pointer', fontSize: '12px', backgroundColor: '#333', padding: '4px' } }
+                    onClick={ () => this.setState({ horizontalLayout: !this.state.horizontalLayout }) }
+                >
+                    { this.state.horizontalLayout ? 'use vertial layout' : 'use horizonatal layout' }
+                </span>
             </div>
         );
 
         if(!this.state.horizontalLayout) {
             return (
                 <Panel title='' titleClass='phase-indicator' panelBodyClass='player-prompt-body' styles={ styles }>
-                    { promptTitle }
                     <div className='menu-pane' style={ {
                         marginTop: '10px',
                     } }>
@@ -200,7 +190,6 @@ class ChooseDeckPrompt extends React.Component {
 
         return (
             <Panel title='' titleClass='phase-indicator' panelBodyClass='player-prompt-body' styles={ styles }>
-                { promptTitle }
                 <div className='menu-pane' style={ {
                     marginTop: '10px',
                 } }>
