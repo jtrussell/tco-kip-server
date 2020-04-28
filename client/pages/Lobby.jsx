@@ -73,16 +73,16 @@ const FoilAd = styled.a`
 `;
 
 const upcomingTournaments = [{
-    title: 'Shadow World\'s Last Chance Qualifier - Archon Short Adaptive',
-    date: 'Saturday, April 25th',
-    time: '12pm EST, 6pm CEST',
-    url: 'https://kip.challonge.com/LCQShortAdaptive',
-}, {
-    title: 'Shadow World\'s Last Chance Qualifier - Solo Archon (Bo1)',
-    date: 'Saturday, April 25th',
-    time: '8pm EST, 2am CEST',
-    url: 'https://kip.challonge.com/LCQSoloArchon',
+    title: 'KeyForge 2020 (Unofficial) Shadow Worlds Online - Day 1',
+    date: 'Saturday, May 2nd',
+    time: '11:00am EDT',
+    url: 'https://kip.challonge.com/ShadowWorlds2020',
 }]
+                    //<Blurb>
+                        //<Title color='#6f7d85' fontSize="18px">
+                            //Upcoming Tournaments
+                        //</Title>
+                    //</Blurb>
 
 class Lobby extends React.Component {
     render() {
@@ -93,17 +93,7 @@ class Lobby extends React.Component {
         return (
             <Container>
                 <Background />
-                <div style={{ width: '100%', marginTop: isMobile ? '10px' : '40px' }}>
-                    <FoilAd href='/foil' className='foil'>
-                        OPEN TWO RANDOM FOILS
-                    </FoilAd>
-                </div>
                 <div style={{ width: '100%', marginTop: '0px' }}>
-                    <Blurb>
-                        <Title color='#6f7d85' fontSize="18px">
-                            Upcoming Tournaments
-                        </Title>
-                    </Blurb>
                     {upcomingTournaments.map((tournament, i) => (
                         <div style={{ marginTop: i === 0 ? '' : '40px' }}>
                             <Title>
@@ -115,7 +105,7 @@ class Lobby extends React.Component {
                             </Text>
                         </div>
                     ))}
-                    <div style={{ filter: 'brightness(0.5)' }} >
+                    <div style={{ filter: 'brightness(0.5)', display: 'none' }} >
                         <Blurb>
                             <Title color='#6f7d85' fontSize="18px">
                                 Past Tournaments
@@ -167,10 +157,15 @@ class Lobby extends React.Component {
                             backgroundColor: 'rgba(0,0,0)',
                             padding: '12px 14px',
                         }}>
-                            Shadow Worlds — Early May
+                            Shadow Worlds
                         </span>
                     </Overlay>
                 </Image>
+                <div style={{ width: '100%', marginTop: isMobile ? '10px' : '40px' }}>
+                    <FoilAd href='/foil' className='foil'>
+                        OPEN TWO RANDOM FOILS
+                    </FoilAd>
+                </div>
             </Container>
         );
     }
