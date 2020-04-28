@@ -98,6 +98,10 @@ class PendingTriadGame extends React.Component {
         $('#decks-modal-b').modal('hide');
         $('#decks-modal-c').modal('hide');
 
+        if(this.props.currentGame.triadData[this.props.user.username].deckUuids.includes(deck.uuid)) {
+            return;
+        }
+
         if(slot === 0) {
             this.props.socket.emit('selectdeck', this.props.currentGame.id, deck._id);
         }
