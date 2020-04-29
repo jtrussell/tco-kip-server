@@ -142,7 +142,7 @@ class ChooseDeckPrompt extends React.Component {
                     style={ { cursor: 'pointer', fontSize: '12px', backgroundColor: '#333', padding: '4px' } }
                     onClick={ () => this.setState({ horizontalLayout: !this.state.horizontalLayout }) }
                 >
-                    { this.state.horizontalLayout ? 'use vertial layout' : 'use horizonatal layout' }
+                    { this.state.horizontalLayout ? 'use vertical layout' : 'use horizonatal layout' }
                 </span>
             </div>
         );
