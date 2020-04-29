@@ -39,8 +39,12 @@ class ChooseDeckPrompt extends React.Component {
             });
     }
 
-    onButtonClick(event, command, arg, uuid, method) {
+    onButtonClick(event, command, arg, uuid, method, text) {
         event.preventDefault();
+
+        if(!confirm(`Play ${text} first?`)) {
+            return;
+        }
 
         if(this.props.onButtonClick) {
             this.props.onButtonClick(command, arg, uuid, method);
@@ -55,7 +59,7 @@ class ChooseDeckPrompt extends React.Component {
             let option = (
                 <button key={ button.command + buttonIndex.toString() }
                     className='btn btn-default prompt-button'
-                    onClick={ event => this.onButtonClick(event, button.command, button.arg, button.uuid, button.method) }
+                    onClick={ event => this.onButtonClick(event, button.command, button.arg, button.uuid, button.method, button.text) }
                     style={ { width: '130px' } }
                 >{ button.text }</button>
             );

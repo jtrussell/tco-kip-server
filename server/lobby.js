@@ -418,6 +418,10 @@ class Lobby {
 
         game.disconnect(socket.user.username);
 
+        if(game.gameType === 'triad' && !game.started) {
+            delete game.triadData[socket.user.username];
+        }
+
         if(game.isEmpty()) {
             this.broadcastGameMessage('removegame', game);
             delete this.games[game.id];

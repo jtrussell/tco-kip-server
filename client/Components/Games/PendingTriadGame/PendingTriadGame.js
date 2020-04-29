@@ -167,21 +167,21 @@ class PendingTriadGame extends React.Component {
                     <span style={ { marginTop: '5px' } }>{ player.name }</span>
                 </div>
                 <div>
-                    <div style={ { margin: '5px 10px 15px' } }>
+                    <div style={ { margin: '5px 10px 25px' } }>
                         { deckA ? (
                             <span className='deck-selection clickable' style={ { margin: 0 } } onClick={ () => this.onSelectDeckClick('a') }>{ deckA.name }</span>
                         ) : (
                             <span className='card-link' onClick={ () => this.onSelectDeckClick('a') }>Select deck A...</span>
                         ) }
                     </div>
-                    <div style={ { margin: '15px 10px' } }>
+                    <div style={ { margin: '25px 10px' } }>
                         { deckB ? (
                             <span className='deck-selection clickable' style={ { margin: 0 } } onClick={ () => this.onSelectDeckClick('b') }>{ deckB.name }</span>
                         ) : (
                             <span className='card-link' onClick={ () => this.onSelectDeckClick('b') }>Select deck B...</span>
                         ) }
                     </div>
-                    <div style={ { margin: '15px 10px' } }>
+                    <div style={ { margin: '25px 10px' } }>
                         { deckC ? (
                             <span className='deck-selection clickable' style={ { margin: 0 } } onClick={ () => this.onSelectDeckClick('c') }>{ deckC.name }</span>
                         ) : (
