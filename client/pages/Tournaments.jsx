@@ -194,6 +194,7 @@ class Tournaments extends React.Component {
                             <option value='adaptive'>Adaptive</option>
                             <option value='adaptiveShort'>Adaptive Short</option>
                             <option value='chainbound'>Chainbound</option>
+                            <option value='triad'>Triad</option>
                         </Select>
                         <Input ref={ this.passwordRef } placeholder='Password'/>
                         <div style={{
