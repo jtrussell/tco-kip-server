@@ -46,7 +46,7 @@ const start = () => {
     .gamechat {
       overflow-y: hidden;
       position: fixed;
-      right: 5px;
+      right: 0;
       width: 310px;
       top: 40px;
       height: 500px;

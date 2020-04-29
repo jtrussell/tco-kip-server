@@ -30,12 +30,12 @@ import TrackerLink from './TrackerLink';
 const MenuContainer = styled.div`
     max-width: 280px;
     min-width: 160px;
-    z-index: 20;
     position: fixed;
     top: 0;
     right: 0;
     display: flex;
     justify-content: flex-end;
+    z-index: 999999999;
 `;
 
 const startCrucibleAddons = require('../../crucibleaddons/index');

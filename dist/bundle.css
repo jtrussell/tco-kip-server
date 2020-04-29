@@ -8633,6 +8633,7 @@ span.down-arrow {
   margin-bottom: 5px;
 }
 .right-side {
+  z-index: 99999999;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -9105,6 +9106,7 @@ hr.phasestart {
 .zoom-card-x-large {
   height: 546px !important;
   width: 390px !important;
+  z-index: 999999999;
 }
 .image-x-large {
   position: absolute;
@@ -9840,6 +9842,9 @@ a:hover {
   background: #824d9e !important;
   width: 400px !important;
   margin-left: -200px !important;
+}
+.rrt-confirm-holder {
+  z-index: 999929999;
 }
 .no-padding {
   padding: 0;
