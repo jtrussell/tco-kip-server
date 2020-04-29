@@ -17,10 +17,6 @@ class SelectDeckModal extends React.Component {
         } else if(this.props.apiError) {
             decks = <AlertPanel type='error' message={ this.props.apiError } />;
         } else {
-            const earlyAccessDecks = [{
-                id: '00000000-0000-0000-0000-ea0000000001',
-                houses: ['dis', 'logos', 'shadows'],
-            }]
             decks = (
                 <div>
                     { this.props.allowEarlyAccessDecks && (
@@ -32,7 +28,7 @@ class SelectDeckModal extends React.Component {
                                 disableStarring={true}
                                 hideControls={true}
                                 className='deck-list-popup'
-                                decks={ earlyAccessDecks }
+                                decks={ [] }
                                 onSelectDeck={ this.props.onDeckSelected }
                             />
                         </div>

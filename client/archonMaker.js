@@ -10,21 +10,20 @@ export const buildDeckList = (deck, language, translate, AllCards) => new Promis
 
     if(deck.cards.length === 0) {
         resolve(Images.cardback);
-        //buildArchon(deck, language).then(imageUrl => resolve(imageUrl));
         return;
     }
 
     const canvas = createCanvas(600, 840);
     const ctx = canvas.getContext('2d');
-    const cardBack = loadImage(Images.decklist);
-    const Common = loadImage(Images.Common);
-    const Uncommon = loadImage(Images.Uncommon);
-    const Rare = loadImage(Images.Rare);
-    const Special = loadImage(Images.Special);
-    const maverick = loadImage(Images.Maverick);
-    const legacy = loadImage(Images.Legacy);
-    const anomaly = loadImage(Images.Anomaly);
-    const set = loadImage(Images[`icon${deck.expansion}`]);
+    const cardBack = loadImage('/img/idbacks/decklist.png');
+    const Common = loadImage('/img/idbacks/Common.png');
+    const Uncommon = loadImage('/img/idbacks/Uncommon.png');
+    const Rare = loadImage('/img/idbacks/Rare.png');
+    const Special = loadImage('/img/idbacks/Special.png');
+    const maverick = loadImage('/img/idbacks/Maverick.png');
+    const legacy = loadImage('/img/idbacks/Legacy.png');
+    const anomaly = loadImage('/img/idbacks/Anomaly.png');
+    const set = loadImage(`/img/idbacks/${deck.expansion}.png`);
 
     const houseData = {
         size: 35,
@@ -49,7 +48,7 @@ export const buildDeckList = (deck, language, translate, AllCards) => new Promis
 
             const houseProm = deck.houses.map((house, index) => {
                 return new Promise(houseRes => {
-                    loadImage(Images[house]).then(img => {
+                    loadImage(`/img/idbacks/decklist_houses/${house}.png`).then(img => {
                         ctx.drawImage(img, houseData[index].x, houseData[index].y, houseData.size, houseData.size);
                         ctx.fillStyle = 'black';
                         ctx.font = 'bold 25px Arial';
@@ -120,18 +119,6 @@ export const buildDeckList = (deck, language, translate, AllCards) => new Promis
 
 export const buildArchon = (deck, language) => new Promise(resolve => {
     resolve(Images.cardback);
-    //if(deck.cards.length === 0 || deck.uuid.length === 0 || deck.houses.length === 0) {
-    //return;
-    //}
-
-    //const canvas = createCanvas(600, 840);
-    //const ctx = canvas.getContext('2d');
-    //loadImage(`/img/idbacks/archons/${imageName(deck, language)}.png`)
-    //.then(archon => {
-    //ctx.drawImage(archon, 0, 0);
-    //ctx.drawImage((getCircularText(deck.name, 700, 0)), -50, 70);
-    //resolve(canvas.toDataURL('image/jpeg'));
-    //});
 });
 
 const imageName = (deck, language) => {

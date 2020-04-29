@@ -190,15 +190,10 @@ class GameRouter extends EventEmitter {
 
                 break;
             case 'GAMEWIN':
-                logger.info('GAMEWIN event triggered with:');
-                logger.info(JSON.stringify(message.arg.game));
                 this.gameService.update(message.arg.game);
                 break;
             case 'REMATCH':
                 this.gameService.update(message.arg.game);
-
-                logger.info('[gamerouter] received rematch with game:');
-                logger.info(JSON.stringify(message.arg.game));
 
                 if(worker) {
                     worker.numGames--;
@@ -238,7 +233,6 @@ class GameRouter extends EventEmitter {
     // Internal methods
     sendCommand(identity, command, arg) {
         console.log(`[server] Sending command ${command} to ${identity}`);
-        //router.send([identity, '', JSON.stringify({ command: command, arg: arg })]);
         redisPublisher.publish('gamenode-commands', JSON.stringify({
             identity,
             command,

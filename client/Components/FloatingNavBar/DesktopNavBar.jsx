@@ -40,6 +40,7 @@ const LogoContainer = styled.a`
     font-size: 30px;
     font-weight: 300;
     margin: 0 10px 0 0;
+    margin-right: 20px;
     font-family: "Open Sans", "Arial", sans-serif;
     text-decoration: none;
     color: ${colors.text};

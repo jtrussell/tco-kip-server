@@ -318,6 +318,7 @@ class Lobby {
         socket.registerEvent('startgame', this.onStartGame.bind(this));
         socket.registerEvent('chat', this.onPendingGameChat.bind(this));
         socket.registerEvent('selectdeck', this.onSelectDeck.bind(this));
+        socket.registerEvent('selecttriaddeck', this.onSelectTriadDeck.bind(this));
         socket.registerEvent('getsealeddeck', this.onGetSealedDeck.bind(this));
         socket.registerEvent('connectfailed', this.onConnectFailed.bind(this));
         socket.registerEvent('removegame', this.onRemoveGame.bind(this));
@@ -416,6 +417,10 @@ class Lobby {
         }
 
         game.disconnect(socket.user.username);
+
+        if(game.gameType === 'triad' && !game.started) {
+            delete game.triadData[socket.user.username];
+        }
 
         if(game.isEmpty()) {
             this.broadcastGameMessage('removegame', game);
@@ -676,8 +681,6 @@ class Lobby {
                     verified: true,
                     noUnreleasedCards: true,
                     officialRole: true,
-                    faqRestrictedList: true,
-                    faqVersion: 'v1.0',
                     extendedStatus: []
                 };
 
@@ -706,33 +709,66 @@ class Lobby {
                     card.card = cards[card.id];
                 }
 
-                let deckUsageLevel = 0;
-                if(deck.usageCount > this.configService.getValueForSection('lobby', 'lowerDeckThreshold')) {
-                    deckUsageLevel = 1;
-                }
-
-                if(deck.usageCount > this.configService.getValueForSection('lobby', 'middleDeckThreshold')) {
-                    deckUsageLevel = 2;
-                }
-
-                if(deck.usageCount > this.configService.getValueForSection('lobby', 'upperDeckThreshold')) {
-                    deckUsageLevel = 3;
-                }
-
                 deck.status = {
-                    usageLevel: deckUsageLevel,
+                    usageLevel: 0,
                     basicRules: true,
                     verified: !!deck.verified,
                     noUnreleasedCards: true,
                     officialRole: true,
-                    faqRestrictedList: true,
-                    faqVersion: 'v1.0',
                     extendedStatus: []
                 };
 
                 deck.usageCount = 0;
 
                 await game.selectDeck(socket.user.username, deck);
+
+                this.sendGameState(game);
+            })
+            .catch(err => {
+                logger.info(err);
+
+                return;
+            });
+    }
+
+    onSelectTriadDeck(socket, gameId, deckId, slot) {
+        let game = this.games[gameId];
+        if(!game) {
+            return;
+        }
+
+        const {
+            username
+        } = socket.user;
+
+        return Promise.all([this.cardService.getAllCards(), this.deckService.getByUuid(deckId)])
+            .then(async (results) => {
+                let [cards, deck] = results;
+
+                for(let card of deck.cards) {
+                    card.card = cards[card.id];
+                }
+
+                deck.status = {
+                    usageLevel: 0,
+                    basicRules: true,
+                    verified: !!deck.verified,
+                    noUnreleasedCards: true,
+                    officialRole: true,
+                    extendedStatus: []
+                };
+
+                deck.usageCount = 0;
+
+                if(!game.triadData[username]) {
+                    game.triadData[username] = {
+                        decks: {},
+                        deckUuids: [],
+                    };
+                }
+
+                game.triadData[username].deckUuids[slot] = deckId;
+                game.triadData[username].decks[deck.uuid] = deck;
 
                 this.sendGameState(game);
             })
@@ -836,12 +872,6 @@ class Lobby {
         let gameId = oldGame.gameId;
         let game = this.games[gameId];
 
-        logger.info('gamenode game is:');
-        logger.info(JSON.stringify(oldGame));
-
-        logger.info('server game is:');
-        logger.info(JSON.stringify(game.getSaveState()));
-
         if(!game) {
             return;
         }
@@ -854,6 +884,7 @@ class Lobby {
             showHand: game.showHand,
             gameType: game.gameType,
             adaptiveData: oldGame.adaptiveData,
+            triadData: oldGame.triadData,
             useChessClock: game.useChessClock,
             gameTimeLimit: game.gameTimeLimit,
             gameFormat: game.gameFormat
@@ -996,6 +1027,7 @@ class Lobby {
             syncGame.started = game.started;
             syncGame.gameType = game.gameType;
             syncGame.adaptiveData = game.adaptiveData;
+            syncGame.triadData = game.triadData;
             syncGame.gameFormat = game.gameFormat;
             syncGame.password = game.password;
 

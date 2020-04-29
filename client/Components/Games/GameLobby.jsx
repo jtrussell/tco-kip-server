@@ -6,6 +6,7 @@ import $ from 'jquery';
 import NewGame from './NewGame';
 import GameList from './GameList';
 import PendingGame from './PendingGame';
+import PendingTriadGame from './PendingTriadGame';
 import PasswordGame from './PasswordGame';
 import AlertPanel from '../Site/AlertPanel';
 import Panel from '../Site/Panel';
@@ -44,6 +45,7 @@ class GameLobby extends React.Component {
             freeplay: true,
             adaptive: true,
             adaptiveShort: true,
+            triad: true,
             normal: true,
             showOnlyNewGames: false
         };
@@ -225,7 +227,11 @@ class GameLobby extends React.Component {
                 break;
             case GameState.PendingGame:
                 modalProps.title = this.props.currentGame ? this.props.currentGame.name : '';
-                modalBody = this.props.currentGame ? <PendingGame /> : null;
+                if (this.props.currentGame) {
+                    modalBody = this.props.currentGame.gameType === 'triad' ? <PendingTriadGame /> :  <PendingGame />;
+                } else {
+                    modalBody = null;
+                }
                 break;
             case GameState.PasswordedGame:
                 modalProps.title = t('Password Required');
@@ -251,6 +257,7 @@ class GameLobby extends React.Component {
                                     <Checkbox name='freeplay' label='Free Play' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'freeplay') } checked={ this.state.filter['freeplay'] } />
                                     <Checkbox name='adaptive' label='Adaptive' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'adaptive') } checked={ this.state.filter['adaptive'] } />
                                     <Checkbox name='adaptiveShort' label='Adaptive Short' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'adaptiveShort') } checked={ this.state.filter['adaptiveShort'] } />
+                                    <Checkbox name='triad' label='Triad' fieldClass='col-sm-4' noGroup onChange={ this.onCheckboxChange.bind(this, 'triad') } checked={ this.state.filter['triad'] } />
                                     <Checkbox name='showOnlyNewGames' label={ t('Only show new games') } fieldClass='col-sm-6' noGroup onChange={ this.onCheckboxChange.bind(this, 'showOnlyNewGames') } checked={ this.state.filter['showOnlyNewGames'] } />
                                 </Panel>
                             </div>

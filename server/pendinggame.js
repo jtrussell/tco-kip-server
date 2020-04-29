@@ -13,7 +13,6 @@ class PendingGame {
         this.players = {};
         this.spectators = {};
         this.id = details.uuid || uuid.v1();
-        console.log(this.id);
         this.name = details.name;
         this.allowSpectators = details.spectators;
         this.showHand = details.showHand;
@@ -21,6 +20,7 @@ class PendingGame {
         this.gameType = details.gameType;
         this.gameFormat = details.gameFormat;
         this.adaptiveData = details.adaptiveData;
+        this.triadData = details.triadData;
         this.expansions = details.expansions;
         this.started = false;
         this.node = {};
@@ -64,6 +64,7 @@ class PendingGame {
             gameType: this.gameType,
             gameFormat: this.gameFormat,
             adaptiveData: this.adaptiveData,
+            triadData: this.triadData,
             expansions: this.expansions,
             players: players,
             startedAt: this.createdAt
@@ -316,6 +317,7 @@ class PendingGame {
             gameType: this.gameType,
             gameFormat: this.gameFormat,
             adaptiveData: this.adaptiveData,
+            triadData: this.triadData,
             id: this.id,
             messages: activePlayer ? this.gameChat.messages : undefined,
             muteSpectators: this.muteSpectators,
@@ -367,6 +369,7 @@ class PendingGame {
             gameType: this.gameType,
             gameFormat: this.gameFormat,
             adaptiveData: this.adaptiveData,
+            triadData: this.triadData,
             id: this.id,
             muteSpectators: this.muteSpectators,
             name: this.name,

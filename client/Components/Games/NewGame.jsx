@@ -82,6 +82,7 @@ class NewGame extends React.Component {
                 match: 1,
                 records: []
             },
+            triadData: {},
             password: this.state.password,
             quickJoin: this.props.quickJoin,
             muteSpectators: this.state.muteSpectators,
@@ -157,6 +158,8 @@ class NewGame extends React.Component {
         const stylesSelected = {
             color: '#000',
             paddingRight: '5px',
+            margin: '3px',
+            fontSize: '15px',
         };
 
         let gameTypes = [
@@ -179,7 +182,13 @@ class NewGame extends React.Component {
                 name: 'adaptiveShort',
                 label: 'Adaptive Short',
                 classNameSelected: 'adaptive-short',
-            }
+            },
+            {
+                name: 'triad',
+                label: 'Triad',
+                classNameSelected: 'triad',
+                beta: true,
+            },
         ];
 
         return (
@@ -187,13 +196,13 @@ class NewGame extends React.Component {
                 <div className='col-sm-12 game-type' style={{ marginBottom: '5px' }}>
                     <div><Trans>Game Type</Trans></div>
                 </div>
-                <div className='col-sm-10' style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='col-sm-10' style={{ display: 'flex', flexDirection: 'column', width: '170px' }}>
                     { gameTypes.map(gameType => {
                         return (
                             <label
                                 key={ gameType.name }
                                 className={`radio-inline ${this.isGameTypeSelected(gameType.name) ? gameType.classNameSelected : '' }`}
-                                style={this.isGameTypeSelected(gameType.name) ? stylesSelected : {} }
+                                style={this.isGameTypeSelected(gameType.name) ? stylesSelected : { margin: '3px', fontSize: '15px' } }
                             >
                                 <input type='radio' onChange={ this.onGameTypeChange.bind(this, gameType.name) } checked={ this.isGameTypeSelected(gameType.name) } />
                                     { gameType.label }

@@ -43,8 +43,6 @@ export default (deck, cards) => {
         usageLevel: deck.usageLevel,
         noUnreleasedCards: true,
         officialRole: true,
-        faqRestrictedList: true,
-        faqVersion: 'v1.0',
         extendedStatus: []
     };
     return deck;
