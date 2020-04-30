@@ -69,6 +69,7 @@ const avatars = [
     '/img/avatars/team-labwork.jpg',
     '/img/avatars/bootcampx.jpg',
     '/img/avatars/mitrux.png',
+    '/img/avatars/rootteam-job.jpg',
     '/img/avatars/keysaders.jpg'
 ];
 
