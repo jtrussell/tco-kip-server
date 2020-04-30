@@ -174,7 +174,7 @@ const setup = (server) => {
         const idResponse = await client.query(idQuery, [req.body.username]);
         const playerId = idResponse.rows[0].id;
 
-        if(foils.length >= 2) {
+        if(foils.length >= 12) {
             const couponQuery = `
                 UPDATE
                     coupons
