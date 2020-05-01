@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 const Deck = ({ uuid, image, banned }) => {
     return (
-        <a
-            href={ `https://www.decksofkeyforge.com/decks/${uuid}` }
-            target='_blank'
+        <div
             style={ {
                 position: 'relative',
             } }
@@ -43,7 +41,7 @@ const Deck = ({ uuid, image, banned }) => {
                 } }
                 src={ image }
             />
-        </a>
+        </div>
     );
 };
 
