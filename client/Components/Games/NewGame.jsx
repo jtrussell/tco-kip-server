@@ -173,11 +173,11 @@ class NewGame extends React.Component {
                 label: 'Free Play',
                 classNameSelected: 'label-warning',
             },
-            {
-                name: 'adaptive',
-                label: 'Adaptive',
-                classNameSelected: 'label-danger',
-            },
+            //{
+                //name: 'adaptive',
+                //label: 'Adaptive',
+                //classNameSelected: 'label-danger',
+            //},
             {
                 name: 'adaptiveShort',
                 label: 'Adaptive Short',

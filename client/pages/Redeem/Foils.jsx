@@ -92,7 +92,7 @@ class Foils extends React.Component {
             );
         }
 
-        if(this.state.foils.length >= 2 && !this.state.coupons.length) {
+        if(this.state.foils.length >= 40 && !this.state.coupons.length) {
             return (
                 <Container>
                     <Background/>

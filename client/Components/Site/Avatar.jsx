@@ -14,9 +14,14 @@ class Avatar extends React.Component {
         }
 
         let icon = this.props.user.avatar || defaultAvatar;
+        icon = `https://crucible-tracker-card-images.s3.amazonaws.com${icon}`;
 
         if (this.props.user.username === 'KiP' || this.props.user.username === 'KiP2') {
-            icon = '/img/armor.png';
+            icon = `https://crucible-tracker-card-images.s3.amazonaws.com/img/armor.png`;
+        }
+
+        if (this.props.user.username === 'Judge1' || this.props.user.username === 'Judge2') {
+            icon = `https://crucible-tracker-card-images.s3.amazonaws.com/img/adaptive.png`;
         }
 
         return (

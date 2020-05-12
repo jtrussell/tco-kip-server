@@ -6,7 +6,6 @@ const menus = [
     { path: '/play', title: 'Play', position: 'left' },
     { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true, position: 'left' },
     { path: '/foils', title: 'Foils', showOnlyWhenLoggedIn: true, position: 'left' },
-    { path: '/leaderboard', title: 'Leaderboards', position: 'left' },
     {
         title: 'Placeholder',
         childItems: [

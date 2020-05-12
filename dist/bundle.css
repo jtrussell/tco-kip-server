@@ -9218,39 +9218,39 @@ hr.phasestart {
   top: 50%;
 }
 .damage {
-  background-image: url('/img/damage.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/damage.png');
 }
 .disruption {
-  background-image: url('/img/disruption.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/disruption.png');
 }
 .doom {
-  background-image: url('/img/doom.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/doom.png');
 }
 .amber {
-  background-image: url('/img/amber.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/amber.png');
 }
 .armor {
-  background-image: url('/img/armor.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/armor.png');
 }
 .glory {
-  background-image: url('/img/glory.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/glory.png');
 }
 .growth {
-  background-image: url('/img/growth.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/growth.png');
 }
 .power {
-  background-image: url('/img/power.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/power.png');
   padding-left: 3px;
 }
 .stun {
-  background-image: url("/img/stun.png");
+  background-image: url("https://crucible-tracker-card-images.s3.amazonaws.com/stun.png");
 }
 .enrage {
-  background-image: url("/img/enrage.png");
+  background-image: url("https://crucible-tracker-card-images.s3.amazonaws.com/enrage.png");
   line-height: 21px;
 }
 .ward {
-  background-image: url("/img/ward.png");
+  background-image: url("https://crucible-tracker-card-images.s3.amazonaws.com/ward.png");
   line-height: 21px;
 }
 .ward.broken {
@@ -9260,13 +9260,13 @@ hr.phasestart {
   padding-top: 2px;
 }
 .unforged-red {
-  background-image: url('/img/unforgedkeyred.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/unforgedkeyred.png');
 }
 .unforged-blue {
-  background-image: url('/img/unforgedkeyblue.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/unforgedkeyblue.png');
 }
 .unforged-yellow {
-  background-image: url('/img/unforgedkeyyellow.png');
+  background-image: url('https://crucible-tracker-card-images.s3.amazonaws.com/unforgedkeyyellow.png');
 }
 .card-small {
   max-width: 30px;
@@ -9693,14 +9693,14 @@ h4 {
   left: 0;
   padding-top: 50px;
   height: 100%;
-  background: url(/b2649d578a51b3c27cd6c5d42b3503bf.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/kip-art-dark.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
 .bg-board-brobnar {
-  background: url(/176788eb154423e192d0ee70644246bd.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/brobnar.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9708,7 +9708,7 @@ h4 {
   filter: none;
 }
 .bg-board-dis {
-  background: url(/47656264610261b4699d124564c7f280.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/dis.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9716,7 +9716,7 @@ h4 {
   filter: none;
 }
 .bg-board-logos {
-  background: url(/b287fe391ad2025ff2d2c6ed215c7057.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/logos.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9724,7 +9724,7 @@ h4 {
   filter: none;
 }
 .bg-board-mars {
-  background: url(/fcd3311efc571a843693985530aff64f.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/mars.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9732,7 +9732,7 @@ h4 {
   filter: none;
 }
 .bg-board-sanctum {
-  background: url(/5a3f33e0101d25509567486f89f95797.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/sanctum.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9740,7 +9740,7 @@ h4 {
   filter: none;
 }
 .bg-board-shadows {
-  background: url(/523d5703b7cebe1a0c13255de79e3979.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/shadows.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -9748,7 +9748,7 @@ h4 {
   filter: none;
 }
 .bg-board-untamed {
-  background: url(/20618d6ecde62cf7617a8191610a3c90.png);
+  background: url('https://crucible-tracker-card-images.s3.amazonaws.com/bg/untamed.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

@@ -70,7 +70,10 @@ const avatars = [
     '/img/avatars/bootcampx.jpg',
     '/img/avatars/mitrux.png',
     '/img/avatars/rootteam-job.jpg',
-    '/img/avatars/keysaders.jpg'
+    '/img/avatars/keysaders.jpg',
+    '/img/avatars/jargogles.jpg',
+    '/img/avatars/exalted.jpg',
+    '/img/avatars/ccf.png'
 ];
 
 export {

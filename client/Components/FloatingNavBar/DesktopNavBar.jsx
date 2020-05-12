@@ -119,7 +119,6 @@ class Component extends React.Component {
                         <Button navigate={ this.props.navigate } path='/play'>Play</Button>
                         { this.props.user && <Button navigate={ this.props.navigate } path='/decks'>Decks</Button> }
                         { this.props.user && <Button navigate={ this.props.navigate } path='/foils'>Foils</Button> }
-                        <Button navigate={ this.props.navigate } path='/leaderboard' >Leaderboards</Button>
                     </LeftItems>
                     <RightItems>
                         { !this.props.user && <Button navigate={ this.props.navigate } path='/login'>Login</Button> }

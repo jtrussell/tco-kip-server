@@ -156,7 +156,7 @@ class RollForFoil extends React.Component {
             );
         }
 
-        let foilsToRedeem = this.props.foils.length < 2 ? (2 - this.props.foils.length) : 0;
+        let foilsToRedeem = this.props.foils.length < 40 ? (40 - this.props.foils.length) : 0;
         foilsToRedeem += this.props.coupons.length;
 
         return (

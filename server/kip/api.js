@@ -157,7 +157,7 @@ const setup = (server) => {
         const foils = await getFoilsForUser(req.body.username);
         const coupons = await getValidCouponsForUser(req.body.username);
 
-        if(foils.length >= 2 && coupons.length === 0) {
+        if(foils.length >= 40 && coupons.length === 0) {
             res.status(400).send('Foil cards have already been redeemed for this user');
             return;
         }
@@ -174,7 +174,7 @@ const setup = (server) => {
         const idResponse = await client.query(idQuery, [req.body.username]);
         const playerId = idResponse.rows[0].id;
 
-        if(foils.length >= 12) {
+        if(foils.length >= 40) {
             const couponQuery = `
                 UPDATE
                     coupons

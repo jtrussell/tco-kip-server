@@ -71,20 +71,14 @@ class GameList extends React.Component {
     }
 
     getPlayerCards(player, firstPlayer) {
-        let houses = player.houses && player.houses.map(house => {
-            return <img key={ player.name + house } className='img-responsive' src={ `/img/house/${house}.png` } />;
-        });
-
         if(firstPlayer) {
             return (<div className='game-faction-row first-player'>
                 { this.getPlayerNameAndAvatar(player, firstPlayer) }
-                <div className='house-icons'>{ houses }</div>
             </div>);
         }
 
         return (<div className='game-faction-row other-player'>
             { this.getPlayerNameAndAvatar(player, firstPlayer) }
-            <div className='house-icons'>{ houses }</div>
         </div>);
     }
 

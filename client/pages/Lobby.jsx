@@ -6,7 +6,7 @@ import Link from '../Components/Link';
 import colors from '../colors';
 
 const Container = styled.div`
-    max-width: 1000px;
+    width: 100%;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
@@ -44,20 +44,8 @@ const Image = styled.div`
     margin-top: 20px;
 `;
 
-const Overlay = styled.div`
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    color: #FFF;
-    padding: 5px;
-    font-size: 20px;
-`;
-
 const LargeImage = styled.img`
-    width: 1000px;
+    width: 100%;
 `;
 
 const upcomingTournaments = [{
@@ -93,71 +81,20 @@ class Lobby extends React.Component {
             <Container>
                 <Background />
                 <div style={{ width: '100%', marginTop: '0px' }}>
-                    <div style={{ textAlign: 'center', marginTop: '40px' }}>
+                    <div style={{ textAlign: 'center', marginTop: '0px' }}>
                         <Title>
-                            Shadow Worlds 2020 - Day 1
+                            Shadow Worlds 2020 - Day 2
                         </Title>
                         <Title>
-                            <Link newTab text='Sign Up Here' url='https://kip.challonge.com/ShadowWorlds2020'/>
+                            <Link newTab text='Create Bracket Prediction' url='https://kip.challonge.com/ShadowWorlds2020Day2'/>
                         </Title>
-                    </div>
-                    <div style={{ filter: 'brightness(0.5)', display: 'none' }} >
-                        <Blurb>
-                            <Title color='#6f7d85' fontSize="18px">
-                                Past Tournaments
-                            </Title>
-                        </Blurb>
-                        <div>
-                            <Title>
-                                Saturday and Sunday, April 18th to 19th
-                            </Title>
-                            <Text>
-                                <Link newTab text='True Archon Survival (2 days)' url='https://challonge.com/truesurvival'/>
-                                <EventTime>12pm EST, 6pm CEST</EventTime>
-                            </Text>
-                        </div>
-                        <Blurb>
-                            <Title>
-                                Saturday, April 11th
-                            </Title>
-                            <Text>
-                                <Link newTab text='Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/ti4iwe5s'/>
-                                <EventTime>12pm EST, 6pm CEST</EventTime>
-                            </Text>
-                        </Blurb>
-                        <Blurb>
-                            <Title>
-                                Friday, April 10th
-                            </Title>
-                            <Text>
-                                <Link newTab text='Adaptive Short Best-of-1 Swiss (16 players)' url='https://challonge.com/8qys6s84'/>
-                                <EventTime>12pm EST, 6pm CEST</EventTime>
-                            </Text>
-                        </Blurb>
-                        <Blurb>
-                            <Title>
-                                Sunday, April 5th
-                            </Title>
-                            <Text>
-                                <Link newTab text='Win-A-Box Archon Solo Bo1 Swiss (128 players)' url='https://challonge.com/l2ujd82z'/>
-                                <EventTime>12pm EST, 6pm CEST</EventTime>
-                            </Text>
-                        </Blurb>
                     </div>
                 </div>
                 <br/>
                 <Image>
-                    <a target='_blank' href='https://kip.challonge.com/ShadowWorlds2020'>
-                        <LargeImage src='/img/sanctum_bw_wallpaper.jpg'/>
+                    <a target='_blank' href='https://kip.challonge.com/ShadowWorlds2020Day2'>
+                        <LargeImage src='https://crucible-tracker-card-images.s3.amazonaws.com/kip-art.jpg'/>
                     </a>
-                    <Overlay>
-                        <span style={{
-                            backgroundColor: 'rgba(0,0,0)',
-                            padding: '12px 14px',
-                        }}>
-                            Shadow Worlds
-                        </span>
-                    </Overlay>
                 </Image>
             </Container>
         );
